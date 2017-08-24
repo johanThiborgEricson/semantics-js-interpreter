@@ -6,12 +6,20 @@ function JavaScriptInterpreter() {
   var f = new InterpreterMethodFactory();
   var j = JavaScriptInterpreter.prototype;
   
-  j.program = f.group("statements", function(statements) {
-    var returnValue = statements();
-    return returnValue;
+  // Lexical Grammar
+  
+  j.numericLiteral = f.atom(/\d/, function(numericLiteral){
+    return Number(numericLiteral);
   });
   
-  j.statements = f.star("statement", function(statements) {
+  // Expressions
+  
+  j.expression = f.or("numericLiteral");
+  
+  // Statements
+  j.statement = f.or("returnStatement");
+  
+  j.statementList = f.star("statement", function(statements) {
     var f = function() {
       var returnValue;
       var i = 0;
@@ -26,18 +34,18 @@ function JavaScriptInterpreter() {
     return f;
   });
   
-  j.statement = f.or("returnStatement");
-  
   j.returnStatement = f.group(/return /, "expression", /;/, function(statement) {
     return function() {
       return statement;
     };
   });
   
-  j.expression = f.or("numericLiteral");
+  // Functions and programs
   
-  j.numericLiteral = f.atom(/\d/, function(numericLiteral){
-    return Number(numericLiteral);
+  j.program = f.group("statementList", function(statementList) {
+    var returnValue = statementList();
+    return returnValue;
   });
+  
   
 })();
