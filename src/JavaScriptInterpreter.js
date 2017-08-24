@@ -19,7 +19,20 @@ function JavaScriptInterpreter() {
   // Statements
   j.statement = f.or("returnStatement");
   
-  j.statementList = f.star("statement", function(statements) {
+  j.returnStatement = f.group(/return /, "expression", /;/, function(statement) {
+    return function() {
+      return statement;
+    };
+  });
+  
+  // Functions and programs
+  
+  j.program = f.group("sourceElements", function(sourceElements) {
+    var returnValue = sourceElements();
+    return returnValue;
+  });
+  
+  j.sourceElements = f.star("statement", function(statements) {
     var f = function() {
       var returnValue;
       var i = 0;
@@ -32,19 +45,6 @@ function JavaScriptInterpreter() {
     };
     
     return f;
-  });
-  
-  j.returnStatement = f.group(/return /, "expression", /;/, function(statement) {
-    return function() {
-      return statement;
-    };
-  });
-  
-  // Functions and programs
-  
-  j.program = f.group("statementList", function(statementList) {
-    var returnValue = statementList();
-    return returnValue;
   });
   
   
