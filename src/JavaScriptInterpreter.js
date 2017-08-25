@@ -18,33 +18,33 @@ function JavaScriptInterpreter() {
   
   // Statements
   j.statement = f.or("returnStatement");
+  j.deferredStatement = f.deferredExecution("statement");
   
-  j.returnStatement = f.group(/return /, "expression", /;/, function(statement) {
-    return function() {
-      return statement;
-    };
+  j.returnStatement = f.group(/return /, "expression", /;/, 
+  function(expression) {
+    return expression;
   });
   
   // Functions and programs
   
-  j.program = f.group("sourceElements", function(sourceElements) {
-    var returnValue = sourceElements();
-    return returnValue;
+  j.programInit = f.empty(function() {
+    
   });
   
-  j.sourceElements = f.star("statement", function(statements) {
-    var f = function() {
-      var returnValue;
-      var i = 0;
-      while(i < statements.length) {
-        returnValue = statements[i]();
-        i++;
-      }
-      
-      return returnValue;
-    };
+  j.program = f.group("programInit", "sourceElements", 
+  function(programInit, sourceElements) {
+    return sourceElements;
+  });
+  
+  j.sourceElements = f.star("deferredStatement", function(deferredStatements) {
+    var returnValue;
+    var i = 0;
+    while(i < deferredStatements.length) {
+      returnValue = deferredStatements[i](this);
+      i++;
+    }
     
-    return f;
+    return returnValue;
   });
   
   
