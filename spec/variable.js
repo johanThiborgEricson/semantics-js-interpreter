@@ -15,7 +15,7 @@ describe("A variable", function() {
       "return a;")).toBe(a);
   });
   
-  it("mustn't be initialized", function() {
+  it("may not be initialized", function() {
     var a;
     
     expect(interpreter.program(
