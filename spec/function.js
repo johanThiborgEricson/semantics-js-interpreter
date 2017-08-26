@@ -8,9 +8,9 @@ describe("A function", function() {
         "a=1;" +
       "};");
       
-      expect(interpreter.executionContext.variables.a).toBe(undefined);
-      f();
-      expect(interpreter.executionContext.variables.a).toBe(1);
+    expect(interpreter.executionContext.variables.a).toBe(undefined);
+    f();
+    expect(interpreter.executionContext.variables.a).toBe(1);
   });
   
 });
