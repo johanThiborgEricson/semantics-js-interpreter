@@ -11,10 +11,15 @@ function JavaScriptInterpreter() {
   
   // Lexical Grammar
   
-  j.identifierReference = f.atom(/[a-z]/, function(identifierReference) {
+  j.identifierDeclaration = f.atom(/[a-z]/, function(identifierDeclaration) {
+    return identifierDeclaration;
+  });
+  
+  j.identifierReference = f.group("identifierDeclaration", 
+  function(identifierDeclaration) {
     return {
       container: this.executionContext.variables,
-      name: identifierReference,
+      name: identifierDeclaration,
     };
     
   });
@@ -58,9 +63,9 @@ function JavaScriptInterpreter() {
   
   j.expressionStatement = f.group("expression", /;/, id);
   
-  j.variableStatement = f.group(/var /, "identifierReference", 
-  "initialiserOpt", /;/, function(identifierReference, initialiserOpt) {
-    this.executionContext.variables[identifierReference.name] = initialiserOpt;
+  j.variableStatement = f.group(/var /, "identifierDeclaration", 
+  "initialiserOpt", /;/, function(identifierDeclaration, initialiserOpt) {
+    this.executionContext.variables[identifierDeclaration] = initialiserOpt;
   });
   
   j.initialiser = f.group(/=/, "assignmentExpression", 
