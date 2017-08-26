@@ -23,4 +23,32 @@ describe("A variable", function() {
       "return a;")).toBe(a);
   });
   
+  it("may be set after its declaration", function() {
+    var a;
+    a = 1;
+    
+    expect(interpreter.program(
+      "var a;" + 
+      "a=1;" + 
+      "return a;")).toBe(1);
+  });
+  
+  it("can be assign as part of an assignment chain", function() {
+    var a;
+    var b;
+    b = a = 1;
+    
+    expect(interpreter.program(
+      "var a;" + 
+      "var b;" + 
+      "b=a=1;" + 
+      "return a;")).toBe(1);
+      
+    expect(interpreter.program(
+      "var a;" + 
+      "var b;" + 
+      "b=a=1;" + 
+      "return b;")).toBe(1);
+  });
+  
 });

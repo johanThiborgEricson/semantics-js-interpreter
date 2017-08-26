@@ -5,6 +5,9 @@ function JavaScriptInterpreter() {
 (function() {
   var f = new InterpreterMethodFactory();
   var j = JavaScriptInterpreter.prototype;
+  var id = function(x) {
+    return x;
+  };
   
   // Lexical Grammar
   
@@ -30,13 +33,29 @@ function JavaScriptInterpreter() {
   
   j.primaryExpression = f.or("identifierExpression", "numericLiteral");
   
-  j.assignmentExpression = f.or("primaryExpression");
+  j.leftHandSideExpression = f.or("identifierReference");
+  
+  j.conditionalExpression = f.or("primaryExpression");
+  
+  j.assignmentExpression = f.or("assignmentExpression0", 
+  "conditionalExpression");
+  
+  j.assignmentExpression0 = f.group("leftHandSideExpression", /=/, 
+  "assignmentExpression", 
+  function(leftHandSideExpression, assignmentExpression) {
+    var lhse = leftHandSideExpression;
+    return (lhse.container[lhse.name] = assignmentExpression);
+  });
   
   j.expression = f.or("assignmentExpression");
   
   // Statements
-  j.statement = f.or("variableStatement", "returnStatement");
+  j.statement = f.or("variableStatement", "expressionStatement", 
+  "returnStatement");
+  
   j.deferredStatement = f.deferredExecution("statement");
+  
+  j.expressionStatement = f.group("expression", /;/, id);
   
   j.variableStatement = f.group(/var /, "identifierReference", 
   "initialiserOpt", /;/, function(identifierReference, expression) {
