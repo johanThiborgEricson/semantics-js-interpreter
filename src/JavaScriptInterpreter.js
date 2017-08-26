@@ -11,9 +11,9 @@ function JavaScriptInterpreter() {
   
   // Lexical Grammar
   
-  j.identifierDeclaration = f.atom(/[a-z]/, function(identifierDeclaration) {
-    return identifierDeclaration;
-  });
+  var identifier = /[a-z]/;
+  
+  j.identifierDeclaration = f.atom(identifier);
   
   j.identifierReference = f.group("identifierDeclaration", 
   function(identifierDeclaration) {
@@ -34,6 +34,8 @@ function JavaScriptInterpreter() {
     var ir = identifierReference;
     return ir.container[ir.name];
   });
+  
+  j.identifierName = f.atom(identifier);
   
   j.numericLiteral = f.atom(/\d/, function(numericLiteral){
     return Number(numericLiteral);
@@ -65,7 +67,24 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierDeclaration");
   
-  j.leftHandSideExpression = f.or("identifierReference");
+  j.leftHandSideExpression = f.group("identifierReference", 
+  "propertyQualifierList", 
+  function(identifierReference, propertyQualifierList) {
+    var result = identifierReference;
+    
+    propertyQualifierList.map(function(propertyQualifier) {
+      result.container = result.container[result.name];
+      result.name = propertyQualifier;
+    });
+    
+    return result;
+  });
+  
+  j.propertyQualifierList = f.star("propertyQualifier");
+  
+  j.propertyQualifier = f.or("propertyDotQualifier");
+  
+  j.propertyDotQualifier = f.group(/\./, "identifierName", id);
   
   j.assignmentExpression = f.or("assignmentExpression0", 
   "primaryExpression");
