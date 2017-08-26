@@ -42,11 +42,28 @@ function JavaScriptInterpreter() {
   // Expressions
   
   j.primaryExpression = f.or("thisExpression", "numericLiteral", 
-  "functionExpression", "identifierExpression");
+  "objectLiteral", "functionExpression", "identifierExpression");
   
   j.thisExpression = f.atom(/this/, function() {
     return this.executionContext.thisBinding;
   });
+  
+  j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /\}/, 
+  function(propertyAndValueList) {
+    var result = {};
+    propertyAndValueList.map(function(propertyAssignment) {
+      var pa = propertyAssignment;
+      result[pa.propertyName] = pa.assignmentExpression;
+    });
+    
+    return result;
+  });
+  
+  j.propertyNameAndValueList = f.star("propertyAssignment", /,/);
+  
+  j.propertyAssignment = f.group("propertyName", /:/, "assignmentExpression");
+  
+  j.propertyName = f.or("identifierDeclaration");
   
   j.leftHandSideExpression = f.or("identifierReference");
   
