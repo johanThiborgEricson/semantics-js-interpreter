@@ -31,7 +31,8 @@ function JavaScriptInterpreter() {
   
   // Expressions
   
-  j.primaryExpression = f.or("identifierExpression", "numericLiteral");
+  j.primaryExpression = f.or("numericLiteral", 
+  "functionExpression", "identifierExpression");
   
   j.leftHandSideExpression = f.or("identifierReference");
   
@@ -75,6 +76,16 @@ function JavaScriptInterpreter() {
   });
   
   // Functions and programs
+  
+  j.functionExpression = f.group(/function/, /\(/, /\)/, /\{/, 
+  "functionBody", /\}/, function(functionBody) {
+    var that = this;
+    return function() {
+      functionBody(that);
+    };
+  });
+  
+  j.functionBody = f.deferredExecution("sourceElements");
   
   j.programInit = f.empty(function() {
     this.executionContext = {
