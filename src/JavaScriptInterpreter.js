@@ -67,10 +67,8 @@ function JavaScriptInterpreter() {
   
   j.leftHandSideExpression = f.or("identifierReference");
   
-  j.conditionalExpression = f.or("primaryExpression");
-  
   j.assignmentExpression = f.or("assignmentExpression0", 
-  "conditionalExpression");
+  "primaryExpression");
   
   j.assignmentExpression0 = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
