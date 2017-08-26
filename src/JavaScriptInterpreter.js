@@ -81,7 +81,7 @@ function JavaScriptInterpreter() {
   "functionBody", /\}/, function(functionBody) {
     var that = this;
     return function() {
-      functionBody(that);
+      return functionBody(that);
     };
   });
   
