@@ -65,7 +65,7 @@ function JavaScriptInterpreter() {
   
   j.propertyAssignment = f.group("propertyName", /:/, "assignmentExpression");
   
-  j.propertyName = f.or("identifierDeclaration");
+  j.propertyName = f.or("identifierName");
   
   j.leftHandSideExpression = f.group("identifierReference", 
   "propertyQualifierList", 
