@@ -40,4 +40,14 @@ describe("A function", function() {
     expect(f("x", "y", "z")).toBe("z");
   });
   
+  it("can be called as a method", function() {
+    var o = {};
+    o.m = interpreter.program(
+      "return function(){" + 
+        "return this;" + 
+      "};");
+    
+    expect(o.m()).toBe(o);
+  });
+  
 });

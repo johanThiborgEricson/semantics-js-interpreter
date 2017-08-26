@@ -41,8 +41,12 @@ function JavaScriptInterpreter() {
   
   // Expressions
   
-  j.primaryExpression = f.or("numericLiteral", 
+  j.primaryExpression = f.or("thisExpression", "numericLiteral", 
   "functionExpression", "identifierExpression");
+  
+  j.thisExpression = f.atom(/this/, function() {
+    return this.executionContext.thisBinding;
+  });
   
   j.leftHandSideExpression = f.or("identifierReference");
   
@@ -104,6 +108,7 @@ function JavaScriptInterpreter() {
       that.executionContext = {
         outer: outerExecutionContext,
         variables: args,
+        thisBinding: this,
       };
       
       var result = functionBody(that);

@@ -1,2 +1,5 @@
 Write test to check that assigning to variable statements only affects the 
   current execution context.
+It seems that distinguishing between variable names and this can't be done 
+  with predecence alone. Negative lookahead: match this not followed by
+  IdentifierPart
