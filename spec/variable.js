@@ -51,4 +51,22 @@ describe("A variable", function() {
       "return b;")).toBe(b);
   });
   
+  it("can be declared in many contexts", function() {
+    var a = 0;
+    var f2 = function() {
+      var a = 1;
+    };
+    
+    var f = interpreter.program(
+      "var a=0;" + 
+      "return function(){" + 
+        "var a=1;" + 
+      "};");
+      
+    f();
+    f2();
+    
+    expect(interpreter.executionContext.variables.a).toBe(a);
+  });
+  
 });

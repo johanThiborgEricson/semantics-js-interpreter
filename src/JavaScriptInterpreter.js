@@ -17,8 +17,13 @@ function JavaScriptInterpreter() {
   
   j.identifierReference = f.group("identifierDeclaration", 
   function(identifierDeclaration) {
+    var container = this.executionContext;
+    while(!container.variables.hasOwnProperty(identifierDeclaration)) {
+      container = container.outer;
+    }
+    
     return {
-      container: this.executionContext.variables,
+      container: container.variables,
       name: identifierDeclaration,
     };
     
@@ -85,8 +90,17 @@ function JavaScriptInterpreter() {
   j.functionExpression = f.group(/function/, /\(/, /\)/, /\{/, 
   "functionBody", /\}/, function(functionBody) {
     var that = this;
+    var outerExecutionContext = this.executionContext;
     return function() {
-      return functionBody(that);
+      var stack = that.executionContext;
+      that.executionContext = {
+        outer: outerExecutionContext,
+        variables: {},
+      };
+      
+      var result = functionBody(that);
+      that.executionContext = stack;
+      return result;
     };
   });
   
