@@ -30,16 +30,25 @@ function JavaScriptInterpreter() {
   
   j.primaryExpression = f.or("identifierExpression", "numericLiteral");
   
-  j.expression = f.or("primaryExpression");
+  j.assignmentExpression = f.or("primaryExpression");
+  
+  j.expression = f.or("assignmentExpression");
   
   // Statements
   j.statement = f.or("variableStatement", "returnStatement");
   j.deferredStatement = f.deferredExecution("statement");
   
-  j.variableStatement = f.group(/var /, "identifierReference", /=/, 
-  "expression", /;/, function(identifierReference, expression) {
+  j.variableStatement = f.group(/var /, "identifierReference", 
+  "initialiserOpt", /;/, function(identifierReference, expression) {
     identifierReference.container[identifierReference.name] = expression;
   });
+  
+  j.initialiser = f.group(/=/, "assignmentExpression", 
+  function(assignmentExpression) {
+    return assignmentExpression;
+  });
+  
+  j.initialiserOpt = f.opt("initialiser", undefined);
   
   j.returnStatement = f.group(/return /, "expression", /;/, 
   function(expression) {
