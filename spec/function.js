@@ -22,4 +22,22 @@ describe("A function", function() {
     expect(f()).toBe(1);
   });
   
+  it("accepts one argument", function() {
+    var f = interpreter.program(
+      "return function(x){" + 
+        "return x;" + 
+      "};");
+    
+    expect(f("x")).toBe("x");
+  });
+  
+  it("accepts many arguments", function() {
+    var f = interpreter.program(
+      "return function(x,y,z){" + 
+        "return z;" + 
+      "};");
+    
+    expect(f("x", "y", "z")).toBe("z");
+  });
+  
 });

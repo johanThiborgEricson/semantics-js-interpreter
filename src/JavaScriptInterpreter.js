@@ -87,15 +87,23 @@ function JavaScriptInterpreter() {
   
   // Functions and programs
   
-  j.functionExpression = f.group(/function/, /\(/, /\)/, /\{/, 
-  "functionBody", /\}/, function(functionBody) {
+  j.functionExpression = f.group(/function/, /\(/, "formalParameterList", /\)/, 
+  /\{/, "functionBody", /\}/, function(formalParameterList, functionBody) {
     var that = this;
     var outerExecutionContext = this.executionContext;
     return function() {
       var stack = that.executionContext;
+      
+      args = {};
+      var i = 0;
+      while(i < formalParameterList.length) {
+        args[formalParameterList[i]] = arguments[i];
+        i++;
+      }
+      
       that.executionContext = {
         outer: outerExecutionContext,
-        variables: {},
+        variables: args,
       };
       
       var result = functionBody(that);
@@ -103,6 +111,8 @@ function JavaScriptInterpreter() {
       return result;
     };
   });
+  
+  j.formalParameterList = f.star("identifierDeclaration", /,/);
   
   j.functionBody = f.deferredExecution("sourceElements");
   
