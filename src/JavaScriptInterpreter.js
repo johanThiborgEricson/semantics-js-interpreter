@@ -59,7 +59,7 @@ function JavaScriptInterpreter() {
   
   j.variableStatement = f.group(/var /, "identifierReference", 
   "initialiserOpt", /;/, function(identifierReference, expression) {
-    identifierReference.container[identifierReference.name] = expression;
+    this.executionContext.variables[identifierReference.name] = expression;
   });
   
   j.initialiser = f.group(/=/, "assignmentExpression", 
