@@ -66,7 +66,7 @@ function JavaScriptInterpreter() {
   
   j.deferredStatement = f.deferredExecution("statement");
   
-  j.expressionStatement = f.group("expression", /;/, id);
+  j.expressionStatement = f.group("expression", /;/);
   
   j.variableStatement = f.group(/var /, "identifierDeclaration", 
   "initialiserOpt", /;/, function(identifierDeclaration, initialiserOpt) {
