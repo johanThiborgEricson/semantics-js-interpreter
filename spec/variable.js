@@ -30,10 +30,10 @@ describe("A variable", function() {
     expect(interpreter.program(
       "var a;" + 
       "a=1;" + 
-      "return a;")).toBe(1);
+      "return a;")).toBe(a);
   });
   
-  it("can be assign as part of an assignment chain", function() {
+  it("can be assigned as part of an assignment chain", function() {
     var a;
     var b;
     b = a = 1;
@@ -42,13 +42,13 @@ describe("A variable", function() {
       "var a;" + 
       "var b;" + 
       "b=a=1;" + 
-      "return a;")).toBe(1);
+      "return a;")).toBe(a);
       
     expect(interpreter.program(
       "var a;" + 
       "var b;" + 
       "b=a=1;" + 
-      "return b;")).toBe(1);
+      "return b;")).toBe(b);
   });
   
 });
