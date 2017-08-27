@@ -23,13 +23,13 @@ function JavaScriptInterpreter() {
   
   j.identifierReference = f.group("bindingIdentifier", 
   function(bindingIdentifier) {
-    var container = this.executionContext;
-    while(!container.variables.hasOwnProperty(bindingIdentifier)) {
-      container = container.outer;
+    var base = this.executionContext;
+    while(!base.variables.hasOwnProperty(bindingIdentifier)) {
+      base = base.outer;
     }
     
     return {
-      container: container.variables,
+      base: base.variables,
       name: bindingIdentifier,
     };
     
@@ -38,7 +38,7 @@ function JavaScriptInterpreter() {
   j.identifierExpression = f.group("identifierReference", 
   function(identifierReference) {
     var ir = identifierReference;
-    return ir.container[ir.name];
+    return ir.base[ir.name];
   });
   
   j.bindingIdentifier = f.atom(identifierName);
@@ -73,7 +73,7 @@ function JavaScriptInterpreter() {
     var result = identifierReference;
     
     propertyQualifierList.map(function(propertyQualifier) {
-      result.container = result.container[result.name];
+      result.base = result.base[result.name];
       result.name = propertyQualifier;
     });
     
@@ -93,7 +93,7 @@ function JavaScriptInterpreter() {
   "assignmentExpression", 
   function(leftHandSideExpression, assignmentExpression) {
     var lhse = leftHandSideExpression;
-    return (lhse.container[lhse.name] = assignmentExpression);
+    return (lhse.base[lhse.name] = assignmentExpression);
   });
   
   j.expression = f.or("assignmentExpression");
