@@ -1,0 +1,870 @@
+
+<!doctype html>
+<html>
+<head>
+  <title>JS Interpreter Grammar</title>
+  <!-- Ecma-262 5.1 HTML rendering version 1.0.1 -->
+  
+  
+  <link href="es5.1.css" rel="stylesheet">
+  <link rel="icon"  type="image/gif" href="favicon.ico">
+</head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32577963-1']);
+  _gaq.push(['_trackPageview', '/view/ST-262 5.1 edition']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<body>
+<section id="sec-A">
+  <h1><span class="secnum"><a href="#sec-A" title="link to this section">Annex A</a></span> <span
+      class="section-status">(informative)</span> Grammar Summary</h1>
+
+  <section id="sec-A.1">
+    <h1><span class="secnum"><a href="#sec-A.1" title="link to this section">A.1</a></span> Lexical Grammar</h1>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">IdentifierName</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="nt">IdentifierStart</span></div>
+      <div class="rhs"><span class="nt">IdentifierName</span> <span class="nt">IdentifierPart</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">IdentifierStart</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="nt">UnicodeLetter</span></div>
+      <div class="rhs"><code class="t">$</code></div>
+      <div class="rhs"><code class="t">_</code></div>
+      <div class="rhs"><code class="t">\</code> <span class="nt">UnicodeEscapeSequence</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">IdentifierPart</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="nt">IdentifierStart</span></div>
+      <div class="rhs"><span class="nt">UnicodeCombiningMark</span></div>
+      <div class="rhs"><span class="nt">UnicodeDigit</span></div>
+      <div class="rhs"><span class="nt">UnicodeConnectorPunctuation</span></div>
+      <div class="rhs">&lt;ZWNJ&gt;</div>
+      <div class="rhs">&lt;ZWJ&gt;</div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">UnicodeLetter</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="gprose">any character in the Unicode categories &ldquo;Uppercase letter (Lu)&rdquo;, &ldquo;Lowercase letter (Ll)&rdquo;, &ldquo;Titlecase letter (Lt)&rdquo;, &ldquo;Modifier letter (Lm)&rdquo;, &ldquo;Other letter (Lo)&rdquo;, or &ldquo;Letter number (Nl)&rdquo;.</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">UnicodeCombiningMark</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="gprose">any character in the Unicode categories &ldquo;Non-spacing mark (Mn)&rdquo; or &ldquo;Combining spacing mark (Mc)&rdquo;</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">UnicodeDigit</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="gprose">any character in the Unicode category &ldquo;Decimal number (Nd)&rdquo;</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">UnicodeConnectorPunctuation</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="gprose">any character in the Unicode category &ldquo;Connector punctuation (Pc)&rdquo;</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6.1">See 7.6.1</a></div>
+      <div class="lhs"><span class="nt">ReservedWord</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="nt">Keyword</span></div>
+      <div class="rhs"><span class="nt">FutureReservedWord</span></div>
+      <div class="rhs"><span class="nt">NullLiteral</span></div>
+      <div class="rhs"><span class="nt">BooleanLiteral</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6.1.1">See 7.6.1.1</a></div>
+      <div class="lhs"><span class="nt">Keyword</span> <span class="geq">::</span> <span class="grhsmod">one of</span> </div>
+    </div>
+
+    <figure>
+      <table class="lightweight-table">
+        <tr>
+          <td>break</td>
+          <td>do</td>
+          <td>instanceof</td>
+          <td>typeof</td>
+        </tr>
+        <tr>
+          <td>case</td>
+          <td>else</td>
+          <td>new</td>
+          <td>var</td>
+        </tr>
+        <tr>
+          <td>catch</td>
+          <td>finally</td>
+          <td>return</td>
+          <td>void</td>
+        </tr>
+        <tr>
+          <td>continue</td>
+          <td>for</td>
+          <td>switch</td>
+          <td>while</td>
+        </tr>
+        <tr>
+          <td>debugger</td>
+          <td>function</td>
+          <td>this</td>
+          <td>with</td>
+        </tr>
+        <tr>
+          <td>default</td>
+          <td>if</td>
+          <td>throw</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>delete</td>
+          <td>in</td>
+          <td>try</td>
+          <td></td>
+        </tr>
+      </table>
+    </figure>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6.1.2">See 7.6.1.2</a></div>
+      <div class="lhs"><span class="nt">FutureReservedWord</span> <span class="geq">::</span> <span class="grhsmod">one of</span> </div>
+    </div>
+
+    <figure>
+      <table class="lightweight-table">
+        <tr>
+          <td>class</td>
+          <td>enum</td>
+          <td>extends</td>
+          <td>super</td>
+        </tr>
+        <tr>
+          <td>const</td>
+          <td>export</td>
+          <td>import<br></td>
+          <td></td>
+        </tr>
+      </table>
+    </figure>
+
+    <p>The following tokens are also considered to be <span class="nt">FutureReservedWords</span> when parsing <a
+    href="#sec-10.1.1">strict mode code (see 10.1.1)</a>.</p>
+
+    <figure>
+      <table class="lightweight-table">
+        <tr>
+          <td>implements</td>
+          <td>let</td>
+          <td>private</td>
+          <td>public</td>
+        </tr>
+        <tr>
+          <td>interface</td>
+          <td>package</td>
+          <td>protected</td>
+          <td>static</td>
+        </tr>
+        <tr>
+          <td>yield</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </figure>
+
+  </section>
+
+  <section id="sec-A.2">
+    <h1><span class="secnum"><a href="#sec-A.2" title="link to this section">A.2</a></span> Number Conversions</h1>
+
+  </section>
+
+  <section id="sec-A.3">
+    <h1><span class="secnum"><a href="#sec-A.3" title="link to this section">A.3</a></span> Expressions</h1>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1">See 11.1</a></div>
+      <div class="lhs"><span class="nt">IdentifierReference</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1">See 11.1</a></div>
+      <div class="lhs"><span class="nt">BindingIdentifier</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-7.6">See 7.6</a></div>
+      <div class="lhs"><span class="nt">Identifier</span> <span class="geq">::</span> </div>
+      <div class="rhs"><span class="nt">IdentifierName</span> <span class="grhsmod">but not</span> <span class="nt">ReservedWord</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1">See 11.1</a></div>
+      <div class="lhs"><span class="nt">PrimaryExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">this</code></div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+      <div class="rhs"><span class="nt">Literal</span></div>
+      <div class="rhs"><span class="nt">ArrayLiteral</span></div>
+      <div class="rhs"><span class="nt">ObjectLiteral</span></div>
+      <div class="rhs"><code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.4">See 11.1.4</a></div>
+      <div class="lhs"><span class="nt">ArrayLiteral</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">[</code> <span class="nt">Elision</span><sub>opt</sub> <code class="t">]</code></div>
+      <div class="rhs"><code class="t">[</code> <span class="nt">ElementList</span> <code class="t">]</code></div>
+      <div class="rhs"><code class="t">[</code> <span class="nt">ElementList</span> <code class="t">,</code> <span class="nt">Elision</span><sub>opt</sub> <code class="t">]</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.4">See 11.1.4</a></div>
+      <div class="lhs"><span class="nt">ElementList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Elision</span><sub>opt</sub> <span class="nt">AssignmentExpression</span></div>
+      <div class="rhs"><span class="nt">ElementList</span> <code class="t">,</code> <span class="nt">Elision</span><sub>opt</sub> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.4">See 11.1.4</a></div>
+      <div class="lhs"><span class="nt">Elision</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">,</code></div>
+      <div class="rhs"><span class="nt">Elision</span> <code class="t">,</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.5">See 11.1.5</a></div>
+      <div class="lhs"><span class="nt">ObjectLiteral</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">{</code> <code class="t">}</code></div>
+      <div class="rhs"><code class="t">{</code> <span class="nt">PropertyNameAndValueList</span> <code class="t">}</code></div>
+      <div class="rhs"><code class="t">{</code> <span class="nt">PropertyNameAndValueList</span> <code class="t">,</code> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.5">See 11.1.5</a></div>
+      <div class="lhs"><span class="nt">PropertyNameAndValueList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">PropertyAssignment</span></div>
+      <div class="rhs"><span class="nt">PropertyNameAndValueList</span> <code class="t">,</code> <span class="nt">PropertyAssignment</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.5">See 11.1.5</a></div>
+      <div class="lhs"><span class="nt">PropertyAssignment</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">PropertyName</span> <code class="t">:</code> <span class="nt">AssignmentExpression</span></div>
+      <div class="rhs"><code class="t">get</code> <span class="nt">PropertyName</span> <code class="t">(</code> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
+      <div class="rhs"><code class="t">set</code> <span class="nt">PropertyName</span> <code class="t">(</code> <span class="nt">PropertySetParameterList</span> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.5">See 11.1.5</a></div>
+      <div class="lhs"><span class="nt">PropertyName</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">IdentifierName</span></div>
+      <div class="rhs"><span class="nt">StringLiteral</span></div>
+      <div class="rhs"><span class="nt">NumericLiteral</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.1.5">See 11.1.5</a></div>
+      <div class="lhs"><span class="nt">PropertySetParameterList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">NewExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">PrimaryExpression</span></div>
+      <div class="rhs"><span class="nt">FunctionExpression</span></div>
+      <div class="rhs"><code class="t">new</code> <span class="nt">MemberExpressionQualifier</span> <span class="nt">Arguments</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">NewExpressionQualifier</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">NewExpression</span></div>
+      <div class="rhs"><span class="nt">NewExpressionQualifier</span> <code class="t">[</code> <span class="nt">Expression</span> <code class="t">]</code></div>
+      <div class="rhs"><span class="nt">NewExpressionQualifier</span> <code class="t">.</code> <span class="nt">IdentifierName</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">CallExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">NewExpression</span></div>
+      <div class="rhs"><span class="nt">CallExpressionQualifier</span> <span class="nt">Arguments</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">CallExpressionQualifier</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">CallExpression</span></div>
+      <div class="rhs"><span class="nt">CallExpressionQualifier</span> <code class="t">[</code> <span class="nt">Expression</span> <code class="t">]</code></div>
+      <div class="rhs"><span class="nt">CallExpressionQualifier</span> <code class="t">.</code> <span class="nt">IdentifierName</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.2">See 11.2</a></div>
+      <div class="lhs"><span class="nt">Arguments</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">(</code> <code class="t">)</code></div>
+      <div class="rhs"><code class="t">(</code> <span class="nt">ArgumentList</span> <code class="t">)</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.2">See 11.2</a></div>
+      <div class="lhs"><span class="nt">ArgumentList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">AssignmentExpression</span></div>
+      <div class="rhs"><span class="nt">ArgumentList</span> <code class="t">,</code> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">LeftHandSideExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+      <div class="rhs"><span class="nt">CallExpression</span> <code class="t">[</code> <span class="nt">Expression</span> <code class="t">]</code></div>
+      <div class="rhs"><span class="nt">CallExpression</span> <code class="t">.</code> <span class="nt">IdentifierName</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <code class="t">[</code> <span class="nt">Expression</span> <code class="t">]</code></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <code class="t">.</code> <span class="nt">IdentifierName</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.3">See 11.3</a></div>
+      <div class="lhs"><span class="nt">PostfixExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <code class="t">++</code></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <code class="t">--</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.4">See 11.4</a></div>
+      <div class="lhs"><span class="nt">UnaryExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">PostfixExpression</span></div>
+      <div class="rhs"><code class="t">delete</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">void</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">typeof</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">++</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">--</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">+</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">-</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">~</code> <span class="nt">UnaryExpression</span></div>
+      <div class="rhs"><code class="t">!</code> <span class="nt">UnaryExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="lhs"><span class="nt">AnyHandSideExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">CallExpression</span></div>
+      <div class="rhs"><span class="nt">UnaryExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.5">See 11.5</a></div>
+      <div class="lhs"><span class="nt">MultiplicativeExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">AnyHandSideExpression</span></div>
+      <div class="rhs"><span class="nt">MultiplicativeExpression</span> <code class="t">*</code> <span class="nt">AnyHandSideExpression</span></div>
+      <div class="rhs"><span class="nt">MultiplicativeExpression</span> <code class="t">/</code> <span class="nt">AnyHandSideExpression</span></div>
+      <div class="rhs"><span class="nt">MultiplicativeExpression</span> <code class="t">%</code> <span class="nt">AnyHandSideExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.6">See 11.6</a></div>
+      <div class="lhs"><span class="nt">AdditiveExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">MultiplicativeExpression</span></div>
+      <div class="rhs"><span class="nt">AdditiveExpression</span> <code class="t">+</code> <span class="nt">MultiplicativeExpression</span></div>
+      <div class="rhs"><span class="nt">AdditiveExpression</span> <code class="t">-</code> <span class="nt">MultiplicativeExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.7">See 11.7</a></div>
+      <div class="lhs"><span class="nt">ShiftExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">AdditiveExpression</span></div>
+      <div class="rhs"><span class="nt">ShiftExpression</span> <code class="t">&lt;&lt;</code> <span class="nt">AdditiveExpression</span></div>
+      <div class="rhs"><span class="nt">ShiftExpression</span> <code class="t">&gt;&gt;</code> <span class="nt">AdditiveExpression</span></div>
+      <div class="rhs"><span class="nt">ShiftExpression</span> <code class="t">&gt;&gt;&gt;</code> <span class="nt">AdditiveExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.8">See 11.8</a></div>
+      <div class="lhs"><span class="nt">RelationalExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">&lt;</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">&gt;</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">&lt;=</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">&gt;=</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">instanceof</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpression</span> <code class="t">in</code> <span class="nt">ShiftExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.8">See 11.8</a></div>
+      <div class="lhs"><span class="nt">RelationalExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span> <code class="t">&lt;</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span> <code class="t">&gt;</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span> <code class="t">&lt;=</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span> <code class="t">&gt;=</code> <span class="nt">ShiftExpression</span></div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span> <code class="t">instanceof</code> <span class="nt">ShiftExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.9">See 11.9</a></div>
+      <div class="lhs"><span class="nt">EqualityExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">RelationalExpression</span></div>
+      <div class="rhs"><span class="nt">EqualityExpression</span> <code class="t">==</code> <span class="nt">RelationalExpression</span></div>
+      <div class="rhs"><span class="nt">EqualityExpression</span> <code class="t">!=</code> <span class="nt">RelationalExpression</span></div>
+      <div class="rhs"><span class="nt">EqualityExpression</span> <code class="t">===</code> <span class="nt">RelationalExpression</span></div>
+      <div class="rhs"><span class="nt">EqualityExpression</span> <code class="t">!==</code> <span class="nt">RelationalExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.9">See 11.9</a></div>
+      <div class="lhs"><span class="nt">EqualityExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">RelationalExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">EqualityExpressionNoIn</span> <code class="t">==</code> <span class="nt">RelationalExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">EqualityExpressionNoIn</span> <code class="t">!=</code> <span class="nt">RelationalExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">EqualityExpressionNoIn</span> <code class="t">===</code> <span class="nt">RelationalExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">EqualityExpressionNoIn</span> <code class="t">!==</code> <span class="nt">RelationalExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseANDExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">EqualityExpression</span></div>
+      <div class="rhs"><span class="nt">BitwiseANDExpression</span> <code class="t">&amp;</code> <span class="nt">EqualityExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseANDExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">EqualityExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">BitwiseANDExpressionNoIn</span> <code class="t">&amp;</code> <span class="nt">EqualityExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseXORExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseANDExpression</span></div>
+      <div class="rhs"><span class="nt">BitwiseXORExpression</span> <code class="t">^</code> <span class="nt">BitwiseANDExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseXORExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseANDExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">BitwiseXORExpressionNoIn</span> <code class="t">^</code> <span class="nt">BitwiseANDExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseORExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseXORExpression</span></div>
+      <div class="rhs"><span class="nt">BitwiseORExpression</span> <code class="t">|</code> <span class="nt">BitwiseXORExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.10">See 11.10</a></div>
+      <div class="lhs"><span class="nt">BitwiseORExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseXORExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">BitwiseORExpressionNoIn</span> <code class="t">|</code> <span class="nt">BitwiseXORExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.11">See 11.11</a></div>
+      <div class="lhs"><span class="nt">LogicalANDExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseORExpression</span></div>
+      <div class="rhs"><span class="nt">LogicalANDExpression</span> <code class="t">&amp;&amp;</code> <span class="nt">BitwiseORExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.11">See 11.11</a></div>
+      <div class="lhs"><span class="nt">LogicalANDExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">BitwiseORExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">LogicalANDExpressionNoIn</span> <code class="t">&amp;&amp;</code> <span class="nt">BitwiseORExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.11">See 11.11</a></div>
+      <div class="lhs"><span class="nt">LogicalORExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">LogicalANDExpression</span></div>
+      <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">||</code> <span class="nt">LogicalANDExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.11">See 11.11</a></div>
+      <div class="lhs"><span class="nt">LogicalORExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">LogicalANDExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">LogicalORExpressionNoIn</span> <code class="t">||</code> <span class="nt">LogicalANDExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.12">See 11.12</a></div>
+      <div class="lhs"><span class="nt">ConditionalExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">LogicalORExpression</span></div>
+      <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> <span class="nt">AssignmentExpression</span> <code class="t">:</code> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.12">See 11.12</a></div>
+      <div class="lhs"><span class="nt">ConditionalExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">LogicalORExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">LogicalORExpressionNoIn</span> <code class="t">?</code> <span class="nt">AssignmentExpression</span> <code class="t">:</code> <span class="nt">AssignmentExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.13">See 11.13</a></div>
+      <div class="lhs"><span class="nt">AssignmentExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">ConditionalExpression</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <code class="t">=</code> <span class="nt">AssignmentExpression</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <span class="nt">AssignmentOperator</span> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.13">See 11.13</a></div>
+      <div class="lhs"><span class="nt">AssignmentExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">ConditionalExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <code class="t">=</code> <span class="nt">AssignmentExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">LeftHandSideExpression</span> <span class="nt">AssignmentOperator</span> <span class="nt">AssignmentExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.13">See 11.13</a></div>
+      <div class="lhs"><span class="nt">AssignmentOperator</span> <span class="geq">:</span> <span class="grhsmod">one of</span> </div>
+    </div>
+
+    <figure>
+      <table class="lightweight-table">
+        <tr>
+          <td>*=</td>
+          <td>/=</td>
+          <td>%=</td>
+          <td>+=</td>
+          <td>-=</td>
+          <td>&lt;&lt;=</td>
+          <td>&gt;&gt;=</td>
+          <td>&gt;&gt;&gt;=</td>
+          <td>&amp;=</td>
+          <td>^=</td>
+          <td>|=</td>
+        </tr>
+      </table>
+    </figure>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.14">See 11.14</a></div>
+      <div class="lhs"><span class="nt">Expression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">AssignmentExpression</span></div>
+      <div class="rhs"><span class="nt">Expression</span> <code class="t">,</code> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-11.14">See 11.14</a></div>
+      <div class="lhs"><span class="nt">ExpressionNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">AssignmentExpressionNoIn</span></div>
+      <div class="rhs"><span class="nt">ExpressionNoIn</span> <code class="t">,</code> <span class="nt">AssignmentExpressionNoIn</span></div>
+    </div>
+  </section>
+
+  <section id="sec-A.4">
+    <h1><span class="secnum"><a href="#sec-A.4" title="link to this section">A.4</a></span> Statements</h1>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12">See clause 12</a></div>
+      <div class="lhs"><span class="nt">Statement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Block</span></div>
+      <div class="rhs"><span class="nt">VariableStatement</span></div>
+      <div class="rhs"><span class="nt">EmptyStatement</span></div>
+      <div class="rhs"><span class="nt">ExpressionStatement</span></div>
+      <div class="rhs"><span class="nt">IfStatement</span></div>
+      <div class="rhs"><span class="nt">IterationStatement</span></div>
+      <div class="rhs"><span class="nt">ContinueStatement</span></div>
+      <div class="rhs"><span class="nt">BreakStatement</span></div>
+      <div class="rhs"><span class="nt">ReturnStatement</span></div>
+      <div class="rhs"><span class="nt">WithStatement</span></div>
+      <div class="rhs"><span class="nt">LabelledStatement</span></div>
+      <div class="rhs"><span class="nt">SwitchStatement</span></div>
+      <div class="rhs"><span class="nt">ThrowStatement</span></div>
+      <div class="rhs"><span class="nt">TryStatement</span></div>
+      <div class="rhs"><span class="nt">DebuggerStatement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.1">See 12.1</a></div>
+      <div class="lhs"><span class="nt">Block</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">{</code> <span class="nt">StatementList</span><sub>opt</sub> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.1">See 12.1</a></div>
+      <div class="lhs"><span class="nt">StatementList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Statement</span></div>
+      <div class="rhs"><span class="nt">StatementList</span> <span class="nt">Statement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">VariableStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">var</code> <span class="nt">VariableDeclarationList</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">VariableDeclarationList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">VariableDeclaration</span></div>
+      <div class="rhs"><span class="nt">VariableDeclarationList</span> <code class="t">,</code> <span class="nt">VariableDeclaration</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">VariableDeclarationListNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">VariableDeclarationNoIn</span></div>
+      <div class="rhs"><span class="nt">VariableDeclarationListNoIn</span> <code class="t">,</code> <span class="nt">VariableDeclarationNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">VariableDeclaration</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span> <span class="nt">Initialiser</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">VariableDeclarationNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span> <span class="nt">InitialiserNoIn</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">Initialiser</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">=</code> <span class="nt">AssignmentExpression</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.2">See 12.2</a></div>
+      <div class="lhs"><span class="nt">InitialiserNoIn</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">=</code> <span class="nt">AssignmentExpressionNoIn</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.3">See 12.3</a></div>
+      <div class="lhs"><span class="nt">EmptyStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.4">See 12.4</a></div>
+      <div class="lhs"><span class="nt">ExpressionStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="grhsannot">[lookahead &notin; {<code class="t">{</code>, <code class="t">function</code>}]</span> <span class="nt">Expression</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.5">See 12.5</a></div>
+      <div class="lhs"><span class="nt">IfStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">if</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span> <code class="t">else</code> <span class="nt">Statement</span></div>
+      <div class="rhs"><code class="t">if</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.6">See 12.6</a></div>
+      <div class="lhs"><span class="nt">IterationStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">do</code> <span class="nt">Statement</span> <code class="t">while</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">);</code></div>
+      <div class="rhs"><code class="t">while</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span></div>
+      <div class="rhs"><code class="t">for</code> <code class="t">(</code> <span class="nt">ExpressionNoIn</span><sub>opt</sub> <code class="t">;</code> <span class="nt">Expression</span><sub>opt</sub> <code class="t">;</code> <span class="nt">Expression</span><sub>opt</sub> <code class="t">)</code> <span class="nt">Statement</span></div>
+      <div class="rhs"><code class="t">for</code> <code class="t">(</code> <code class="t">var</code> <span class="nt">VariableDeclarationListNoIn</span> <code class="t">;</code> <span class="nt">Expression</span><sub>opt</sub> <code class="t">;</code> <span class="nt">Expression</span><sub>opt</sub> <code class="t">)</code> <span class="nt">Statement</span></div>
+      <div class="rhs"><code class="t">for</code> <code class="t">(</code> <span class="nt">LeftHandSideExpression</span> <code class="t">in</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span></div>
+      <div class="rhs"><code class="t">for</code> <code class="t">(</code> <code class="t">var</code> <span class="nt">VariableDeclarationNoIn</span> <code class="t">in</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.7">See 12.7</a></div>
+      <div class="lhs"><span class="nt">ContinueStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">continue</code> <code class="t">;</code></div>
+      <div class="rhs"><code class="t">continue</code> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <span class="nt">Identifier</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.8">See 12.8</a></div>
+      <div class="lhs"><span class="nt">BreakStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">break</code> <code class="t">;</code></div>
+      <div class="rhs"><code class="t">break</code> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <span class="nt">Identifier</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.9">See 12.9</a></div>
+      <div class="lhs"><span class="nt">ReturnStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">return</code> <code class="t">;</code></div>
+      <div class="rhs"><code class="t">return</code> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <span class="nt">Expression</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.10">See 12.10</a></div>
+      <div class="lhs"><span class="nt">WithStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">with</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">Statement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.11">See 12.11</a></div>
+      <div class="lhs"><span class="nt">SwitchStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">switch</code> <code class="t">(</code> <span class="nt">Expression</span> <code class="t">)</code> <span class="nt">CaseBlock</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.11">See 12.11</a></div>
+      <div class="lhs"><span class="nt">CaseBlock</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">{</code> <span class="nt">CaseClauses</span><sub>opt</sub> <code class="t">}</code></div>
+      <div class="rhs"><code class="t">{</code> <span class="nt">CaseClauses</span><sub>opt</sub> <span class="nt">DefaultClause</span> <span class="nt">CaseClauses</span><sub>opt</sub> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.11">See 12.11</a></div>
+      <div class="lhs"><span class="nt">CaseClauses</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">CaseClause</span></div>
+      <div class="rhs"><span class="nt">CaseClauses</span> <span class="nt">CaseClause</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.11">See 12.11</a></div>
+      <div class="lhs"><span class="nt">CaseClause</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">case</code> <span class="nt">Expression</span> <code class="t">:</code> <span class="nt">StatementList</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.11">See 12.11</a></div>
+      <div class="lhs"><span class="nt">DefaultClause</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">default</code> <code class="t">:</code> <span class="nt">StatementList</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.12">See 12.12</a></div>
+      <div class="lhs"><span class="nt">LabelledStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span> <code class="t">:</code> <span class="nt">Statement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.13">See 12.13</a></div>
+      <div class="lhs"><span class="nt">ThrowStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">throw</code> <span class="grhsannot">[no <span class="nt">LineTerminator</span> here]</span> <span class="nt">Expression</span> <code class="t">;</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.14">See 12.14</a></div>
+      <div class="lhs"><span class="nt">TryStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">try</code> <span class="nt">Block</span> <span class="nt">Catch</span></div>
+      <div class="rhs"><code class="t">try</code> <span class="nt">Block</span> <span class="nt">Finally</span></div>
+      <div class="rhs"><code class="t">try</code> <span class="nt">Block</span> <span class="nt">Catch</span> <span class="nt">Finally</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.14">See 12.14</a></div>
+      <div class="lhs"><span class="nt">Catch</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">catch</code> <code class="t">(</code> <span class="nt">Identifier</span> <code class="t">)</code> <span class="nt">Block</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.14">See 12.14</a></div>
+      <div class="lhs"><span class="nt">Finally</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">finally</code> <span class="nt">Block</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-12.15">See 12.15</a></div>
+      <div class="lhs"><span class="nt">DebuggerStatement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">debugger</code> <code class="t">;</code></div>
+    </div>
+  </section>
+
+  <section id="sec-A.5">
+    <h1><span class="secnum"><a href="#sec-A.5" title="link to this section">A.5</a></span> Functions and Programs</h1>
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-13">See clause 13</a></div>
+      <div class="lhs"><span class="nt">FunctionDeclaration</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">function</code> <span class="nt">Identifier</span> <code class="t">(</code> <span class="nt">FormalParameterList</span><sub>opt</sub> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-13">See clause 13</a></div>
+      <div class="lhs"><span class="nt">FunctionExpression</span> <span class="geq">:</span> </div>
+      <div class="rhs"><code class="t">function</code> <span class="nt">Identifier</span><sub>opt</sub> <code class="t">(</code> <span class="nt">FormalParameterList</span><sub>opt</sub> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-13">See clause 13</a></div>
+      <div class="lhs"><span class="nt">FormalParameterList</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Identifier</span></div>
+      <div class="rhs"><span class="nt">FormalParameterList</span> <code class="t">,</code> <span class="nt">Identifier</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-13">See clause 13</a></div>
+      <div class="lhs"><span class="nt">FunctionBody</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">SourceElements</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-14">See clause 14</a></div>
+      <div class="lhs"><span class="nt">Program</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">SourceElements</span><sub>opt</sub></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-14">See clause 14</a></div>
+      <div class="lhs"><span class="nt">SourceElements</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">SourceElement</span></div>
+      <div class="rhs"><span class="nt">SourceElements</span> <span class="nt">SourceElement</span></div>
+    </div>
+
+    <div class="gp">
+      <div class="gsumxref"><a href="#sec-14">See clause 14</a></div>
+      <div class="lhs"><span class="nt">SourceElement</span> <span class="geq">:</span> </div>
+      <div class="rhs"><span class="nt">Statement</span></div>
+      <div class="rhs"><span class="nt">FunctionDeclaration</span></div>
+    </div>
+
+  </section>
+
+  <section id="sec-A.6">
+    <h1><span class="secnum"><a href="#sec-A.6" title="link to this section">A.6</a></span> Universal Resource Identifier
+        Character Classes</h1>
+
+  </section>
+
+  <section id="sec-A.7">
+    <h1><span class="secnum"><a href="#sec-A.7" title="link to this section">A.7</a></span> Regular Expressions</h1>
+
+  </section>
+
+  <section id="sec-A.8">
+    <h1><span class="secnum"><a href="#sec-A.8" title="link to this section">A.8</a></span> JSON</h1>
+
+    <section id="sec-A.8.1">
+      <h1><span class="secnum"><a href="#sec-A.8.1" title="link to this section">A.8.1</a></span> JSON Lexical Grammar</h1>
+
+    </section>
+
+    <section id="sec-A.8.2">
+      <h1><span class="secnum"><a href="#sec-A.8.2" title="link to this section">A.8.2</a></span> JSON Syntactic Grammar</h1>
+
+    </section>
+  </section>
+</section>
+
+<script>
+  window._gaq = [['_setAccount', 'UA-6146537-1'], ['_trackPageview']];
+  (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.src = '//www.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s);
+  }(document, 'script'));
+</script>
+</body>
+</html>
