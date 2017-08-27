@@ -5,3 +5,4 @@ It seems that distinguishing between variable names and this can't be done
   IdentifierPart
 ExecutionEnvironment.variables should be lexical environment.
 Add identifier name as a parent of 
+Ref.container => ref.base 
