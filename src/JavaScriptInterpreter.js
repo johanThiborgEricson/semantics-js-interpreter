@@ -9,22 +9,28 @@ function JavaScriptInterpreter() {
     return x;
   };
   
+  var identifierName = /[a-z]/;
+
   // Lexical Grammar
   
-  var identifier = /[a-z]/;
+  j.identifierName = f.atom(identifierName);
   
-  j.identifierDeclaration = f.atom(identifier);
+  j.numericLiteral = f.atom(/\d/, function(numericLiteral){
+    return Number(numericLiteral);
+  });
   
-  j.identifierReference = f.group("identifierDeclaration", 
-  function(identifierDeclaration) {
+  // Expressions
+  
+  j.identifierReference = f.group("bindingIdentifier", 
+  function(bindingIdentifier) {
     var container = this.executionContext;
-    while(!container.variables.hasOwnProperty(identifierDeclaration)) {
+    while(!container.variables.hasOwnProperty(bindingIdentifier)) {
       container = container.outer;
     }
     
     return {
       container: container.variables,
-      name: identifierDeclaration,
+      name: bindingIdentifier,
     };
     
   });
@@ -35,13 +41,7 @@ function JavaScriptInterpreter() {
     return ir.container[ir.name];
   });
   
-  j.identifierName = f.atom(identifier);
-  
-  j.numericLiteral = f.atom(/\d/, function(numericLiteral){
-    return Number(numericLiteral);
-  });
-  
-  // Expressions
+  j.bindingIdentifier = f.atom(identifierName);
   
   j.primaryExpression = f.or("thisExpression", "numericLiteral", 
   "objectLiteral", "functionExpression", "identifierExpression");
@@ -99,6 +99,7 @@ function JavaScriptInterpreter() {
   j.expression = f.or("assignmentExpression");
   
   // Statements
+  
   j.statement = f.or("variableStatement", "expressionStatement", 
   "returnStatement");
   
@@ -106,9 +107,9 @@ function JavaScriptInterpreter() {
   
   j.expressionStatement = f.group("expression", /;/);
   
-  j.variableStatement = f.group(/var /, "identifierDeclaration", 
-  "initialiserOpt", /;/, function(identifierDeclaration, initialiserOpt) {
-    this.executionContext.variables[identifierDeclaration] = initialiserOpt;
+  j.variableStatement = f.group(/var /, "bindingIdentifier", 
+  "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
+    this.executionContext.variables[bindingIdentifier] = initialiserOpt;
   });
   
   j.initialiser = f.group(/=/, "assignmentExpression", 
@@ -151,7 +152,7 @@ function JavaScriptInterpreter() {
     };
   });
   
-  j.formalParameterList = f.star("identifierDeclaration", /,/);
+  j.formalParameterList = f.star("bindingIdentifier", /,/);
   
   j.functionBody = f.deferredExecution("sourceElements");
   
@@ -178,6 +179,5 @@ function JavaScriptInterpreter() {
     
     return returnValue;
   });
-  
   
 })();
