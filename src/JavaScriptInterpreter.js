@@ -9,7 +9,7 @@ function JavaScriptInterpreter() {
     return x;
   };
   
-  var identifierName = /[a-z]/;
+  var identifierName = /[a-zA-Z_\$][a-zA-Z0-9_\$]*/;
 
   // Lexical Grammar
   

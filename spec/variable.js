@@ -69,4 +69,10 @@ describe("A variable", function() {
     expect(interpreter.executionContext.variables.a).toBe(a);
   });
   
+  it("may have a long name with many different characters", function() {
+    expect(interpreter.program(
+      "var $longName123=1;" + 
+      "return $longName123;")).toBe(1);
+  });
+  
 });
