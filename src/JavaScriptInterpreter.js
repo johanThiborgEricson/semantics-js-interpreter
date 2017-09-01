@@ -112,6 +112,13 @@ function JavaScriptInterpreter() {
     this.executionContext.variables[bindingIdentifier] = initialiserOpt;
   });
   
+  j.initialiser = f.group(/=/, "assignmentExpression", 
+  function(assignmentExpression) {
+    return assignmentExpression;
+  });
+  
+  j.initialiserOpt = f.opt("initialiser");
+  
   j.returnStatement = f.group(/return /, "expression", /;/, 
   function(expression) {
     return expression;
