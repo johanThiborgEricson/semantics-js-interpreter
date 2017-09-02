@@ -16,20 +16,6 @@ describe("An object", function() {
   
   describe("property", function() {
     
-    it("can be set", function() {
-      expect(interpreter.program(
-        "var o={};" + 
-        "o.p=1;" + 
-        "return o;")).toEqual({p: 1});
-    });
-    
-    it("can be set recursively", function() {
-      expect(interpreter.program(
-        "var o={p:{}};" + 
-        "o.p.q=1;" + 
-        "return o;")).toEqual({p: {q: 1}});
-    });
-    
   });
   
   it("may have its properties assigned inside a group expression", function() {

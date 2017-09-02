@@ -23,34 +23,6 @@ describe("A variable", function() {
       "return a;")).toBe(a);
   });
   
-  it("may be set after its declaration", function() {
-    var a;
-    a = 1;
-    
-    expect(interpreter.program(
-      "var a;" + 
-      "a=1;" + 
-      "return a;")).toBe(a);
-  });
-  
-  it("can be assigned as part of an assignment chain", function() {
-    var a;
-    var b;
-    b = a = 1;
-    
-    expect(interpreter.program(
-      "var a;" + 
-      "var b;" + 
-      "b=a=1;" + 
-      "return a;")).toBe(a);
-      
-    expect(interpreter.program(
-      "var a;" + 
-      "var b;" + 
-      "b=a=1;" + 
-      "return b;")).toBe(b);
-  });
-  
   it("can be declared in many contexts", function() {
     var a = 0;
     var f2 = function() {
@@ -73,12 +45,6 @@ describe("A variable", function() {
     expect(interpreter.program(
       "var $longName123=1;" + 
       "return $longName123;")).toBe(1);
-  });
-  
-  it("may be assigned inside a group expression", function() {
-    var a;
-    (a) = 1;
-    expect(a).toBe(1);
   });
   
 });
