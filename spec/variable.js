@@ -75,4 +75,10 @@ describe("A variable", function() {
       "return $longName123;")).toBe(1);
   });
   
+  it("may be assigned inside a group expression", function() {
+    var a;
+    (a) = 1;
+    expect(a).toBe(1);
+  });
+  
 });

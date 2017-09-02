@@ -32,4 +32,13 @@ describe("An object", function() {
     
   });
   
+  it("may have its properties assigned inside a group expression", function() {
+    var o = {
+      a: 0,
+    };
+    
+    (o.a) = 1;
+    expect(o.a).toBe(1);
+  });
+  
 });
