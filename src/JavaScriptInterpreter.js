@@ -71,19 +71,19 @@ function JavaScriptInterpreter() {
   "identifierReference");
   
   j.leftHandSideExpression1 = f.group("leftHandSideExpression", 
-  "propertyQualifier", 
-  function(leftHandSideExpression, propertyQualifier) {
+  "qualifier", 
+  function(leftHandSideExpression, qualifier) {
     var result = leftHandSideExpression;
     
     result.base = result.base[result.name];
-    result.name = propertyQualifier;
+    result.name = qualifier;
 
     return result;
   });
   
-  j.propertyQualifier = f.or("propertyDotQualifier");
+  j.qualifier = f.or("dotQualifier");
   
-  j.propertyDotQualifier = f.group(/\./, "identifierName", id);
+  j.dotQualifier = f.group(/\./, "identifierName", id);
   
   j.assignmentExpression = f.or("assignmentExpression0", 
   "primaryExpression");
