@@ -67,20 +67,19 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.leftHandSideExpression = f.group("identifierReference", 
-  "propertyQualifierList", 
-  function(identifierReference, propertyQualifierList) {
-    var result = identifierReference;
+  j.leftHandSideExpression = f.or("leftHandSideExpression1", 
+  "identifierReference");
+  
+  j.leftHandSideExpression1 = f.group("leftHandSideExpression", 
+  "propertyQualifier", 
+  function(leftHandSideExpression, propertyQualifier) {
+    var result = leftHandSideExpression;
     
-    propertyQualifierList.map(function(propertyQualifier) {
-      result.base = result.base[result.name];
-      result.name = propertyQualifier;
-    });
-    
+    result.base = result.base[result.name];
+    result.name = propertyQualifier;
+
     return result;
   });
-  
-  j.propertyQualifierList = f.star("propertyQualifier");
   
   j.propertyQualifier = f.or("propertyDotQualifier");
   
