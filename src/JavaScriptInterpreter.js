@@ -15,6 +15,8 @@ function JavaScriptInterpreter() {
   
   j.identifierName = f.atom(identifierName);
   
+  j.literal = f.or("numericLiteral");
+  
   j.numericLiteral = f.atom(/\d/, function(numericLiteral){
     return Number(numericLiteral);
   });
@@ -43,7 +45,7 @@ function JavaScriptInterpreter() {
   
   j.bindingIdentifier = f.atom(identifierName);
   
-  j.primaryExpression = f.longest("numericLiteral", "objectExpression");
+  j.primaryExpression = f.longest("literal", "objectExpression");
   
   j.objectExpression = f.longest("thisExpression", "identifierExpression", 
   "objectLiteral", "functionExpression");
