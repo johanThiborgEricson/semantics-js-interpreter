@@ -43,7 +43,7 @@ function JavaScriptInterpreter() {
   
   j.bindingIdentifier = f.atom(identifierName);
   
-  j.primaryExpression = f.or("thisExpression", "numericLiteral", 
+  j.primaryExpression = f.longest("thisExpression", "numericLiteral", 
   "objectLiteral", "functionExpression", "identifierExpression");
   
   j.thisExpression = f.atom(/this/, function() {
