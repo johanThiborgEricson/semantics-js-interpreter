@@ -71,12 +71,14 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.callExpression = f.group("callExpressionQualifier", "args", 
+  j.callExpression = f.or("callExpression1");
+  
+  j.callExpression1 = f.group("functionCallExpressionQualifier", "args", 
   function(callExpressionQualifier, args) {
     return callExpressionQualifier.apply(undefined, args);
   });
   
-  j.callExpressionQualifier = f.or("identifierExpression");
+  j.functionCallExpressionQualifier = f.or("identifierExpression");
   
   j.args = f.group(/\(/, "argumentList", /\)/, id);
   
