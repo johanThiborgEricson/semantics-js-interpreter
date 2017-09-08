@@ -22,4 +22,13 @@ describe("A call expression", function() {
     
   });
   
+  it("takes arguments", function() {
+    expect(interpreter.program(
+      "var f=function(x,y){" + 
+        "return {x:1,y:2};" + 
+      "};" + 
+      "return f(1,2);")).toEqual({x: 1, y: 2});
+    
+  });
+  
 });

@@ -43,8 +43,10 @@ function JavaScriptInterpreter() {
   
   j.bindingIdentifier = f.atom(identifierName);
   
-  j.primaryExpression = f.longest("thisExpression", "numericLiteral", 
-  "objectLiteral", "functionExpression", "identifierExpression");
+  j.primaryExpression = f.longest("numericLiteral", "objectExpression");
+  
+  j.objectExpression = f.longest("thisExpression", "identifierExpression", 
+  "objectLiteral", "functionExpression");
   
   j.thisExpression = f.atom(/this/, function() {
     return this.executionContext.thisBinding;
@@ -67,12 +69,16 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.callExpression = f.group("callExpressionQualifier", /\(/, /\)/, 
-  function(callExpressionQualifier) {
-    return callExpressionQualifier();
+  j.callExpression = f.group("callExpressionQualifier", "args", 
+  function(callExpressionQualifier, args) {
+    return callExpressionQualifier.apply(undefined, args);
   });
   
   j.callExpressionQualifier = f.or("identifierExpression");
+  
+  j.args = f.group(/\(/, "argumentList", /\)/, id);
+  
+  j.argumentList = f.star("assignmentExpression", /,/);
   
   j.leftHandSideExpression = f.or("leftHandSideExpression1", 
   "identifierReference");
