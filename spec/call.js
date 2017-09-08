@@ -10,7 +10,6 @@ describe("A call expression", function() {
       "};" + 
       "f();" + 
       "return a;")).toBe(1);
-    
   });
   
   it("returns a result", function() {
@@ -19,7 +18,6 @@ describe("A call expression", function() {
         "return 1;" + 
       "};" + 
       "return f();")).toBe(1);
-    
   });
   
   it("takes arguments", function() {
@@ -28,7 +26,18 @@ describe("A call expression", function() {
         "return {x:1,y:2};" + 
       "};" + 
       "return f(1,2);")).toEqual({x: 1, y: 2});
-    
+  });
+  
+  it("can be called as a method", function() {
+    expect(interpreter.program(
+      "var a;" +
+      "var o={" + 
+        "m:function(x){" + 
+          "a=x;" + 
+        "}" + 
+      "};" +
+      "o.m(1);" + 
+      "return a;")).toBe(1);
   });
   
 });

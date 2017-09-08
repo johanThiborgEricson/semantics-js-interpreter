@@ -71,14 +71,28 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.callExpression = f.or("callExpression1");
+  j.callExpression = f.or("callExpression1", "callExpression2");
   
   j.callExpression1 = f.group("functionCallExpressionQualifier", "args", 
-  function(callExpressionQualifier, args) {
-    return callExpressionQualifier.apply(undefined, args);
+  function(fceQualifier, args) {
+    return fceQualifier.apply(undefined, args);
+  });
+  
+  j.callExpression2 = f.group("methodCallExpressionQualifier", "args", 
+  function(mceQualifier, args) {
+    return mceQualifier.value.apply(undefined, args);
   });
   
   j.functionCallExpressionQualifier = f.or("identifierExpression");
+  
+  j.methodCallExpressionQualifier = f.or("methodCallExpressionQualifier1");
+  
+  j.methodCallExpressionQualifier1 = f.group("functionCallExpressionQualifier", 
+  "qualifier", function(fceQualifier, qualifier) {
+    return {
+      value: fceQualifier[qualifier],
+    };
+  });
   
   j.args = f.group(/\(/, "argumentList", /\)/, id);
   
