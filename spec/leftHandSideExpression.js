@@ -48,4 +48,15 @@ describe("A left hand side expression", function() {
     expect(a).toBe(1);
   });
   
+  it("may be made on a call expression", function() {
+    expect(interpreter.program(
+      "var o={};" +
+      "var f=function(){" +
+        "return o;" +
+      "};" +
+      "f().p=1;" +
+      "return o;")
+    ).toEqual({p: 1});
+  });
+  
 });
