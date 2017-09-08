@@ -67,6 +67,13 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
+  j.callExpression = f.group("callExpressionQualifier", /\(/, /\)/, 
+  function(callExpressionQualifier) {
+    return callExpressionQualifier();
+  });
+  
+  j.callExpressionQualifier = f.or("identifierExpression");
+  
   j.leftHandSideExpression = f.or("leftHandSideExpression1", 
   "identifierReference");
   
@@ -85,8 +92,14 @@ function JavaScriptInterpreter() {
   
   j.dotQualifier = f.group(/\./, "identifierName", id);
   
+  j.updateExpression = f.or("callExpression");
+  
+  j.valueExpression = f.longest("primaryExpression", "updateExpression");
+  
+  j.conditionalExpression = f.or("valueExpression");
+  
   j.assignmentExpression = f.or("assignmentExpression0", 
-  "primaryExpression");
+  "conditionalExpression");
   
   j.assignmentExpression0 = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
