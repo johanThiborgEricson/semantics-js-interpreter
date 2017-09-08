@@ -47,12 +47,8 @@ function JavaScriptInterpreter() {
   
   j.primaryExpression = f.longest("literal", "objectExpression");
   
-  j.objectExpression = f.longest("thisExpression", "identifierExpression", 
+  j.objectExpression = f.longest("identifierExpression", 
   "objectLiteral", "functionExpression");
-  
-  j.thisExpression = f.atom(/this/, function() {
-    return this.executionContext.thisBinding;
-  });
   
   j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /\}/, 
   function(propertyAndValueList) {
@@ -80,7 +76,7 @@ function JavaScriptInterpreter() {
   
   j.callExpression2 = f.group("methodCallExpressionQualifier", "args", 
   function(mceQualifier, args) {
-    return mceQualifier.value.apply(undefined, args);
+    return mceQualifier.value.apply(mceQualifier.base, args);
   });
   
   j.functionCallExpressionQualifier = f.or("identifierExpression");
@@ -90,6 +86,7 @@ function JavaScriptInterpreter() {
   j.methodCallExpressionQualifier1 = f.group("functionCallExpressionQualifier", 
   "qualifier", function(fceQualifier, qualifier) {
     return {
+      base: fceQualifier,
       value: fceQualifier[qualifier],
     };
   });
@@ -175,6 +172,8 @@ function JavaScriptInterpreter() {
         args[formalParameterList[i]] = arguments[i];
         i++;
       }
+      
+      args["this"] = this;
       
       that.executionContext = {
         outer: outerExecutionContext,

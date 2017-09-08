@@ -33,11 +33,15 @@ describe("A call expression", function() {
       "var a;" +
       "var o={" + 
         "m:function(x){" + 
-          "a=x;" + 
+          "this.p=x;" + 
         "}" + 
       "};" +
       "o.m(1);" + 
-      "return a;")).toBe(1);
+      "return o;")
+    ).toEqual({
+      m: jasmine.any(Function), 
+      p: 1,
+    });
   });
   
 });
