@@ -25,20 +25,20 @@ describe("A variable", function() {
   
   it("can be declared in many contexts", function() {
     var a = 0;
-    var f2 = function() {
+    var f = function() {
       var a = 1;
     };
     
-    var f = interpreter.program(
-      "var a=0;" + 
-      "return function(){" + 
-        "var a=1;" + 
-      "};");
-      
     f();
-    f2();
     
-    expect(interpreter.executionContext.variables.a).toBe(a);
+    expect(interpreter.program(
+      "var a=0;" + 
+      "var f=function(){" + 
+        "var a=1;" + 
+      "};" +
+      "f();" +
+      "return a;")
+    ).toBe(a);
   });
   
   it("may have a long name with many different characters", function() {
