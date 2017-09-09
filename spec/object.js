@@ -14,10 +14,6 @@ describe("An object", function() {
     expect(interpreter.program("return {a:1,b:2};")).toEqual({a:1,b:2});
   });
   
-  describe("property", function() {
-    
-  });
-  
   it("may have its properties assigned inside a group expression", function() {
     var o = {
       a: 0,
