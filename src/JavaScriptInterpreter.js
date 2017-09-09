@@ -230,7 +230,6 @@ function JavaScriptInterpreter() {
       that.executionContext = {
         outer: outerExecutionContext,
         variables: args,
-        thisBinding: this,
       };
       
       var result = functionBody(that);
