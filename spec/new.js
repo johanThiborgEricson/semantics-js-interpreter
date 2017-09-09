@@ -28,4 +28,14 @@ describe("The new operator", function() {
       "return object.me;")).toEqual(jasmine.any(Function));
   });
   
+  it("may be qualified", function() {
+    expect(interpreter.program(
+      "var o={" +
+        "c:function(){" +
+          "this.p=1;" +
+        "}" +
+      "};" +
+      "return new o.c().p;")).toEqual(1);
+  });
+  
 });

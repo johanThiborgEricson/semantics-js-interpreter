@@ -74,7 +74,13 @@ function JavaScriptInterpreter() {
     return object;
   });
   
-  j.newExpressionQualifier = f.or("objectExpression", "newExpression");
+  j.newExpressionQualifier = f.longest("objectExpression", "newExpression",
+  "newExpressionQualifier1");
+  
+  j.newExpressionQualifier1 = f.group("newExpressionQualifier", "qualifier",
+  function(newExpressionQualifier, qualifier) {
+    return newExpressionQualifier[qualifier];
+  });
   
   j.argumentsOpt = f.opt("args", function(){
     return [];
