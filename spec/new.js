@@ -22,10 +22,10 @@ describe("The new operator", function() {
   it("may not have arguments", function() {
     expect(interpreter.program(
       "var Constructor=function(){" +
-        "this.zero=arguments.length;" +
+        "this.me=arguments.callee;" +
       "};" +
       "var object=new Constructor;" +
-      "return object.zero;")).toBe(0);
+      "return object.me;")).toEqual(jasmine.any(Function));
   });
   
 });
