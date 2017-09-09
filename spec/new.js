@@ -1,34 +1,22 @@
 describe("The new operator", function() {
   
-  it("without parameters, is evaluated after a single function propertiy", 
-  function() {
-    function NoParameterConstructor() {
-      this.type = "NoParameterConstructor";
-    }
+  var interpreter = new JavaScriptInterpreter();
+  
+  it("creates instances of their constructors prototype", function() {
+    var result = interpreter.program(
+      "var f=function(){};" +
+      "var o=new f();" +
+      "return {f:f,o:o};");
     
-    function PropertyConstructor() {
-      this.type = "PropertyConstructor";
-    }
-    
-    NoParameterConstructor.prototype.property = 
-    "no parameter constructor object property";
-    NoParameterConstructor.property = PropertyConstructor;
-
-    function ParameterConstructor() {
-      var that = NoParameterConstructor;
-      that.type = "ParameterConstructor";
-      return that;
-    }
-    
-    expect((new new ParameterConstructor()).property)
-    .toBe(NoParameterConstructor.prototype.property);
-    expect(new ((new ParameterConstructor()).property)())
-    .toEqual(jasmine.any(PropertyConstructor));
-    
-    //expect(new new (ParameterConstructor().property)()).toEqual();
-    
-    expect(new new ParameterConstructor().property)
-    .toEqual(new ((new ParameterConstructor()).property)());
+    expect(result.o instanceof result.f).toBe(true);
+  });
+  
+  it("can take arguments", function() {
+    expect(interpreter.program(
+      "var f=function(x){" +
+        "this.x=x;" +
+      "};" +
+      "return new f(1).x;")).toBe(1);
   });
   
 });

@@ -6,3 +6,5 @@ It seems that distinguishing between variable names and this can't be done
 ExecutionEnvironment.variables should be lexical environment.
 Remove list quantifiers from the grammar (and from the code?).
 Which literals may have qualifiers?
+The parse fail alternative of opt should be a function, not a value. Values
+  are too scary.

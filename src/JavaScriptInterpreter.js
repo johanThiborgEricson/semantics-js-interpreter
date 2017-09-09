@@ -67,7 +67,19 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.callExpression = f.or("callExpression1", "callExpression2");
+  j.newExpression = f.group(/new /, "newExpressionQualifier", "argumentsOpt", 
+  function(newExpressionQualifier, argumentsOpt) {
+    var object = Object.create(newExpressionQualifier.prototype);
+    newExpressionQualifier.apply(object, argumentsOpt);
+    return object;
+  });
+  
+  j.newExpressionQualifier = f.or("objectExpression");
+  
+  j.argumentsOpt = f.or("args");
+  
+  j.callExpression = f.or("newExpression", "callExpression1", 
+  "callExpression2");
   
   j.callExpression1 = f.group("functionCallExpressionQualifier", "args", 
   function(fceQualifier, args) {
