@@ -101,6 +101,10 @@ function JavaScriptInterpreter() {
     };
   });
   
+  j.qualifier = f.or("dotQualifier");
+  
+  j.dotQualifier = f.group(/\./, "identifierName", id);
+  
   j.args = f.group(/\(/, "argumentList", /\)/, id);
   
   j.argumentList = f.star("assignmentExpression", /,/);
@@ -128,11 +132,7 @@ function JavaScriptInterpreter() {
     };
   });
   
-  j.leftHandSideExpressionBase = f.or("callExpression");
-  
-  j.qualifier = f.or("dotQualifier");
-  
-  j.dotQualifier = f.group(/\./, "identifierName", id);
+  j.leftHandSideExpressionBase = f.or("callExpression", "objectExpression");
   
   j.updateExpression = f.or("callExpression");
   
