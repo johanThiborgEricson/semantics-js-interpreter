@@ -6,5 +6,3 @@ It seems that distinguishing between variable names and this can't be done
 ExecutionEnvironment.variables should be lexical environment.
 Remove list quantifiers from the grammar (and from the code?).
 Which literals may have qualifiers?
-Write test for function expressions to distinguish between outer execution 
-  context and stack.

@@ -47,4 +47,27 @@ describe("A variable", function() {
       "return $longName123;")).toBe(1);
   });
   
+  it("is function scooped", function() {
+    var a=0;
+    var f=function(){
+      var a=1;
+      return function(){
+        return a;
+      };
+    };
+    var b=f()();
+    
+    expect(interpreter.program(
+      "var a=0;" + 
+      "var f=function(){" + 
+        "var a=1;" + 
+        "return function(){" + 
+          "return a;" + 
+        "};" + 
+      "};" + 
+      "var b=f()();" + 
+      "return b;"
+    )).toBe(b);
+  });
+  
 });

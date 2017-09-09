@@ -79,7 +79,8 @@ function JavaScriptInterpreter() {
     return mceQualifier.value.apply(mceQualifier.base, args);
   });
   
-  j.functionCallExpressionQualifier = f.or("identifierExpression");
+  j.functionCallExpressionQualifier = f.longest("callExpression", 
+  "objectExpression");
   
   j.methodCallExpressionQualifier = f.or("methodCallExpressionQualifier1");
   
