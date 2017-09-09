@@ -168,15 +168,15 @@ function JavaScriptInterpreter() {
   
   j.conditionalExpression = f.or("valueExpression");
   
-  j.assignmentExpression = f.or("assignmentExpression0", 
-  "conditionalExpression");
-  
-  j.assignmentExpression0 = f.group("leftHandSideExpression", /=/, 
+  j.properAssignmentExpression = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
   function(leftHandSideExpression, assignmentExpression) {
     var lhse = leftHandSideExpression;
     return (lhse.base[lhse.name] = assignmentExpression);
   });
+  
+  j.assignmentExpression = f.or("properAssignmentExpression", 
+  "conditionalExpression");
   
   j.expression = f.or("assignmentExpression");
   
