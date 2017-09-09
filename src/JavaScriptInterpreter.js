@@ -82,13 +82,22 @@ function JavaScriptInterpreter() {
   j.functionCallExpressionQualifier = f.longest("callExpression", 
   "objectExpression");
   
-  j.methodCallExpressionQualifier = f.or("methodCallExpressionQualifier1");
+  j.methodCallExpressionQualifier = f.longest("methodCallExpressionQualifier1", 
+  "methodCallExpressionQualifier2");
   
   j.methodCallExpressionQualifier1 = f.group("functionCallExpressionQualifier", 
   "qualifier", function(fceQualifier, qualifier) {
     return {
       base: fceQualifier,
       value: fceQualifier[qualifier],
+    };
+  });
+  
+  j.methodCallExpressionQualifier2 = f.group("methodCallExpressionQualifier", 
+  "qualifier", function(mceQualifier, qualifier) {
+    return {
+      base: mceQualifier.value,
+      value: mceQualifier.value[qualifier],
     };
   });
   

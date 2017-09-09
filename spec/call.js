@@ -39,4 +39,16 @@ describe("A call expression", function() {
       "return o.p;")).toBe(1);
   });
   
+  it("may have many Qualifiers", function() {
+    expect(interpreter.program(
+      "var o={" + 
+        "i:{" + 
+          "m:function(){" + 
+            "return 1;" + 
+          "}" + 
+        "}" + 
+      "};" +
+      "return o.i.m();")).toBe(1);
+  });
+  
 });
