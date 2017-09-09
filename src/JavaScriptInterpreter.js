@@ -76,7 +76,9 @@ function JavaScriptInterpreter() {
   
   j.newExpressionQualifier = f.or("objectExpression", "newExpression");
   
-  j.argumentsOpt = f.or("args");
+  j.argumentsOpt = f.opt("args", function(){
+    return arguments;
+  });
   
   j.callExpression = f.or("newExpression", "callExpression1", 
   "callExpression2");

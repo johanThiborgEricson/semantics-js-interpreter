@@ -19,4 +19,13 @@ describe("The new operator", function() {
       "return new f(1).x;")).toBe(1);
   });
   
+  it("may not have arguments", function() {
+    expect(interpreter.program(
+      "var Constructor=function(){" +
+        "this.zero=arguments.length;" +
+      "};" +
+      "var object=new Constructor;" +
+      "return object.zero;")).toBe(0);
+  });
+  
 });
