@@ -6,7 +6,7 @@ It seems that distinguishing between variable names and this can't be done
 ExecutionEnvironment.variables should be lexical environment.
 Remove list quantifiers from the grammar (and from the code?).
 Which literals may have qualifiers?
-The parse fail alternative of opt should be a function, not a value. Values
-  are too scary.
-Arguments are optional in new-expressions.
 New expressions should return the result of the constructor if it is an object.
+  return (typeof result === "object" && result) || object; // p. 47
+New expressions without arguments gets a function with no parameters, not an
+  arguments object.

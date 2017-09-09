@@ -193,7 +193,9 @@ function JavaScriptInterpreter() {
     return assignmentExpression;
   });
   
-  j.initialiserOpt = f.opt("initialiser");
+  j.initialiserOpt = f.opt("initialiser", function() {
+    return undefined;
+  });
   
   j.returnStatement = f.group(/return /, "expression", /;/, 
   function(expression) {
