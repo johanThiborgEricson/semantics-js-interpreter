@@ -2,15 +2,16 @@ describe("A function", function() {
   var interpreter = new JavaScriptInterpreter();
   
   it("can be called", function() {
-    var f = interpreter.program(
-      "var a;" + 
-      "return function(){" +
-        "a=1;" +
-      "};");
+    var result = interpreter.program(
+      "var o={};" + 
+      "var f=function(){" +
+        "o.p=1;" +
+      "};" +
+      "return {o:o,f:f};");
       
-    expect(interpreter.executionContext.variables.a).toBe(undefined);
-    f();
-    expect(interpreter.executionContext.variables.a).toBe(1);
+    expect(result.o.p).toBe(undefined);
+    result.f();
+    expect(result.o.p).toBe(1);
   });
   
   it("can return a value", function() {
