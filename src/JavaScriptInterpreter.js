@@ -126,7 +126,13 @@ function JavaScriptInterpreter() {
   
   j.updateExpression = f.or("callExpression");
   
-  j.valueExpression = f.longest("primaryExpression", "updateExpression");
+  j.valueExpression = f.longest("primaryExpression", "updateExpression",
+  "rightHandSideExpression");
+  
+  j.rightHandSideExpression = f.group("leftHandSideExpression", 
+  function(lhse) {
+    return lhse.base[lhse.name];
+  });
   
   j.conditionalExpression = f.or("valueExpression");
   

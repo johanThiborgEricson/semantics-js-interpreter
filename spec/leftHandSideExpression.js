@@ -59,4 +59,13 @@ describe("A left hand side expression", function() {
     ).toEqual({p: 1});
   });
   
+  it("may be on the right hand side", function() {
+    expect(interpreter.program(
+      "var o={" +
+        "p:1" +
+      "};" +
+      "return o.p;")
+    ).toBe(1);
+  });
+  
 });
