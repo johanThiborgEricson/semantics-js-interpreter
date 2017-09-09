@@ -74,7 +74,7 @@ function JavaScriptInterpreter() {
     return object;
   });
   
-  j.newExpressionQualifier = f.or("objectExpression");
+  j.newExpressionQualifier = f.or("objectExpression", "newExpression");
   
   j.argumentsOpt = f.or("args");
   
