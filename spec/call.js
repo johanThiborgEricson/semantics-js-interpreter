@@ -30,18 +30,13 @@ describe("A call expression", function() {
   
   it("can be called as a method", function() {
     expect(interpreter.program(
-      "var a;" +
       "var o={" + 
         "m:function(x){" + 
           "this.p=x;" + 
         "}" + 
       "};" +
       "o.m(1);" + 
-      "return o;")
-    ).toEqual({
-      m: jasmine.any(Function), 
-      p: 1,
-    });
+      "return o.p;")).toBe(1);
   });
   
 });
