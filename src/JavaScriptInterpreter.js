@@ -181,9 +181,12 @@ function JavaScriptInterpreter() {
   j.sideEffectExpression = f.or("properAssignmentExpression", 
   "updateExpression");
   
-  j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/);
+  j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/, 
+  function(sideEffectExpressions) {
+    return sideEffectExpressions[sideEffectExpressions.length-1];
+  });
   
-  j.expression = f.or("assignmentExpression");
+  j.expression = f.longest("assignmentExpression", "sideEffectExpressionList");
   
   // Statements
   

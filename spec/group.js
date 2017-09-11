@@ -16,4 +16,13 @@ describe("A group expression", function() {
       "return {a:a,b:b};")).toEqual({a: 1, b: 2});
   });
   
+  it("returns the result of the last side effect", function() {
+    expect(interpreter.program(
+      "var f=function(){};" +
+      "var g=function(){" +
+        "return 1;" +
+      "};" +
+      "return f(),g();")).toEqual(1);
+  });
+  
 });
