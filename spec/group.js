@@ -40,4 +40,9 @@ describe("A group expression", function() {
       "return (f(),g());")).toEqual(1);
   });
   
+  it("may enclose an right hand side expression", function() {
+    expect(interpreter.program(
+      "return (1);")).toEqual(1);
+  });
+  
 });

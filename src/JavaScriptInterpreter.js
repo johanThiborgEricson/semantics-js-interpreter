@@ -48,7 +48,9 @@ function JavaScriptInterpreter() {
   j.primaryExpression = f.longest("literal", "objectExpression");
   
   j.objectExpression = f.longest("identifierExpression", 
-  "objectLiteral", "functionExpression");
+  "objectLiteral", "functionExpression", "objectExpression1");
+  
+  j.objectExpression1 = f.group(/\(/, "expression", /\)/, id);
   
   j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /\}/, 
   function(propertyAndValueList) {
