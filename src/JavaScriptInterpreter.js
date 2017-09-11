@@ -179,14 +179,22 @@ function JavaScriptInterpreter() {
   "conditionalExpression");
   
   j.sideEffectExpression = f.or("properAssignmentExpression", 
-  "updateExpression");
+  "updateExpression", "sideEffectExpression1");
+  
+  j.sideEffectExpression1 = f.group(/\(/, "sideEffectExpressionList", /\)/, id);
   
   j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/, 
   function(sideEffectExpressions) {
     return sideEffectExpressions[sideEffectExpressions.length-1];
   });
   
-  j.expression = f.longest("assignmentExpression", "sideEffectExpressionList");
+  j.expression = f.longest("assignmentExpression", "sideEffectExpressionList", 
+  "expression1");
+  
+  j.expression1 = f.group("sideEffectExpressionList", /,/, 
+  "assignmentExpression", function(seel, assignmentExpression) {
+    return assignmentExpression;
+  });
   
   // Statements
   

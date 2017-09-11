@@ -25,4 +25,19 @@ describe("A group expression", function() {
       "return f(),g();")).toEqual(1);
   });
   
+  it("may have a non side effect expression last", function() {
+    expect(interpreter.program(
+      "var f=function(){};" +
+      "return f(),1;")).toEqual(1);
+  });
+  
+  it("may be enclosed in parantheses", function() {
+    expect(interpreter.program(
+      "var f=function(){};" +
+      "var g=function(){" +
+        "return 1;" +
+      "};" +
+      "return (f(),g());")).toEqual(1);
+  });
+  
 });
