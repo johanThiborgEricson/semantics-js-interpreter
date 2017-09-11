@@ -178,6 +178,11 @@ function JavaScriptInterpreter() {
   j.assignmentExpression = f.or("properAssignmentExpression", 
   "conditionalExpression");
   
+  j.sideEffectExpression = f.or("properAssignmentExpression", 
+  "updateExpression");
+  
+  j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/);
+  
   j.expression = f.or("assignmentExpression");
   
   // Statements
@@ -187,7 +192,7 @@ function JavaScriptInterpreter() {
   
   j.deferredStatement = f.deferredExecution("statement");
   
-  j.expressionStatement = f.group("expression", /;/);
+  j.expressionStatement = f.group("sideEffectExpressionList", /;/);
   
   j.variableStatement = f.group(/var /, "bindingIdentifier", 
   "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
