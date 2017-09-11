@@ -132,7 +132,8 @@ function JavaScriptInterpreter() {
   j.argumentList = f.star("assignmentExpression", /,/);
   
   j.leftHandSideExpression = f.or("leftHandSideExpression1", 
-  "leftHandSideExpression2", "leftHandSideExpression3", "identifierReference");
+  "leftHandSideExpression2", "leftHandSideExpression3", 
+  "leftHandSideExpression4", "identifierReference");
   
   j.leftHandSideExpression1 = f.group("leftHandSideExpression", 
   "qualifier", 
@@ -155,6 +156,11 @@ function JavaScriptInterpreter() {
   });
   
   j.leftHandSideExpression3 = f.group(/\(/, "leftHandSideExpression", /\)/, id);
+  
+  j.leftHandSideExpression4 = f.group(/\(/, "sideEffectExpressionList", /,/, 
+  "leftHandSideExpression", /\)/, function(seel, leftHandSideExpression) {
+    return leftHandSideExpression;
+  });
   
   j.leftHandSideExpressionBase = f.or("callExpression", "objectExpression");
   

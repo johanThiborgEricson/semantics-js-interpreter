@@ -75,4 +75,12 @@ describe("A left hand side expression", function() {
       "return a;")).toBe(1);
   });
   
+  it("may be prepended by a side effect expression", function() {
+    expect(interpreter.program(
+      "var f=function(){};" +
+      "var a;" +
+      "(f(),a)=1;" +
+      "return a;")).toBe(1);
+  });
+  
 });
