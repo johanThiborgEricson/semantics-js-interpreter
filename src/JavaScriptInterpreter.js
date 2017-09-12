@@ -281,6 +281,7 @@ function JavaScriptInterpreter() {
       variables: {},
     };
     
+    this.executionContext.variables.this = this.executionContext.variables;
   });
   
   j.program = f.group("programInit", "sourceElements", 

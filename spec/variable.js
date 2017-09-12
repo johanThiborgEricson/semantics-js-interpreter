@@ -70,4 +70,10 @@ describe("A variable", function() {
     )).toBe(b);
   });
   
+  it("named this in the global context is the global context", function() {
+    expect(interpreter.program(
+      "var a=1;" +
+      "return this.a;")).toBe(1);
+  });
+  
 });
