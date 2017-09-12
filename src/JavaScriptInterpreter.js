@@ -218,7 +218,7 @@ function JavaScriptInterpreter() {
   j.statement = f.or("variableStatement", "expressionStatement", 
   "returnStatement");
   
-  j.deferredStatement = f.deferredExecution("statement");
+  j.deferredStatement = f.methodFactory("statement");
   
   j.expressionStatement = f.group("sideEffectExpressionList", /;/);
   
@@ -274,7 +274,7 @@ function JavaScriptInterpreter() {
   
   j.formalParameterList = f.star("bindingIdentifier", /,/);
   
-  j.functionBody = f.deferredExecution("sourceElements");
+  j.functionBody = f.methodFactory("sourceElements");
   
   j.programInit = f.empty(function() {
     this.executionContext = {
