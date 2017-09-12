@@ -265,7 +265,8 @@ function JavaScriptInterpreter() {
         variables: args,
       };
       
-      var result = functionBody(that);
+      that.tmp = functionBody;
+      var result = that.tmp();
       that.executionContext = stack;
       return result;
     };
@@ -293,7 +294,8 @@ function JavaScriptInterpreter() {
     var returnValue;
     var i = 0;
     while(i < deferredStatements.length) {
-      returnValue = deferredStatements[i](this);
+      this.tmp = deferredStatements[i];
+      returnValue = this.tmp();
       i++;
     }
     
