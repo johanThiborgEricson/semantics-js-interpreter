@@ -43,7 +43,14 @@ function JavaScriptInterpreter() {
     return ir.base[ir.name];
   });
   
-  j.bindingIdentifier = f.atom(identifierName);
+  var reservedWord = ["break", "case", "catch", "class", "continue", 
+  "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
+  "finally", "for", "function", "if", "implements", "import", "in", 
+  "instanceof", "let", "new", "package", "private", "protected", "public", 
+  "static", "super", "switch", "throw", "try", "typeof", "var", "void", 
+  "while", "with"];
+  
+  j.bindingIdentifier = f.atom(identifierName, reservedWord);
   
   j.primaryExpression = f.longest("literal", "objectExpression");
   
