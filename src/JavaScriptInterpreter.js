@@ -53,7 +53,7 @@ function JavaScriptInterpreter() {
   "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
   "finally", "for", "function", "if", "implements", "import", "in", 
   "instanceof", "let", "new", "package", "private", "protected", "public", 
-  "return", "static", "super", "switch", "throw", "try", "typeof", "var", 
+  "return", "static", "super", "switch", "this", "throw", "try", "typeof", "var", 
   "void", "while", "with", "yield"];
   
   j.bindingIdentifier = f.atom(identifierName, reservedWord);
@@ -61,9 +61,13 @@ function JavaScriptInterpreter() {
   j.primaryExpression = f.longest("literal", "objectExpression");
   
   j.objectExpression = f.longest("identifierExpression", 
-  "objectLiteral", "functionExpression", "objectExpression1");
+  "objectLiteral", "functionExpression", "objectExpression1", "thisExpression");
   
   j.objectExpression1 = f.group(/\(/, "expression", /\)/, id);
+  
+  j.thisExpression = f.atom(/this/, function() {
+    return this.executionContext.thisBinding;
+  });
   
   j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /\}/, 
   function(propertyAndValueList) {
@@ -263,12 +267,12 @@ function JavaScriptInterpreter() {
         i++;
       }
       
-      args["this"] = this;
       args["arguments"] = arguments;
       
       that.executionContext = {
         outer: outerExecutionContext,
         variables: args,
+        thisBinding: this,
       };
       
       that.tmp = functionBody;
@@ -293,7 +297,7 @@ function JavaScriptInterpreter() {
       variables: global,
     };
     
-    this.executionContext.variables.this = this.executionContext.variables;
+    this.executionContext.thisBinding = this.executionContext.variables;
     
     return this.program1(code);
   };
