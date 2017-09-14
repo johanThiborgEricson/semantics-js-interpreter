@@ -9,6 +9,10 @@ function JavaScriptInterpreter() {
     return x;
   };
   
+  var second = function(x, y) {
+    return y;
+  };
+  
   var identifierName = /[a-zA-Z_\$][a-zA-Z0-9_\$]*/;
   
   j.space = /(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/))*/;
@@ -276,7 +280,11 @@ function JavaScriptInterpreter() {
   
   j.formalParameterList = f.star("bindingIdentifier", /,/);
   
-  j.functionBody = f.methodFactory("sourceElements");
+  j.functionBody = f.group("useStrictDeclarationOpt", "functionBody1", second);
+  
+  j.functionBody1 = f.methodFactory("sourceElements");
+  j.useStrictDeclarationOpt = f.opt("useStrictDeclaration");
+  j.useStrictDeclaration = f.group(/('use strict')|("use strict")/, /;/);
   
   j.programInit = f.empty(function() {
     this.executionContext = {
@@ -289,10 +297,7 @@ function JavaScriptInterpreter() {
   
   j.program = f.insignificant(j.space, "program1");
   
-  j.program1 = f.group("programInit", "sourceElements", 
-  function(programInit, sourceElements) {
-    return sourceElements;
-  });
+  j.program1 = f.group("programInit", "sourceElements", second);
   
   j.sourceElements = f.star("deferredStatement", function(deferredStatements) {
     var returnValue;

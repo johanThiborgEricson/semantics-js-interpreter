@@ -51,4 +51,21 @@ describe("A function", function() {
     expect(o.m()).toBe(o);
   });
   
+  it("may begin with a use strict declaration", function() {
+    var f = interpreter.program(
+      "return function(){" + 
+        "'use strict';" +
+        "return 1;" + 
+      "};");
+    
+    expect(f()).toBe(1);
+    var g = interpreter.program(
+      "return function(){" + 
+        '"use strict";' +
+        "return 1;" + 
+      "};");
+    
+    expect(g()).toBe(1);
+  });
+  
 });
