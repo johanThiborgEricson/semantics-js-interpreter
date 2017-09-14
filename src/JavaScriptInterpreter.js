@@ -47,8 +47,8 @@ function JavaScriptInterpreter() {
   "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
   "finally", "for", "function", "if", "implements", "import", "in", 
   "instanceof", "let", "new", "package", "private", "protected", "public", 
-  "static", "super", "switch", "throw", "try", "typeof", "var", "void", 
-  "while", "with"];
+  "return", "static", "super", "switch", "throw", "try", "typeof", "var", 
+  "void", "while", "with", "yield"];
   
   j.bindingIdentifier = f.atom(identifierName, reservedWord);
   
