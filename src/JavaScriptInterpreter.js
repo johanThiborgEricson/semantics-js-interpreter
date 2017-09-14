@@ -10,6 +10,8 @@ function JavaScriptInterpreter() {
   };
   
   var identifierName = /[a-zA-Z_\$][a-zA-Z0-9_\$]*/;
+  
+  j.space = /(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/))*/;
 
   // Lexical Grammar
   
@@ -285,7 +287,7 @@ function JavaScriptInterpreter() {
     this.executionContext.variables.this = this.executionContext.variables;
   });
   
-  j.program = f.insignificant(/ ?/, "program1");
+  j.program = f.insignificant(j.space, "program1");
   
   j.program1 = f.group("programInit", "sourceElements", 
   function(programInit, sourceElements) {
