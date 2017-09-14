@@ -10,12 +10,12 @@ describe("A program", function() {
     expect(global.a).toBe(1);
   });
   
-  it("doesn't add a this property to the global object", function() {
+  it("doesn't add properties to the global object", function() {
     var global = {};
     
     interpreter.program("", global);
     
-    expect(global.this).toBeUndefined();
+    expect(global).toEqual({});
   });
   
 });
