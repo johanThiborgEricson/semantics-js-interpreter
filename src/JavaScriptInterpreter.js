@@ -76,7 +76,7 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.newExpression = f.group(/new /, "newExpressionQualifier", "argumentsOpt", 
+  j.newExpression = f.group(/new/, "newExpressionQualifier", "argumentsOpt", 
   function(newExpressionQualifier, argumentsOpt) {
     var object = Object.create(newExpressionQualifier.prototype);
     newExpressionQualifier.apply(object, argumentsOpt);
@@ -222,7 +222,7 @@ function JavaScriptInterpreter() {
   
   j.expressionStatement = f.group("sideEffectExpressionList", /;/);
   
-  j.variableStatement = f.group(/var /, "bindingIdentifier", 
+  j.variableStatement = f.group(/var/, "bindingIdentifier", 
   "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
     this.executionContext.variables[bindingIdentifier] = initialiserOpt;
   });
@@ -236,7 +236,7 @@ function JavaScriptInterpreter() {
     return undefined;
   });
   
-  j.returnStatement = f.group(/return /, "expression", /;/, 
+  j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
     return expression;
   });
@@ -285,7 +285,9 @@ function JavaScriptInterpreter() {
     this.executionContext.variables.this = this.executionContext.variables;
   });
   
-  j.program = f.group("programInit", "sourceElements", 
+  j.program = f.insignificant(/ ?/, "program1");
+  
+  j.program1 = f.group("programInit", "sourceElements", 
   function(programInit, sourceElements) {
     return sourceElements;
   });
