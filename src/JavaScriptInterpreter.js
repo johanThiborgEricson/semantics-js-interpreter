@@ -286,18 +286,19 @@ function JavaScriptInterpreter() {
   j.useStrictDeclarationOpt = f.opt("useStrictDeclaration");
   j.useStrictDeclaration = f.group(/('use strict')|("use strict")/, /;/);
   
-  j.programInit = f.empty(function() {
+  j.program = function(code, global) {
+    global = global || {};
     this.executionContext = {
       outer: null,
-      variables: {},
+      variables: global,
     };
     
     this.executionContext.variables.this = this.executionContext.variables;
-  });
+    
+    return this.program1(code);
+  };
   
-  j.program = f.insignificant(j.space, "program1");
-  
-  j.program1 = f.group("programInit", "sourceElements", second);
+  j.program1 = f.insignificant(j.space, "sourceElements");
   
   j.sourceElements = f.star("deferredStatement", function(deferredStatements) {
     var returnValue;

@@ -10,3 +10,4 @@ New expressions should return the result of the constructor if it is an object.
   return (typeof result === "object" && result) || object; // p. 47
 New expressions without arguments gets a function with no parameters, not an
   arguments object.
+Are the properties of window own properties?
