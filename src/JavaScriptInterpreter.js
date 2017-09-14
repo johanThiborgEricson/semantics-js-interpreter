@@ -193,7 +193,14 @@ function JavaScriptInterpreter() {
     return lhse.base[lhse.name];
   });
   
-  j.conditionalExpression = f.or("valueExpression");
+  j.typeChangeExpression = f.or("valueExpression", "typeChangeExpression1");
+  
+  j.typeChangeExpression1 = f.group(/!/, "typeChangeExpression", 
+  function(typeChangeExpression) {
+    return !typeChangeExpression;
+  });
+  
+  j.conditionalExpression = f.or("typeChangeExpression");
   
   j.properAssignmentExpression = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
