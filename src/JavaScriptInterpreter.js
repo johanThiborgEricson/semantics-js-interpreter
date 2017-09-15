@@ -299,14 +299,15 @@ function JavaScriptInterpreter() {
     if(expression) {
       return deferredStatementOrBlock.call(this);
     } else {
-      if(elseStatementOpt) {
-        return elseStatementOpt.call(this);
-      }
-      return ["normal", undefined];
+      return elseStatementOpt.call(this);
     }
   });
   
-  j.elseStatementOpt = f.opt("elseStatement");
+  j.elseStatementOpt = f.opt("elseStatement", function() {
+    return function() {
+      return ["normal", undefined];
+    };
+  });
   
   j.elseStatement = f.group(/else/, "deferredStatementOrBlock", id);
   
