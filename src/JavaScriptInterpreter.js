@@ -253,10 +253,20 @@ function JavaScriptInterpreter() {
   
   j.deferredStatementOrBlock = f.longest("deferredStatement", "block");
   
-  j.block = f.group(/\{/, "statementList", /\}/, id);
+  j.block = f.group(/\{/, "deferredStatementList", /\}/, id);
   
-  j.statementList = f.or("functionBody1");
+  j.statementList = f.star("deferredStatement", function(deferredStatements) {
+    for(var i = 0; i < deferredStatements.length; i++) {
+      var returnValue = deferredStatements[i].call(this);
+      if(returnValue[0] === "return") {
+        return returnValue;
+      }
+    }
+    return ["normal", undefined];
+  });
   
+  j.deferredStatementList = f.methodFactory("statementList");
+
   j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
   "returnStatement");
   
@@ -345,14 +355,6 @@ function JavaScriptInterpreter() {
   
   j.program1 = f.insignificant(j.space, "sourceElements");
   
-  j.sourceElements = f.star("deferredStatement", function(deferredStatements) {
-    for(var i = 0; i < deferredStatements.length; i++) {
-      var returnValue = deferredStatements[i].call(this);
-      if(returnValue[0] === "return") {
-        return returnValue;
-      }
-    }
-    return ["normal", undefined];
-  });
+  j.sourceElements = f.or("statementList");
   
 })();
