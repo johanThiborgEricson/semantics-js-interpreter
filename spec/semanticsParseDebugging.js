@@ -1,4 +1,4 @@
-describe("Debugging messages", function() {
+describe("Debugging messages from the Semantics! parser", function() {
   
   it("can be turned on", function() {
     spyOn(console, "log");
