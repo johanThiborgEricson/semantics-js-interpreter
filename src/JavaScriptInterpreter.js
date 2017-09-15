@@ -251,11 +251,11 @@ function JavaScriptInterpreter() {
   
   // Statements
   
-  j.deferredStatementOrBlock = f.longest("deferredStatement", "deferredBlock");
+  j.statementOrBlock = f.longest("statement", "block");
+  
+  j.deferredStatementOrBlock = f.methodFactory("statementOrBlock");
   
   j.block = f.group(/\{/, "statementList", /\}/, id);
-  
-  j.deferredBlock = f.methodFactory("block");
   
   j.statementList = f.star("deferredStatement", function(deferredStatements) {
     for(var i = 0; i < deferredStatements.length; i++) {
@@ -294,22 +294,23 @@ function JavaScriptInterpreter() {
   });
   
   j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, 
-  "deferredStatementOrBlock", "elseStatementOpt", 
-  function(expression, deferredStatementOrBlock, elseStatementOpt) {
+  "deferredStatementOrBlock", "deferredElseStatementOpt", 
+  function(expression, deferredStatementOrBlock, deferredElseStatementOpt) {
     if(expression) {
       return deferredStatementOrBlock.call(this);
     } else {
-      return elseStatementOpt.call(this);
+      return deferredElseStatementOpt.call(this);
     }
   });
   
-  j.elseStatementOpt = f.opt("elseStatement", function() {
-    return function() {
-      return ["normal", undefined];
-    };
+  j.deferredElseStatementOpt = f.methodFactory("elseStatementOpt");
+  
+  j.elseStatementOpt = f.opt("elseStatement", 
+  function() {
+    return ["normal", undefined];
   });
   
-  j.elseStatement = f.group(/else/, "deferredStatementOrBlock", id);
+  j.elseStatement = f.group(/else/, "statementOrBlock", id);
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
