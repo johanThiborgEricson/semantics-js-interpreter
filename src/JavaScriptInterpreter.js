@@ -296,7 +296,7 @@ function JavaScriptInterpreter() {
   function(expression, deferredStatementOrBlock) {
     if(expression) {
       this.tmp = deferredStatementOrBlock;
-      this.tmp();
+      return this.tmp();
     }
     
     return ["normal", undefined];

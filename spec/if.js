@@ -25,4 +25,14 @@ describe("An if statement", function() {
       "return a;")).toBe(1);
   });
   
+  it("might cause an early return", function() {
+    var o = interpreter.program(
+      "var o={p:1};" + 
+      "if(1)return o;" +
+      "o.p=0;" +
+      "return o;");
+    
+    expect(o.p).toBe(1);
+  });
+  
 });
