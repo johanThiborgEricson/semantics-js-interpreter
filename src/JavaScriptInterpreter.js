@@ -21,7 +21,11 @@ function JavaScriptInterpreter() {
   
   j.identifierName = f.atom(identifierName);
   
-  j.literal = f.or("numericLiteral");
+  j.literal = f.or("undefinedLiteral", "numericLiteral");
+  
+  j.undefinedLiteral = f.atom(/undefined/, function() {
+    return undefined;
+  });
   
   j.numericLiteral = f.atom(/\d/, function(numericLiteral){
     return Number(numericLiteral);
@@ -53,8 +57,8 @@ function JavaScriptInterpreter() {
   "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
   "finally", "for", "function", "if", "implements", "import", "in", 
   "instanceof", "let", "new", "package", "private", "protected", "public", 
-  "return", "static", "super", "switch", "this", "throw", "try", "typeof", "var", 
-  "void", "while", "with", "yield"];
+  "return", "static", "super", "switch", "this", "throw", "try", "typeof", 
+  "undefined", "var", "void", "while", "with", "yield"];
   
   j.bindingIdentifier = f.atom(identifierName, reservedWord);
   
