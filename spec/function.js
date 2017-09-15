@@ -88,4 +88,13 @@ describe("A function", function() {
     expect(f()).toBe(1);
   });
   
+  it("returns itself, even if it is named", function() {
+    var f = interpreter.program(
+      "return function f(){" +
+        "return 1;" +
+      "};");
+      
+    expect(f()).toBe(1);
+  });
+  
 });

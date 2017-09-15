@@ -327,6 +327,7 @@ function JavaScriptInterpreter() {
   function(bindingIdentifier, functionExpressionContent) {
     this.executionContext.variables[bindingIdentifier] = 
         functionExpressionContent;
+    return functionExpressionContent;
   });
   
   j.anonymousFunctionExpression = f.group(/function/, 
