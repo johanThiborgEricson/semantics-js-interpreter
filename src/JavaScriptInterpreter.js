@@ -294,14 +294,21 @@ function JavaScriptInterpreter() {
   });
   
   j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, 
-  "deferredStatementOrBlock", 
-  function(expression, deferredStatementOrBlock) {
+  "deferredStatementOrBlock", "elseStatementOpt", 
+  function(expression, deferredStatementOrBlock, elseStatementOpt) {
     if(expression) {
       return deferredStatementOrBlock.call(this);
+    } else {
+      if(elseStatementOpt) {
+        elseStatementOpt.call(this);
+      }
+      return ["normal", undefined];
     }
-    
-    return ["normal", undefined];
   });
+  
+  j.elseStatementOpt = f.opt("elseStatement");
+  
+  j.elseStatement = f.group(/else/, "deferredStatementOrBlock", id);
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {

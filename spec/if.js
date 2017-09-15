@@ -35,4 +35,14 @@ describe("An if statement", function() {
     expect(o.p).toBe(1);
   });
   
+  it("might have an else clause", function() {
+    var o = interpreter.program(
+      "var o={};" + 
+      "if(0)o.if=1;" +
+      "else o.else=0;" +
+      "return o;");
+    
+    expect(o).toEqual({else: 0});
+  });
+  
 });
