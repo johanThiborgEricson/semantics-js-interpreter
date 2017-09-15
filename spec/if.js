@@ -45,4 +45,12 @@ describe("An if statement", function() {
     expect(o).toEqual({else: 0});
   });
   
+  it("can have a else branch that can cause an early return", function() {
+    expect(interpreter.program(
+      "var a;" + 
+      "if(0)a=1;" +
+      "else return 1;" +
+      "return 0;")).toBe(1);
+  });
+  
 });

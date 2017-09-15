@@ -300,7 +300,7 @@ function JavaScriptInterpreter() {
       return deferredStatementOrBlock.call(this);
     } else {
       if(elseStatementOpt) {
-        elseStatementOpt.call(this);
+        return elseStatementOpt.call(this);
       }
       return ["normal", undefined];
     }
