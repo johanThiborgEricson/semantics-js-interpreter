@@ -237,7 +237,9 @@ function JavaScriptInterpreter() {
   
   j.deferredStatement = f.methodFactory("statement");
   
-  j.expressionStatement = f.group("sideEffectExpressionList", /;/);
+  j.expressionStatement = f.group("sideEffectExpressionList", /;/, function() {
+    
+  });
   
   j.variableStatement = f.group(/var/, "bindingIdentifier", 
   "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {

@@ -68,4 +68,14 @@ describe("A function", function() {
     expect(g()).toBe(1);
   });
   
+  it("returns undefined if it has no explicit return value", function() {
+    var g = interpreter.program(
+      "return function(){" + 
+        "var a;" +
+        "a=1;" +
+      "};");
+    
+    expect(g()).toBe(undefined);
+  });
+  
 });
