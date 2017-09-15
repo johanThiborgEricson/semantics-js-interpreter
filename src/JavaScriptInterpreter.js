@@ -251,14 +251,10 @@ function JavaScriptInterpreter() {
   
   // Statements
   
-  j.statement = f.or("variableStatement", "expressionStatement", 
+  j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
   "returnStatement");
   
   j.deferredStatement = f.methodFactory("statement");
-  
-  j.expressionStatement = f.group("sideEffectExpressionList", /;/, function() {
-    return ["normal", undefined];
-  });
   
   j.variableStatement = f.group(/var/, "bindingIdentifier", 
   "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
@@ -274,6 +270,12 @@ function JavaScriptInterpreter() {
   j.initialiserOpt = f.opt("initialiser", function() {
     return undefined;
   });
+  
+  j.expressionStatement = f.group("sideEffectExpressionList", /;/, function() {
+    return ["normal", undefined];
+  });
+  
+  j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, "statement");
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
