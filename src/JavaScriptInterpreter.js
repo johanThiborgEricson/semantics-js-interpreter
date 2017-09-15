@@ -257,12 +257,13 @@ function JavaScriptInterpreter() {
   j.deferredStatement = f.methodFactory("statement");
   
   j.expressionStatement = f.group("sideEffectExpressionList", /;/, function() {
-    
+    return ["normal", undefined];
   });
   
   j.variableStatement = f.group(/var/, "bindingIdentifier", 
   "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
     this.executionContext.variables[bindingIdentifier] = initialiserOpt;
+    return ["normal", undefined];
   });
   
   j.initialiser = f.group(/=/, "assignmentExpression", 
@@ -276,7 +277,7 @@ function JavaScriptInterpreter() {
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
-    return expression;
+    return ["return", expression];
   });
   
   // Functions and programs
@@ -341,7 +342,9 @@ function JavaScriptInterpreter() {
       i++;
     }
     
-    return returnValue;
+    if(returnValue) {
+      return returnValue[1];
+    }
   });
   
 })();
