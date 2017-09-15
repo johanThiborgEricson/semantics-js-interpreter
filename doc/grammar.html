@@ -281,8 +281,29 @@
   <h1><span class="secnum">A.5</span> Functions and Programs</h1>
 
   <div class="gp">
+    <div class="lhs"><span class="nt">FunctionDeclaration</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">NamedFunctionExpression</span></div>
+  </div>
+
+  <div class="gp">
     <div class="lhs"><span class="nt">FunctionExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code class="t">function</code> <code class="t">(</code> <span class="nt">FormalParameterList</span> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
+    <div class="rhs"><span class="nt">AnonymousFunctionExpression</span></div>
+    <div class="rhs"><span class="nt">NamedFunctionExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">AnonymousFunctionExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><code class="t">function</code> <span class="nt">FunctionContent</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">NamedFunctionExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><code class="t">function</code> <span class="nt">BindingIdentifier</span> <span class="nt">FunctionContent</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">FunctionContent</span> <span class="geq">:</span> </div>
+    <div class="rhs"><code class="t">(</code> <span class="nt">FormalParameterList</span> <code class="t">)</code> <code class="t">{</code> <span class="nt">FunctionBody</span> <code class="t">}</code></div>
   </div>
 
   <div class="gp">
@@ -292,7 +313,7 @@
 
   <div class="gp">
     <div class="lhs"><span class="nt">FunctionBody</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">SourceElements</span><sub>opt</sub></div>
+    <div class="rhs"><span class="nt">SourceElements</span></div>
   </div>
 
   <div class="gp">
