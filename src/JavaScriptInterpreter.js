@@ -232,7 +232,7 @@ function JavaScriptInterpreter() {
   "conditionalExpression");
   
   j.sideEffectExpression = f.or("properAssignmentExpression", 
-  "updateExpression", "sideEffectExpression1");
+  "updateExpression", "namedFunctionExpression", "sideEffectExpression1");
   
   j.sideEffectExpression1 = f.group(/\(/, "sideEffectExpressionList", /\)/, id);
   
@@ -319,7 +319,15 @@ function JavaScriptInterpreter() {
   
   // Functions and programs
   
-  j.functionExpression = f.or("anonymousFunctionExpression");
+  j.functionExpression = f.or("anonymousFunctionExpression",
+  "namedFunctionExpression");
+  
+  j.namedFunctionExpression = f.group(/function/, "bindingIdentifier",
+  "functionExpressionContent", 
+  function(bindingIdentifier, functionExpressionContent) {
+    this.executionContext.variables[bindingIdentifier] = 
+        functionExpressionContent;
+  });
   
   j.anonymousFunctionExpression = f.group(/function/, 
   "functionExpressionContent", id);

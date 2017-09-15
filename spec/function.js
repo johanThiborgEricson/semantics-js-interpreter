@@ -69,13 +69,23 @@ describe("A function", function() {
   });
   
   it("returns undefined if it has no explicit return value", function() {
-    var g = interpreter.program(
+    var f = interpreter.program(
       "return function(){" + 
         "var a;" +
         "a=1;" +
       "};");
     
-    expect(g()).toBe(undefined);
+    expect(f()).toBe(undefined);
+  });
+  
+  it("may be named", function() {
+    var f = interpreter.program(
+      "(function f(){" +
+        "return 1;" +
+      "});" +
+      "return f;");
+      
+    expect(f()).toBe(1);
   });
   
 });
