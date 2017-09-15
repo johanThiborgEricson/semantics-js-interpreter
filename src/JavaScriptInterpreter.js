@@ -275,7 +275,15 @@ function JavaScriptInterpreter() {
     return ["normal", undefined];
   });
   
-  j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, "statement");
+  j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, "deferredStatement", 
+  function(expression, deferredStatement) {
+    if(expression) {
+      this.tmp = deferredStatement;
+      this.tmp();
+    }
+    
+    return ["normal", undefined];
+  });
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {

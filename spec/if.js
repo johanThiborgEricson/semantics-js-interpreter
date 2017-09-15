@@ -9,4 +9,11 @@ describe("An if statement", function() {
       "return a;")).toBe(1);
   });
   
+  it("doesn't run its statement if its condition evaluates to false", function() {
+    expect(interpreter.program(
+      "var a=0;" + 
+      "if(0)a=1;" +
+      "return a;")).toBe(0);
+  });
+  
 });
