@@ -307,7 +307,10 @@ function JavaScriptInterpreter() {
       that.tmp = functionBody;
       var result = that.tmp();
       that.executionContext = stack;
-      return result;
+      if(result) {
+        return result[1];
+      }
+      
     };
   });
   
@@ -328,7 +331,11 @@ function JavaScriptInterpreter() {
     
     this.executionContext.thisBinding = this.executionContext.variables;
     
-    return this.program1(code);
+    var result = this.program1(code);
+    if(result) {
+      return result[1];
+    }
+    
   };
   
   j.program1 = f.insignificant(j.space, "sourceElements");
@@ -342,9 +349,7 @@ function JavaScriptInterpreter() {
       i++;
     }
     
-    if(returnValue) {
-      return returnValue[1];
-    }
+    return returnValue;
   });
   
 })();
