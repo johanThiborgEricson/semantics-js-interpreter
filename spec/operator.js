@@ -8,4 +8,9 @@ describe("The operator", function() {
       "return !a;")).toBe(true);
   });
   
+  it("typeof returns the type of the operand", function() {
+    expect(interpreter.program(
+      "return typeof 1;")).toBe("number");
+  });
+  
 });

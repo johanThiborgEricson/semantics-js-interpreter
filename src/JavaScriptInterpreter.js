@@ -212,12 +212,13 @@ function JavaScriptInterpreter() {
     return lhse.base[lhse.name];
   });
   
-  j.typeChangeExpression = f.or("valueExpression", "typeChangeExpression1");
+  j.typeChangeExpression = f.or("valueExpression", "typeChangeExpression1", 
+  "typeChangeExpression2");
   
   j.typeChangeExpression1 = f.group(/!/, "typeChangeExpression", 
-  function(typeChangeExpression) {
-    return !typeChangeExpression;
-  });
+  function(typeChangeExpression) {return !typeChangeExpression;});
+  j.typeChangeExpression2 = f.group(/typeof/, "typeChangeExpression", 
+  function(typeChangeExpression) {return typeof typeChangeExpression;});
   
   j.conditionalExpression = f.or("typeChangeExpression");
   
