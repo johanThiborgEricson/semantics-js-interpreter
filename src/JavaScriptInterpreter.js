@@ -319,7 +319,12 @@ function JavaScriptInterpreter() {
   
   // Functions and programs
   
-  j.functionExpression = f.group(/function/, /\(/, "formalParameterList", /\)/, 
+  j.functionExpression = f.or("anonymousFunctionExpression");
+  
+  j.anonymousFunctionExpression = f.group(/function/, 
+  "functionExpressionContent", id);
+  
+  j.functionExpressionContent = f.group(/\(/, "formalParameterList", /\)/, 
   /\{/, "functionBody", /\}/, function(formalParameterList, functionBody) {
     var that = this;
     var outerExecutionContext = this.executionContext;
