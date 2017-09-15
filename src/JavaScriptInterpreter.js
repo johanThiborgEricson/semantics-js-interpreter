@@ -369,8 +369,15 @@ function JavaScriptInterpreter() {
   j.useStrictDeclarationOpt = f.opt("useStrictDeclaration");
   j.useStrictDeclaration = f.group(/('use strict')|("use strict")/, /;/);
   
-  j.program = function(code, global) {
-    global = global || {};
+  j.program = function(code, globalOrDebugging, debugging) {
+    var global;
+    if(globalOrDebugging === true) {
+      debugging = true;
+      global = {};
+    } else {
+      global = globalOrDebugging || {};
+    }
+    
     this.executionContext = {
       outer: null,
       variables: global,
@@ -378,7 +385,7 @@ function JavaScriptInterpreter() {
     
     this.executionContext.thisBinding = this.executionContext.variables;
     
-    return this.program1(code)[1];
+    return this.program1(code, debugging)[1];
   };
   
   j.program1 = f.insignificant(j.space, "sourceElements");
