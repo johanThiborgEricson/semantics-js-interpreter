@@ -307,10 +307,7 @@ function JavaScriptInterpreter() {
       that.tmp = functionBody;
       var result = that.tmp();
       that.executionContext = stack;
-      if(result) {
-        return result[1];
-      }
-      
+      return result[1];
     };
   });
   
@@ -331,25 +328,24 @@ function JavaScriptInterpreter() {
     
     this.executionContext.thisBinding = this.executionContext.variables;
     
-    var result = this.program1(code);
-    if(result) {
-      return result[1];
-    }
-    
+    return this.program1(code)[1];
   };
   
   j.program1 = f.insignificant(j.space, "sourceElements");
   
   j.sourceElements = f.star("deferredStatement", function(deferredStatements) {
-    var returnValue;
     var i = 0;
     while(i < deferredStatements.length) {
       this.tmp = deferredStatements[i];
-      returnValue = this.tmp();
+      var returnValue = this.tmp();
+      if(returnValue[0] === "return") {
+        return returnValue;
+      }
+      
       i++;
     }
     
-    return returnValue;
+    return ["normal", undefined];
   });
   
 })();

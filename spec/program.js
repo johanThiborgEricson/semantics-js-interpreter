@@ -18,4 +18,14 @@ describe("A program", function() {
     expect(global).toEqual({});
   });
   
+  it("may return early", function() {
+    var o = interpreter.program(
+      "var o={};" +
+      "o.p=1;" +
+      "return o;"+
+      "o.p=0;");
+    
+    expect(o.p).toBe(1);
+  });
+  
 });
