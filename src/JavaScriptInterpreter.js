@@ -333,9 +333,9 @@ function JavaScriptInterpreter() {
   
   j.formalParameterList = f.star("bindingIdentifier", /,/);
   
-  j.functionBody = f.group("useStrictDeclarationOpt", "functionBody1", second);
+  j.functionBody = f.group("useStrictDeclarationOpt", "deferredSourceElements", 
+  second);
   
-  j.functionBody1 = f.methodFactory("sourceElements");
   j.useStrictDeclarationOpt = f.opt("useStrictDeclaration");
   j.useStrictDeclaration = f.group(/('use strict')|("use strict")/, /;/);
   
@@ -354,5 +354,7 @@ function JavaScriptInterpreter() {
   j.program1 = f.insignificant(j.space, "sourceElements");
   
   j.sourceElements = f.or("statementList");
+  
+  j.deferredSourceElements = f.methodFactory("sourceElements");
   
 })();
