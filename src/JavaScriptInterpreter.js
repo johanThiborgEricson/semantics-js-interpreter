@@ -251,9 +251,11 @@ function JavaScriptInterpreter() {
   
   // Statements
   
-  j.deferredStatementOrBlock = f.longest("deferredStatement", "block");
+  j.deferredStatementOrBlock = f.longest("deferredStatement", "deferredBlock");
   
-  j.block = f.group(/\{/, "deferredStatementList", /\}/, id);
+  j.block = f.group(/\{/, "statementList", /\}/, id);
+  
+  j.deferredBlock = f.methodFactory("block");
   
   j.statementList = f.star("deferredStatement", function(deferredStatements) {
     for(var i = 0; i < deferredStatements.length; i++) {
