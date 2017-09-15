@@ -251,6 +251,12 @@ function JavaScriptInterpreter() {
   
   // Statements
   
+  j.deferredStatementOrBlock = f.longest("deferredStatement", "block");
+  
+  j.block = f.group(/\{/, "statementList", /\}/, id);
+  
+  j.statementList = f.or("functionBody1");
+  
   j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
   "returnStatement");
   
@@ -275,10 +281,11 @@ function JavaScriptInterpreter() {
     return ["normal", undefined];
   });
   
-  j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, "deferredStatement", 
-  function(expression, deferredStatement) {
+  j.ifStatement = f.group(/if/, /\(/, "expression", /\)/, 
+  "deferredStatementOrBlock", 
+  function(expression, deferredStatementOrBlock) {
     if(expression) {
-      this.tmp = deferredStatement;
+      this.tmp = deferredStatementOrBlock;
       this.tmp();
     }
     
