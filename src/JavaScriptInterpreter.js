@@ -21,10 +21,25 @@ function JavaScriptInterpreter() {
   
   j.identifierName = f.atom(identifierName);
   
-  j.literal = f.or("undefinedLiteral", "numericLiteral");
+  j.literal = f.or("undefinedLiteral", "nullLiteral", "booleanLiteral", 
+  "numericLiteral");
   
   j.undefinedLiteral = f.atom(/undefined/, function() {
     return undefined;
+  });
+  
+  j.nullLiteral = f.atom(/null/, function() {
+    return null;
+  });
+  
+  j.booleanLiteral = f.or("trueLiteral", "falseLiteral");
+  
+  j.trueLiteral = f.atom(/true/, function() {
+    return true;
+  });
+  
+  j.falseLiteral = f.atom(/false/, function() {
+    return false;
   });
   
   j.numericLiteral = f.atom(/\d/, function(numericLiteral){
@@ -55,10 +70,10 @@ function JavaScriptInterpreter() {
   
   var reservedWord = ["break", "case", "catch", "class", "continue", 
   "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
-  "finally", "for", "function", "if", "implements", "import", "in", 
-  "instanceof", "let", "new", "package", "private", "protected", "public", 
-  "return", "static", "super", "switch", "this", "throw", "try", "typeof", 
-  "undefined", "var", "void", "while", "with", "yield"];
+  "false", "finally", "for", "function", "if", "implements", "import", "in", 
+  "instanceof", "let", "new", "null", "package", "private", "protected", 
+  "public", "return", "static", "super", "switch", "this", "throw", "true", 
+  "try", "typeof", "undefined", "var", "void", "while", "with", "yield"];
   
   j.bindingIdentifier = f.atom(identifierName, reservedWord);
   
