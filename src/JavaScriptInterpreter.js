@@ -270,7 +270,7 @@ function JavaScriptInterpreter() {
   j.deferredStatementList = f.methodFactory("statementList");
 
   j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
-  "returnStatement");
+  "returnStatement", "functionDeclaration");
   
   j.deferredStatement = f.methodFactory("statement");
   
@@ -318,6 +318,10 @@ function JavaScriptInterpreter() {
   });
   
   // Functions and programs
+  
+  j.functionDeclaration = f.group("namedFunctionExpression", function() {
+    return ["normal", undefined];
+  });
   
   j.functionExpression = f.or("anonymousFunctionExpression",
   "namedFunctionExpression");

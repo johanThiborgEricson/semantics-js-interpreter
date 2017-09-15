@@ -97,4 +97,14 @@ describe("A function", function() {
     expect(f()).toBe(1);
   });
   
+  it("can be declared", function() {
+    var f = interpreter.program(
+      "function f(){" +
+        "return 1;" +
+      "}" +
+      "return f;");
+      
+    expect(f()).toBe(1);
+  });
+  
 });
