@@ -295,8 +295,7 @@ function JavaScriptInterpreter() {
   "deferredStatementOrBlock", 
   function(expression, deferredStatementOrBlock) {
     if(expression) {
-      this.tmp = deferredStatementOrBlock;
-      return this.tmp();
+      return deferredStatementOrBlock.call(this);
     }
     
     return ["normal", undefined];
@@ -326,8 +325,7 @@ function JavaScriptInterpreter() {
         thisBinding: this,
       };
       
-      that.tmp = functionBody;
-      var result = that.tmp();
+      var result = functionBody.call(that);
       that.executionContext = stack;
       return result[1];
     };
