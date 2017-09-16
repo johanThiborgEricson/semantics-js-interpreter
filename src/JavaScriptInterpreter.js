@@ -261,8 +261,10 @@ function JavaScriptInterpreter() {
   
   j.relationalExpression = f.or("typeChangeExpression");
   
-  j.equalityExpression = f.longest("relationalExpression", 
-  "equalityExpression4");
+  j.equalityExpression = f.or("equalityExpression3", "equalityExpression4", 
+  "relationalExpression");
+  j.equalityExpression3 = f.group("equalityExpression", /===/, 
+  "relationalExpression", function(ee, re) {return ee===re;});
   j.equalityExpression4 = f.group("equalityExpression", /!==/, 
   "relationalExpression", function(ee, re) {return ee!==re;});
   
