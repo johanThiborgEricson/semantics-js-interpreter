@@ -38,6 +38,12 @@ describe("A literal", function() {
         expect(interpreter.program("return '  a  ';")).toBe('  a  ');
       });
       
+      it("may contain many \\b, \\f, \\n, \\r, \\t and \\vs", function() {
+        expect(interpreter.program(
+          "return '\\b, \\f, \\n, \\r, \\t and \\vs';")
+        ).toBe('\b, \f, \n, \r, \t and \vs');
+      });
+      
     });
     
   });

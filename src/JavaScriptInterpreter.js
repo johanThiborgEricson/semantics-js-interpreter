@@ -55,7 +55,22 @@ function JavaScriptInterpreter() {
     return singleStringCharacters;
   });
   
-  j.singleStringCharacters = f.atom(/[^']*/);
+  j.singleStringCharacters = f.atom(/[^']*/, function(s) {
+    s = s.replace(/\\[bfnrtv]/g, function(match) {
+      return characterEscapeSequence[match];
+    });
+    
+    return s;
+  });
+  
+  var characterEscapeSequence = {
+    "\\b": "\b", 
+    "\\f": "\f", 
+    "\\n": "\n", 
+    "\\r": "\r", 
+    "\\t": "\t",
+    "\\v": "\v",
+  };
   
   // Expressions
   
