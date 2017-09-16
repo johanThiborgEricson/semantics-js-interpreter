@@ -198,11 +198,11 @@ function JavaScriptInterpreter() {
     };
   });
   
-  j.qualifier = f.or("dotQualifier", "squareBracketsQualifier");
+  j.qualifier = f.or("qualifier1", "qualifier2");
   
-  j.dotQualifier = f.group(/\./, "identifierName", id);
+  j.qualifier1 = f.group(/\[/, "expression", /\]/, id);
   
-  j.squareBracketsQualifier = f.group(/\[/, "expression", /\]/, id);
+  j.qualifier2 = f.group(/\./, "identifierName", id);
   
   j.args = f.group(/\(/, "argumentList", /\)/, id);
   
