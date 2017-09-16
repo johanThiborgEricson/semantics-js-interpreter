@@ -131,8 +131,8 @@ function JavaScriptInterpreter() {
   function(propertyAndValueList) {
     var result = {};
     propertyAndValueList.map(function(propertyAssignment) {
-      var pa = propertyAssignment;
-      result[pa.propertyName] = pa.assignmentExpression;
+      result[propertyAssignment.propertyName] = 
+          propertyAssignment.assignmentExpression;
     });
     
     return result;
@@ -247,8 +247,8 @@ function JavaScriptInterpreter() {
   "rightHandSideExpression");
   
   j.rightHandSideExpression = f.group("leftHandSideExpression", 
-  function(lhse) {
-    return lhse.base[lhse.name];
+  function(leftHandSideExpression) {
+    return leftHandSideExpression.base[leftHandSideExpression.name];
   });
   
   j.typeChangeExpression = f.or("valueExpression", "typeChangeExpression1", 
@@ -294,9 +294,7 @@ function JavaScriptInterpreter() {
   "expression1");
   
   j.expression1 = f.group("sideEffectExpressionList", /,/, 
-  "assignmentExpression", function(seel, assignmentExpression) {
-    return assignmentExpression;
-  });
+  "assignmentExpression", second);
   
   // Statements
   
