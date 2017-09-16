@@ -50,9 +50,12 @@ function JavaScriptInterpreter() {
   
   j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces2");
   
-  j.stringLiteralSignificantSpaces2 = f.group(/'/, /'/, function() {
-    return '';
+  j.stringLiteralSignificantSpaces2 = f.group(/'/, "singleStringCharacters", 
+  /'/, function(singleStringCharacters) {
+    return singleStringCharacters;
   });
+  
+  j.singleStringCharacters = f.atom(/[^']?/);
   
   // Expressions
   

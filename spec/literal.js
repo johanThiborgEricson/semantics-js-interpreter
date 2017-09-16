@@ -20,8 +20,16 @@ describe("A literal", function() {
   
   describe("string", function() {
     
-    it("may be single quoted", function() {
-      expect(interpreter.program("return '';")).toBe('');
+    describe("with single quotes", function() {
+      
+      it("may be empty", function() {
+        expect(interpreter.program("return '';")).toBe('');
+      });
+      
+      it("may contain a single character", function() {
+        expect(interpreter.program("return 'a';")).toBe('a');
+      });
+      
     });
     
   });
