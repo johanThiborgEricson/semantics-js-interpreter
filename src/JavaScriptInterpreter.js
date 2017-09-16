@@ -48,20 +48,30 @@ function JavaScriptInterpreter() {
   
   j.stringLiteral = f.insignificant(null, "stringLiteralSignificantSpaces");
   
-  j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces2");
+  j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces1", 
+  "stringLiteralSignificantSpaces2");
+  
+  j.stringLiteralSignificantSpaces1 = f.group(/"/, "doubleStringCharacters", 
+  /"/, function(singleStringCharacters) {
+    return singleStringCharacters;
+  });
   
   j.stringLiteralSignificantSpaces2 = f.group(/'/, "singleStringCharacters", 
   /'/, function(singleStringCharacters) {
     return singleStringCharacters;
   });
   
-  j.singleStringCharacters = f.atom(/([^'\\]|(\\.))*/, function(s) {
+  var unescape = function(s) {
     s = s.replace(/\\['"\\bfnrtv]/g, function(match) {
       return characterEscapeSequence[match];
     });
     
     return s;
-  });
+  };
+  
+  j.doubleStringCharacters = f.atom(/([^"\\]|(\\.))*/, unescape);
+  
+  j.singleStringCharacters = f.atom(/([^'\\]|(\\.))*/, unescape);
   
   var characterEscapeSequence = {
     "\\\'": "\'",
