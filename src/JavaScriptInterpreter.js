@@ -46,7 +46,7 @@ function JavaScriptInterpreter() {
     return Number(numericLiteral);
   });
   
-  j.stringLiteral = f.or("stringLiteralSignificantSpaces");
+  j.stringLiteral = f.insignificant(null, "stringLiteralSignificantSpaces");
   
   j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces2");
   
@@ -55,7 +55,7 @@ function JavaScriptInterpreter() {
     return singleStringCharacters;
   });
   
-  j.singleStringCharacters = f.atom(/[^']?/);
+  j.singleStringCharacters = f.atom(/[^']*/);
   
   // Expressions
   

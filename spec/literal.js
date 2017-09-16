@@ -30,6 +30,14 @@ describe("A literal", function() {
         expect(interpreter.program("return 'a';")).toBe('a');
       });
       
+      it("may contain many characters", function() {
+        expect(interpreter.program("return 'abc';")).toBe('abc');
+      });
+      
+      it("may be padded with spaces", function() {
+        expect(interpreter.program("return '  a  ';")).toBe('  a  ');
+      });
+      
     });
     
   });
