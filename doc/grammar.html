@@ -254,12 +254,17 @@
   <div class="gp">
     <div class="lhs"><span class="nt">ConditionalExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">LogicalORExpression</span></div>
-    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> <span class="nt">AssignmentExpressionIn</span> <code class="t">:</code> <span class="nt">AssignmentExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> <span class="nt">DeferredAssignmentExpressionIn</span> <code class="t">:</code> <span class="nt">DeferredAssignmentExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span class="nt">AssignmentExpressionIn</span> <span class="geq">:</span> </div>
+    <div class="lhs"><span class="nt">DeferredAssignmentExpressionIn</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">AssignmentExpression</span> allowing <span class="nt">InExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">DeferredAssignmentExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">AssignmentExpression</span></div>
   </div>
 
   <div class="gp">
