@@ -9,8 +9,11 @@ describe("The operator", function() {
   });
   
   it("typeof returns the type of the operand", function() {
-    expect(interpreter.program(
-      "return typeof 1;")).toBe("number");
+    expect(interpreter.program("return typeof 1;")).toBe("number");
+  });
+  
+  it("!== can tell if two values are not like at all", function() {
+    expect(interpreter.program("return undefined!==null;")).toBe(true);
   });
   
 });

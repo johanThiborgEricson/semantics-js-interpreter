@@ -259,7 +259,14 @@ function JavaScriptInterpreter() {
   j.typeChangeExpression2 = f.group(/typeof/, "typeChangeExpression", 
   function(typeChangeExpression) {return typeof typeChangeExpression;});
   
-  j.conditionalExpression = f.or("typeChangeExpression");
+  j.relationalExpression = f.or("typeChangeExpression");
+  
+  j.equalityExpression = f.longest("relationalExpression", 
+  "equalityExpression4");
+  j.equalityExpression4 = f.group("equalityExpression", /!==/, 
+  "relationalExpression", function(ee, re) {return ee!==re;});
+  
+  j.conditionalExpression = f.or("equalityExpression");
   
   j.properAssignmentExpression = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
