@@ -22,7 +22,7 @@ function JavaScriptInterpreter() {
   j.identifierName = f.atom(identifierName);
   
   j.literal = f.or("undefinedLiteral", "nullLiteral", "booleanLiteral", 
-  "numericLiteral");
+  "numericLiteral", "stringLiteral");
   
   j.undefinedLiteral = f.atom(/undefined/, function() {
     return undefined;
@@ -44,6 +44,14 @@ function JavaScriptInterpreter() {
   
   j.numericLiteral = f.atom(/\d/, function(numericLiteral){
     return Number(numericLiteral);
+  });
+  
+  j.stringLiteral = f.or("stringLiteralSignificantSpaces");
+  
+  j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces2");
+  
+  j.stringLiteralSignificantSpaces2 = f.group(/'/, /'/, function() {
+    return '';
   });
   
   // Expressions

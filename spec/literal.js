@@ -1,4 +1,4 @@
-describe("The literal", function() {
+describe("A literal", function() {
   
   var interpreter = new JavaScriptInterpreter();
   
@@ -16,6 +16,14 @@ describe("The literal", function() {
   
   it("false is false", function() {
     expect(interpreter.program("return false;")).toBe(false);
+  });
+  
+  describe("string", function() {
+    
+    it("may be single quoted", function() {
+      expect(interpreter.program("return '';")).toBe('');
+    });
+    
   });
   
 });

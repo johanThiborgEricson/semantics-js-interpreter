@@ -41,6 +41,27 @@
     <div class="rhs"><span class="nt">/\d/</span></div>
   </div>
 
+  <div class="gp">
+    <div class="lhs"><span class="nt">StringLiteral</span> <span class="geq">::</span> </div>
+    <div class="rhs"><span class="nt">StringLiteralSignificantSpaces</span> with insignificant <code class="t">undefined</code></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">StringLiteralSignificantSpaces</span> <span class="geq">::</span> </div>
+    <div class="rhs"><code class="t">"</code> <span class="nt">DoubleStringCharacters</span> <code class="t">"</code></div>
+    <div class="rhs"><code class="t">'</code> <span class="nt">SingleStringCharacters</span> <code class="t">'</code></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">DoubleStringCharacters</span> <span class="geq">::</span> </div>
+    <div class="rhs"><span class="nt">DoubleStringCharacter</span> <span class="nt">DoubleStringCharacters</span><sub>opt</sub></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">SingleStringCharacters</span> <span class="geq">::</span> </div>
+    <div class="rhs"><span class="nt">SingleStringCharacter</span> <span class="nt">SingleStringCharacters</span><sub>opt</sub></div>
+  </div>
+
 </section>
 
 <section id="sec-A.3">
