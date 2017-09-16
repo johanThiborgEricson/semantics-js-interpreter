@@ -44,6 +44,12 @@ describe("A literal", function() {
         ).toBe('\b, \f, \n, \r, \t and \vs');
       });
       
+      it("may contain escaped quotation marks", function() {
+        expect(interpreter.program(
+          "return '\\'\\\"';")
+        ).toBe('\'\"');
+      });
+      
     });
     
   });

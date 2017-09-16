@@ -55,8 +55,8 @@ function JavaScriptInterpreter() {
     return singleStringCharacters;
   });
   
-  j.singleStringCharacters = f.atom(/[^']*/, function(s) {
-    s = s.replace(/\\[bfnrtv]/g, function(match) {
+  j.singleStringCharacters = f.atom(/([^'\\]|(\\.))*/, function(s) {
+    s = s.replace(/\\['"bfnrtv]/g, function(match) {
       return characterEscapeSequence[match];
     });
     
@@ -64,6 +64,8 @@ function JavaScriptInterpreter() {
   });
   
   var characterEscapeSequence = {
+    "\\\'": "\'",
+    "\\\"": "\"",
     "\\b": "\b", 
     "\\f": "\f", 
     "\\n": "\n", 
