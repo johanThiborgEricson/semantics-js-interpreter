@@ -50,6 +50,12 @@ describe("A literal", function() {
         ).toBe('\'\"');
       });
       
+      it("may contain escaped back slashes", function() {
+        expect(interpreter.program(
+          "return '\\\\n';")
+        ).toBe('\\n');
+      });
+      
     });
     
   });
