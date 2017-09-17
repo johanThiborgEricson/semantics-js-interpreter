@@ -12,4 +12,18 @@ describe("A regular expression literal", function() {
     expect(abc.exec("abc")[0]).toBe("abc");
   });
   
+  it("may contain escaped dashes", function() {
+    var dash = interpreter.program("return /\\//;");
+    expect(dash.exec("/")[0]).toBe("/");
+  });
+  
+  describe("class", function() {
+    
+    it("may contain a literal dash", function() {
+      var dashClass = interpreter.program("return /[/]/;");
+      expect(dashClass.exec("/")[0]).toBe("/");
+    });
+    
+  });
+  
 });

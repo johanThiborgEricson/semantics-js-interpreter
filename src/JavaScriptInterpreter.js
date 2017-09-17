@@ -93,7 +93,7 @@ function JavaScriptInterpreter() {
     return new RegExp(regularExpressionBody);
   });
   
-  j.regularExpressionBody = f.atom(/[^/]+/);
+  j.regularExpressionBody = f.atom(/([^/\\\[]|(\\\/)|(\[\/\]))+/);
   
   // Expressions
   
