@@ -29,6 +29,11 @@ describe("A regular expression literal", function() {
       expect(abc.exec("b")[0]).toBe("b");
     });
     
+    it("may contain an escaped ending square bracket", function() {
+      var bracketClass = interpreter.program("return /[\\]]/;", true);
+      expect(bracketClass.exec("]")[0]).toBe("]");
+    });
+    
   });
   
 });
