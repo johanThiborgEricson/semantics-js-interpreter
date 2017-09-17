@@ -30,7 +30,7 @@ describe("A regular expression literal", function() {
     });
     
     it("may contain an escaped ending square bracket", function() {
-      var bracketClass = interpreter.program("return /[\\]]/;", true);
+      var bracketClass = interpreter.program("return /[\\]]/;");
       expect(bracketClass.exec("]")[0]).toBe("]");
     });
     
