@@ -24,6 +24,11 @@ describe("A regular expression literal", function() {
       expect(dashClass.exec("/")[0]).toBe("/");
     });
     
+    it("may contain many alternatives", function() {
+      var abc = interpreter.program("return /[abc]/;");
+      expect(abc.exec("b")[0]).toBe("b");
+    });
+    
   });
   
 });
