@@ -51,4 +51,27 @@ describe("A call expression", function() {
       "return o.i.m();")).toBe(1);
   });
   
+  it("evaluates its function before its parameters", function() {
+    var o = {
+      m: function() {
+        return 1;
+      },
+    };
+    
+    var r = o.m(o.m = function() {
+      return 0;
+    });
+    
+    expect(interpreter.program(
+      "var o={" +
+        "m:function(){" +
+          "return 1;" +
+        "}" +
+      "};" +
+      "return o.m(o.m=function(){" +
+        "return 0;" +
+      "});"
+      )).toBe(r);
+  });
+  
 });
