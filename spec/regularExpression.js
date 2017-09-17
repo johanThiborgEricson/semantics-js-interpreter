@@ -7,4 +7,9 @@ describe("A regular expression literal", function() {
     expect(a.exec("a")[0]).toBe("a");
   });
   
+  it("can contain many characters", function() {
+    var abc = interpreter.program("return /abc/;");
+    expect(abc.exec("abc")[0]).toBe("abc");
+  });
+  
 });
