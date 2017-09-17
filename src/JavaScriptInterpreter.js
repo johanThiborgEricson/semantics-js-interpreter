@@ -22,7 +22,7 @@ function JavaScriptInterpreter() {
   j.identifierName = f.atom(identifierName);
   
   j.literal = f.or("undefinedLiteral", "nullLiteral", "booleanLiteral", 
-  "numericLiteral", "stringLiteral");
+  "numericLiteral", "stringLiteral", "regularExpressionLiteral");
   
   j.undefinedLiteral = f.atom(/undefined/, function() {
     return undefined;
@@ -84,6 +84,16 @@ function JavaScriptInterpreter() {
     "\\t": "\t",
     "\\v": "\v",
   };
+  
+  j.regularExpressionLiteral = 
+      f.or("regularExpressionLiteralSignificantSpaces");
+  
+  j.regularExpressionLiteralSignificantSpaces = f.group(/\//, 
+  "regularExpressionBody", /\//, function(regularExpressionBody) {
+    return new RegExp(regularExpressionBody);
+  });
+  
+  j.regularExpressionBody = f.atom(/./);
   
   // Expressions
   
