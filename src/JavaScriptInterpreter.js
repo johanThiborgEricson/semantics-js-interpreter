@@ -52,8 +52,8 @@ function JavaScriptInterpreter() {
   "stringLiteralSignificantSpaces2");
   
   j.stringLiteralSignificantSpaces1 = f.group(/"/, "doubleStringCharacters", 
-  /"/, function(singleStringCharacters) {
-    return singleStringCharacters;
+  /"/, function(doubleStringCharacters) {
+    return doubleStringCharacters;
   });
   
   j.stringLiteralSignificantSpaces2 = f.group(/'/, "singleStringCharacters", 
