@@ -90,7 +90,7 @@ function JavaScriptInterpreter() {
   
   // Expressions
   
-  j.identifierReference = f.group("bindingIdentifier", 
+  j.identifierReference = f.wrap("bindingIdentifier", 
   function(bindingIdentifier) {
     var base = this.executionContext;
     while(!base.variables.hasOwnProperty(bindingIdentifier)) {
@@ -104,7 +104,7 @@ function JavaScriptInterpreter() {
     
   });
   
-  j.identifierExpression = f.group("identifierReference", 
+  j.identifierExpression = f.wrap("identifierReference", 
   function(identifierReference) {
     var ir = identifierReference;
     return ir.base[ir.name];
@@ -247,7 +247,7 @@ function JavaScriptInterpreter() {
   j.valueExpression = f.longest("primaryExpression", "updateExpression",
   "rightHandSideExpression");
   
-  j.rightHandSideExpression = f.group("leftHandSideExpression", 
+  j.rightHandSideExpression = f.wrap("leftHandSideExpression", 
   function(leftHandSideExpression) {
     return leftHandSideExpression.base[leftHandSideExpression.name];
   });
@@ -364,7 +364,7 @@ function JavaScriptInterpreter() {
   
   // Functions and programs
   
-  j.functionDeclaration = f.group("namedFunctionExpression", function() {
+  j.functionDeclaration = f.wrap("namedFunctionExpression", function() {
     return ["normal", undefined];
   });
   
