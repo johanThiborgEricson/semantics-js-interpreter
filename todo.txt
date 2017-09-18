@@ -10,3 +10,6 @@ New expressions should return the result of the constructor if it is an object.
   return (typeof result === "object" && result) || object; // p. 47
 Are the properties of window own properties?
 Move string tests to seperate file.
+regexp doesn't handle spaces yet.
+Write group tests to check that non returned sideffects ar still run, so I 
+  don't accidentally disable them with select(4)
