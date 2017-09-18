@@ -10,7 +10,7 @@ describe("A throw statement", function() {
     
   });
   
-  xit("can throw a Error", function() {
+  it("can throw a Error", function() {
     expect(function() {
       interpreter.program("throw new Error('ball');", global);
     }).toThrowError("ball");
