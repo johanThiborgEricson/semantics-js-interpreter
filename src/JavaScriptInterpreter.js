@@ -150,8 +150,8 @@ function JavaScriptInterpreter() {
   j.newExpression = f.group(/new/, "newExpressionQualifier", "argumentsOpt", 
   function(newExpressionQualifier, argumentsOpt) {
     var object = Object.create(newExpressionQualifier.prototype);
-    newExpressionQualifier.apply(object, argumentsOpt);
-    return object;
+    var result = newExpressionQualifier.apply(object, argumentsOpt);
+    return result&&typeof result==="object"?result:object;
   });
   
   j.newExpressionQualifier = f.longest("objectExpression", "newExpression",

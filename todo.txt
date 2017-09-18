@@ -8,6 +8,7 @@ Remove list quantifiers from the grammar (and from the code?).
 Which literals may have qualifiers?
 New expressions should return the result of the constructor if it is an object.
   return (typeof result === "object" && result) || object; // p. 47
+  is this true also for typeof result === "function"?
 Are the properties of window own properties?
 Move string tests to seperate file.
 regexp doesn't handle spaces yet.

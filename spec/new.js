@@ -38,4 +38,36 @@ describe("The new operator", function() {
       "return new o.c().p;")).toEqual(1);
   });
   
+  it("will return the result of the constructor if it has type object", 
+  function() {
+    expect(interpreter.program(
+      "var C=function(){" +
+        "return {" +
+          "p:1" +
+        "};" +
+      "};" +
+      "C.prototype={" +
+        "p:0" +
+      "};" +
+      "return new C();").p).toBe(1);
+  });
+  
+  it("will return the object if the result of the constructor isn't an object", 
+  function() {
+    expect(typeof interpreter.program(
+      "var C=function(){" +
+        "return 1;" +
+      "};" +
+      "return new C();")).toBe("object");
+  });
+  
+  it("will not return null if that is the result of the object", 
+  function() {
+    expect(interpreter.program(
+      "var C=function(){" +
+        "return null;" +
+      "};" +
+      "return new C();")).not.toBe(null);
+  });
+  
 });
