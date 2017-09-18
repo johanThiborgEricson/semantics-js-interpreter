@@ -78,7 +78,7 @@ function JavaScriptInterpreter() {
   };
   
   j.regularExpressionLiteral = 
-      f.or("regularExpressionLiteralSignificantSpaces");
+      f.insignificant(null, "regularExpressionLiteralSignificantSpaces");
   
   j.regularExpressionLiteralSignificantSpaces = f.select(2, /\//, 
   "regularExpressionBody", /\//);

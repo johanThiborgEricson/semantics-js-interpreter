@@ -17,6 +17,12 @@ describe("A regular expression literal", function() {
     expect(dash.exec("/")[0]).toBe("/");
   });
   
+  it("may contain spaces", function() {
+    var space = interpreter.program("return / . /;");
+    expect(space.exec(" a ")[0]).toBe(" a ");
+  });
+  
+  
   describe("class", function() {
     
     it("may contain a literal dash", function() {
