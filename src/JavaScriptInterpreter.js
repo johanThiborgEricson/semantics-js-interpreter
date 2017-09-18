@@ -269,7 +269,11 @@ function JavaScriptInterpreter() {
   j.equalityExpression4 = f.group("equalityExpression", /!==/, 
   "relationalExpression", function(ee, re) {return ee!==re;});
   
-  j.conditionalExpression = f.or("equalityExpression");
+  j.logicalAndExpression = f.or("equalityExpression");
+  
+  j.logicalOrExpression = f.or("logicalAndExpression");
+  
+  j.conditionalExpression = f.or("logicalOrExpression");
   
   j.properAssignmentExpression = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
