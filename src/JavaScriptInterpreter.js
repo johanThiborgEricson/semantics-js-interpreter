@@ -318,7 +318,7 @@ function JavaScriptInterpreter() {
   j.deferredStatementList = f.methodFactory("statementList");
 
   j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
-  "returnStatement", "functionDeclaration");
+  "returnStatement", "throwStatement", "functionDeclaration");
   
   j.deferredStatement = f.methodFactory("statement");
   
@@ -360,6 +360,10 @@ function JavaScriptInterpreter() {
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
     return ["return", expression];
+  });
+  
+  j.throwStatement = f.group(/throw/, "expression", /;/, function(expression) {
+    throw expression;
   });
   
   // Functions and programs
