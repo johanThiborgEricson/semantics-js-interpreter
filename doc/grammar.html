@@ -258,52 +258,56 @@
   </div>
 
   <div class="gp">
-    <div class="lhs"><span class="nt">DeferredEqualityExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">EqualityExpression</span></div>
-  </div>
-
-  <div class="gp">
     <div class="lhs"><span class="nt">LogicalANDExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">EqualityExpression</span></div>
-    <div class="rhs"><span class="nt">LogicalANDExpression</span> <code class="t">&&</code> <span class="nt">DeferredEqualityExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalANDExpression</span> <code class="t">&&</code> (deferred) <span class="nt">EqualityExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span class="nt">DeferredLogicalANDExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">LogicalANDExpression</span></div>
+    <div class="lhs"><span class="nt">LogicalANDSideEffectExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">UpdateExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalANDExpression</span> <code class="t">&&</code> (deferred) <span class="nt">UpdateExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span class="nt">LogicalORExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">LogicalANDExpression</span></div>
-    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">||</code> <span class="nt">DeferredLogicalANDExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">||</code> (deferred) <span class="nt">LogicalANDExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">LogicalORSideEffectExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">LogicalANDSideEffectExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">||</code> (deferred) <span class="nt">LogicalANDSideEffectExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span class="nt">ConditionalExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">LogicalORExpression</span></div>
-    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> <span class="nt">DeferredAssignmentExpressionIn</span> <code class="t">:</code> <span class="nt">DeferredAssignmentExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> (deferred) <span class="nt">AssignmentExpressionIn</span> <code class="t">:</code> (deferred) <span class="nt">AssignmentExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span class="nt">DeferredAssignmentExpressionIn</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">AssignmentExpression</span> allowing <span class="nt">InExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span class="nt">DeferredAssignmentExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">AssignmentExpression</span></div>
+    <div class="lhs"><span class="nt">ConditionalSideEffectExpression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">LogicalORSideEffectExpression</span></div>
+    <div class="rhs"><span class="nt">LogicalORExpression</span> <code class="t">?</code> (deferred) <span class="nt">SideEffectExpressionIn</span> <code class="t">:</code> (deferred) <span class="nt">SideEffectExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span class="nt">ProperAssignmentExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">LeftHandSideExpression</span> <code class="t">=</code> <span class="nt">AssignmentExpression</span></div>
+    <div class="rhs"><span class="nt">ConditionalSideEffectExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span class="nt">AssignmentExpression</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">ProperAssignmentExpression</span></div>
     <div class="rhs"><span class="nt">ConditionalExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">AssignmentExpressionIn</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">AssignmentExpression</span> allowing <span class="nt">InExpression</span></div>
   </div>
 
   <div class="gp">
@@ -336,11 +340,6 @@
     <div class="rhs"><span class="nt">VariableStatement</span></div>
     <div class="rhs"><span class="nt">ExpressionStatement</span></div>
     <div class="rhs"><span class="nt">ReturnStatement</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span class="nt">DeferredStatement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">Statement</span></div>
   </div>
 
   <div class="gp">
@@ -414,7 +413,7 @@
 
   <div class="gp">
     <div class="lhs"><span class="nt">SourceElement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">DeferredStatement</span></div>
+    <div class="rhs">(deferred) <span class="nt">Statement</span></div>
   </div>
 
 </section>
