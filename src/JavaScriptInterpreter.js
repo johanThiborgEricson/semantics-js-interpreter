@@ -13,8 +13,17 @@ function JavaScriptInterpreter() {
   
   j.spaces = f.star("space");
 
-  j.space = f.atom(/\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/)/);
+  j.space = f.or("whiteSpace", "lineTerminator", "singleLineComment", 
+  "multiLineComment");
+  
+  j.whiteSpace = f.atom(/\s/);
+  
+  j.lineTerminator = f.atom(/\n/);
+  
+  j.singleLineComment = f.atom(/\/\/.*/);
 
+  j.multiLineComment = f.atom(/\/\*\/*(\**[^\*\/]*\/*)*\*+\//);
+  
   // Lexical Grammar
   
   j.identifierName = f.atom(identifierName);
