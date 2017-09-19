@@ -11,8 +11,9 @@ function JavaScriptInterpreter() {
   
   var identifierName = /[a-zA-Z_\$][a-zA-Z0-9_\$]*/;
   
+  // Lexical Grammar
+  
   j.spaces = f.star("space");
-  //j.spaces = f.atom(/(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]+\/*)*\*+\/))*/)
 
   j.space = f.or("whiteSpace", "lineTerminator", "singleLineComment", 
   "multiLineComment");
@@ -24,8 +25,6 @@ function JavaScriptInterpreter() {
   j.singleLineComment = f.atom(/\/\/.*/);
 
   j.multiLineComment = f.atom(/\/\*\/*(\**[^\*\/]+\/*)*\*+\//);
-  
-  // Lexical Grammar
   
   j.identifierName = f.atom(identifierName);
   
