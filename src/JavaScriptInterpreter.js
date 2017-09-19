@@ -158,14 +158,16 @@ function JavaScriptInterpreter() {
   
   j.propertyName = f.or("identifierName");
   
-  j.newExpression = f.group(/new/, "newExpressionQualifier", "argumentsOpt", 
+  j.newExpression = f.longest("newExpression1", "primaryExpression");
+  
+  j.newExpression1 = f.group(/new/, "newExpressionQualifier", "argumentsOpt", 
   function(newExpressionQualifier, argumentsOpt) {
     var object = Object.create(newExpressionQualifier.prototype);
     var result = newExpressionQualifier.apply(object, argumentsOpt);
     return result&&typeof result==="object"?result:object;
   });
   
-  j.newExpressionQualifier = f.longest("objectExpression", "newExpression",
+  j.newExpressionQualifier = f.longest("newExpression",
   "newExpressionQualifier1");
   
   j.newExpressionQualifier1 = f.group("newExpressionQualifier", "qualifier",
@@ -177,26 +179,23 @@ function JavaScriptInterpreter() {
     return [];
   });
   
-  j.callExpression = f.or("newExpression", "callExpression1", 
+  j.callExpression = f.longest("newExpression", "callExpression1", 
   "callExpression2");
   
-  j.callExpression1 = f.group("functionCallExpressionQualifier", "args", 
+  j.callExpression1 = f.group("callExpression", "args", 
   function(fceQualifier, args) {
     return fceQualifier.apply(undefined, args);
   });
   
-  j.callExpression2 = f.group("methodCallExpressionQualifier", "args", 
+  j.callExpression2 = f.group("callExpressionQualifier", "args", 
   function(mceQualifier, args) {
     return mceQualifier.value.apply(mceQualifier.base, args);
   });
   
-  j.functionCallExpressionQualifier = f.longest("callExpression", 
-  "objectExpression");
+  j.callExpressionQualifier = f.longest("callExpressionQualifier1", 
+  "callExpressionQualifier2");
   
-  j.methodCallExpressionQualifier = f.longest("methodCallExpressionQualifier1", 
-  "methodCallExpressionQualifier2");
-  
-  j.methodCallExpressionQualifier1 = f.group("functionCallExpressionQualifier", 
+  j.callExpressionQualifier1 = f.group("callExpression", 
   "qualifier", function(fceQualifier, qualifier) {
     return {
       base: fceQualifier,
@@ -204,7 +203,7 @@ function JavaScriptInterpreter() {
     };
   });
   
-  j.methodCallExpressionQualifier2 = f.group("methodCallExpressionQualifier", 
+  j.callExpressionQualifier2 = f.group("callExpressionQualifier", 
   "qualifier", function(mceQualifier, qualifier) {
     return {
       base: mceQualifier.value,
@@ -223,8 +222,7 @@ function JavaScriptInterpreter() {
   j.argumentList = f.star("assignmentExpression", /,/);
   
   j.leftHandSideExpression = f.or("leftHandSideExpression1", 
-  "leftHandSideExpression2", "leftHandSideExpression3", 
-  "leftHandSideExpression4", "identifierReference");
+  "leftHandSideExpression2", "identifierReference");
   
   j.leftHandSideExpression1 = f.group("leftHandSideExpression", 
   "qualifier", 
@@ -246,24 +244,16 @@ function JavaScriptInterpreter() {
     };
   });
   
-  j.leftHandSideExpression3 = f.select(2, /\(/, "leftHandSideExpression", /\)/);
+  j.leftHandSideExpressionBase = f.or("callExpression");
   
-  j.leftHandSideExpression4 = f.group(/\(/, "expressionNotLhs", /,/, 
-  "leftHandSideExpression", /\)/, second);
-  
-  j.leftHandSideExpressionBase = f.or("callExpression", "objectExpression");
-  
-  j.updateExpression = f.or("callExpression");
-  
-  j.valueExpression = f.longest("primaryExpression", "updateExpression",
-  "rightHandSideExpression");
+  j.updateExpression = f.longest("callExpression", "rightHandSideExpression");
   
   j.rightHandSideExpression = f.wrap("leftHandSideExpression", 
   function(leftHandSideExpression) {
     return leftHandSideExpression.base[leftHandSideExpression.name];
   });
   
-  j.typeChangeExpression = f.or("valueExpression", "typeChangeExpression1", 
+  j.typeChangeExpression = f.or("updateExpression", "typeChangeExpression1", 
   "typeChangeExpression2");
   
   j.typeChangeExpression1 = f.group(/!/, "typeChangeExpression", 
@@ -286,6 +276,9 @@ function JavaScriptInterpreter() {
   
   j.conditionalExpression = f.or("logicalOrExpression");
   
+  j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
+  "conditionalExpression");
+  
   j.AssignmentExpressionNotLhs = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
   function(leftHandSideExpression, assignmentExpression) {
@@ -293,24 +286,10 @@ function JavaScriptInterpreter() {
     return (lhse.base[lhse.name] = assignmentExpression);
   });
   
-  j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
-  "conditionalExpression");
-  
-  j.sideEffectExpression = f.or("AssignmentExpressionNotLhs", 
-  "updateExpression", "namedFunctionExpression", "sideEffectExpression1");
-  
-  j.sideEffectExpression1 = f.select(2, /\(/, "expressionNotLhs", /\)/);
-  
-  j.expressionNotLhs = f.plus("sideEffectExpression", /,/, 
+  j.expression = f.plus("assignmentExpression", /,/, 
   function() {
     return arguments[arguments.length-1];
   });
-  
-  j.expression = f.longest("assignmentExpression", "expressionNotLhs", 
-  "expression1");
-  
-  j.expression1 = f.group("expressionNotLhs", /,/, 
-  "assignmentExpression", second);
   
   // Statements
   
@@ -349,7 +328,7 @@ function JavaScriptInterpreter() {
     return undefined;
   });
   
-  j.expressionStatement = f.group("expressionNotLhs", /;/, function() {
+  j.expressionStatement = f.group("expression", /;/, function() {
     return ["normal", undefined];
   });
   
