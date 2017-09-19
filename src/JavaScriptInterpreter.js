@@ -248,7 +248,7 @@ function JavaScriptInterpreter() {
   
   j.leftHandSideExpression3 = f.select(2, /\(/, "leftHandSideExpression", /\)/);
   
-  j.leftHandSideExpression4 = f.group(/\(/, "sideEffectExpressionList", /,/, 
+  j.leftHandSideExpression4 = f.group(/\(/, "expressionNotLhs", /,/, 
   "leftHandSideExpression", /\)/, second);
   
   j.leftHandSideExpressionBase = f.or("callExpression", "objectExpression");
@@ -286,30 +286,30 @@ function JavaScriptInterpreter() {
   
   j.conditionalExpression = f.or("logicalOrExpression");
   
-  j.properAssignmentExpression = f.group("leftHandSideExpression", /=/, 
+  j.AssignmentExpressionNotLhs = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
   function(leftHandSideExpression, assignmentExpression) {
     var lhse = leftHandSideExpression;
     return (lhse.base[lhse.name] = assignmentExpression);
   });
   
-  j.assignmentExpression = f.or("properAssignmentExpression", 
+  j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
   "conditionalExpression");
   
-  j.sideEffectExpression = f.or("properAssignmentExpression", 
+  j.sideEffectExpression = f.or("AssignmentExpressionNotLhs", 
   "updateExpression", "namedFunctionExpression", "sideEffectExpression1");
   
-  j.sideEffectExpression1 = f.select(2, /\(/, "sideEffectExpressionList", /\)/);
+  j.sideEffectExpression1 = f.select(2, /\(/, "expressionNotLhs", /\)/);
   
-  j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/, 
+  j.expressionNotLhs = f.plus("sideEffectExpression", /,/, 
   function() {
     return arguments[arguments.length-1];
   });
   
-  j.expression = f.longest("assignmentExpression", "sideEffectExpressionList", 
+  j.expression = f.longest("assignmentExpression", "expressionNotLhs", 
   "expression1");
   
-  j.expression1 = f.group("sideEffectExpressionList", /,/, 
+  j.expression1 = f.group("expressionNotLhs", /,/, 
   "assignmentExpression", second);
   
   // Statements
@@ -349,7 +349,7 @@ function JavaScriptInterpreter() {
     return undefined;
   });
   
-  j.expressionStatement = f.group("sideEffectExpressionList", /;/, function() {
+  j.expressionStatement = f.group("expressionNotLhs", /;/, function() {
     return ["normal", undefined];
   });
   
