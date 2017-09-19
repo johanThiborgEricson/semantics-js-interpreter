@@ -1,0 +1,13 @@
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    font-family: Cambria, Palatino Linotype, Palatino, Liberation Serif,
+        serif;
+    font-size: 17px;
+    line-height: 135%;
+}
+
+div.gp { margin-left: 2.4em; margin-top: 0.9em; }
+div.gp > div.lhs { margin-left: 0em; }
+div.gp > div { margin-left: 2.4em; }  /* right-hand side */
+code { font-weight: bold };

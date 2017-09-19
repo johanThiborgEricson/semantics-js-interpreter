@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>Reference group</title>
-  <link href="es5.1.css" rel="stylesheet">
+  <link href="grammar.css" rel="stylesheet">
 </head>
 <body>
 <section id="sec-A.1">
@@ -9,57 +9,57 @@
 
   <div class="gp">
     <div class="lhs"><span>IdentifierName</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>/[a-zA-Z_\$][a-zA-Z0-9_\$]*/</span> </div>
+    <div><span>/[a-zA-Z_\$][a-zA-Z0-9_\$]*/</span> </div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Literal</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>UndefinedLiteral</span></div>
-    <div class="rhs"><span>NullLiteral</span></div>
-    <div class="rhs"><span>BooleanLiteral</span></div>
-    <div class="rhs"><span>NumericLiteral</span></div>
+    <div><span>UndefinedLiteral</span></div>
+    <div><span>NullLiteral</span></div>
+    <div><span>BooleanLiteral</span></div>
+    <div><span>NumericLiteral</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>UndefinedLiteral</span> <span class="geq">::</span> </div>
-    <div class="rhs"><code>undefined</code></div>
+    <div><code>undefined</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NullLiteral</span> <span class="geq">::</span> </div>
-    <div class="rhs"><code>null</code></div>
+    <div><code>null</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>BooleanLiteral</span> <span class="geq">::</span> </div>
-    <div class="rhs"><code>true</code></div>
-    <div class="rhs"><code>false</code></div>
+    <div><code>true</code></div>
+    <div><code>false</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NumericLiteral</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>/\d/</span></div>
+    <div><span>/\d/</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>StringLiteral</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>StringLiteralSignificantSpaces</span> with insignificant <code>undefined</code></div>
+    <div><span>StringLiteralSignificantSpaces</span> with insignificant <code>undefined</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>StringLiteralSignificantSpaces</span> <span class="geq">::</span> </div>
-    <div class="rhs"><code>"</code> <span>DoubleStringCharacters</span> <code>"</code></div>
-    <div class="rhs"><code>'</code> <span>SingleStringCharacters</span> <code>'</code></div>
+    <div><code>"</code> <span>DoubleStringCharacters</span> <code>"</code></div>
+    <div><code>'</code> <span>SingleStringCharacters</span> <code>'</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>DoubleStringCharacters</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>DoubleStringCharacter</span> <span>DoubleStringCharacters</span><sub>opt</sub></div>
+    <div><span>DoubleStringCharacter</span> <span>DoubleStringCharacters</span><sub>opt</sub></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>SingleStringCharacters</span> <span class="geq">::</span> </div>
-    <div class="rhs"><span>SingleStringCharacter</span> <span>SingleStringCharacters</span><sub>opt</sub></div>
+    <div><span>SingleStringCharacter</span> <span>SingleStringCharacters</span><sub>opt</sub></div>
   </div>
 
 </section>
@@ -69,22 +69,22 @@
 
   <div class="gp">
     <div class="lhs"><span>IdentifierReference</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>BindingIdentifier</span></div>
+    <div><span>BindingIdentifier</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>IdentifierExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>IdentifierReference</span></div>
+    <div><span>IdentifierReference</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>BindingIdentifier</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>IdentifierName</span> <span class="grhsmod">but not</span> <span>ReservedWord</span></div>
+    <div><span>IdentifierName</span> <span class="grhsmod">but not</span> <span>ReservedWord</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ReservedWord</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>["break", "case", "catch", "class", "continue", 
+    <div><span>["break", "case", "catch", "class", "continue", 
   "debugger", "default", "delete", "do", "else", "enum", "export", "extends", 
   "false", "finally", "for", "function", "if", "implements", "import", "in", 
   "instanceof", "let", "new", "null", "package", "private", "protected", 
@@ -94,238 +94,238 @@
 
   <div class="gp">
     <div class="lhs"><span>PrimaryExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>ObjectExpression</span></div>
-    <div class="rhs"><span>Literal</span></div>
+    <div><span>ObjectExpression</span></div>
+    <div><span>Literal</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ObjectExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>ObjectLiteral</span></div>
-    <div class="rhs"><span>FunctionExpression</span></div>
-    <div class="rhs"><span>IdentifierExpression</span></div>
-    <div class="rhs"><code>(</code> <span>Expression</span> <code>)</code></div>
+    <div><span>ObjectLiteral</span></div>
+    <div><span>FunctionExpression</span></div>
+    <div><span>IdentifierExpression</span></div>
+    <div><code>(</code> <span>Expression</span> <code>)</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ObjectLiteral</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>{</code> <span>PropertyNameAndValueList</span> <code>}</code></div>
+    <div><code>{</code> <span>PropertyNameAndValueList</span> <code>}</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>PropertyNameAndValueList</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>PropertyAssignment</span>* with delimiter <code>/,/</code></div>
+    <div><span>PropertyAssignment</span>* with delimiter <code>/,/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>PropertyAssignment</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>PropertyName</span> <code>:</code> <span>AssignmentExpression</span></div>
+    <div><span>PropertyName</span> <code>:</code> <span>AssignmentExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>PropertyName</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>IdentifierName</span></div>
+    <div><span>IdentifierName</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NewExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>new</code> <span>NewExpressionQualifier</span> <span>Arguments</span><sub>opt</sub></div>
+    <div><code>new</code> <span>NewExpressionQualifier</span> <span>Arguments</span><sub>opt</sub></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NewExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>NewExpressionQualifier</span> <span>Qualifier</span></div>
-    <div class="rhs"><span>ObjectExpression</span></div>
-    <div class="rhs"><span>NewExpression</span></div>
+    <div><span>NewExpressionQualifier</span> <span>Qualifier</span></div>
+    <div><span>ObjectExpression</span></div>
+    <div><span>NewExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>CallExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>NewExpression</span></div>
-    <div class="rhs"><span>FunctionCallExpressionQualifier</span> <span>Arguments</span></div>
-    <div class="rhs"><span>MethodCallExpressionQualifier</span> <span>Arguments</span></div>
+    <div><span>NewExpression</span></div>
+    <div><span>FunctionCallExpressionQualifier</span> <span>Arguments</span></div>
+    <div><span>MethodCallExpressionQualifier</span> <span>Arguments</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>FunctionCallExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>CallExpression</span></div>
-    <div class="rhs"><span>ObjectExpression</span></div>
+    <div><span>CallExpression</span></div>
+    <div><span>ObjectExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>MethodCallExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>FunctionCallExpressionQualifier</span> <span>Qualifier</span></div>
-    <div class="rhs"><span>MethodExpressionQualifier</span> <span>Qualifier</span></div>
+    <div><span>FunctionCallExpressionQualifier</span> <span>Qualifier</span></div>
+    <div><span>MethodExpressionQualifier</span> <span>Qualifier</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Qualifier</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>[</code> <span>Expression</span> <code>]</code></div>
-    <div class="rhs"><code>.</code> <span>IdentifierName</span></div>
+    <div><code>[</code> <span>Expression</span> <code>]</code></div>
+    <div><code>.</code> <span>IdentifierName</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Arguments</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>(</code> <span>ArgumentList</span> <code>)</code></div>
+    <div><code>(</code> <span>ArgumentList</span> <code>)</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ArgumentList</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AssignmentExpression</span>* with delimiter <code>/,/</code></div>
+    <div><span>AssignmentExpression</span>* with delimiter <code>/,/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LeftHandSideExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>RightHandSideExpression</span> <span>Qualifier</span></div>
-    <div class="rhs"><span>IdentifierReference</span></div>
-    <div class="rhs"><code>(</code> <span>Expression</span> <code>,</code> <span>LeftHandSideExpression</span> <code>)</code></div>
-    <div class="rhs"><code>(</code> <span>LeftHandSideExpression</span> <code>)</code></div>
+    <div><span>RightHandSideExpression</span> <span>Qualifier</span></div>
+    <div><span>IdentifierReference</span></div>
+    <div><code>(</code> <span>Expression</span> <code>,</code> <span>LeftHandSideExpression</span> <code>)</code></div>
+    <div><code>(</code> <span>LeftHandSideExpression</span> <code>)</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>RightHandSideExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LeftHandSideExpression</span></div>
-    <div class="rhs"><span>CallExpression</span></div>
+    <div><span>LeftHandSideExpression</span></div>
+    <div><span>CallExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>UpdateExpressionNotLHS</span></div>
-    <div class="rhs"><span>RightHandSideExpression</span></div>
+    <div><span>UpdateExpressionNotLHS</span></div>
+    <div><span>RightHandSideExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>UpdateExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LeftHandSideExpression</span> <code>++</code></div>
-    <div class="rhs"><span>LeftHandSideExpression</span> <code>--</code></div>
-    <div class="rhs"><code>++</code> <span>LeftHandSideExpression</span></div>
-    <div class="rhs"><code>--</code> <span>LeftHandSideExpression</span></div>
-    <div class="rhs"><code>delete</code> <span>LeftHandSideExpression</span></div>
+    <div><span>LeftHandSideExpression</span> <code>++</code></div>
+    <div><span>LeftHandSideExpression</span> <code>--</code></div>
+    <div><code>++</code> <span>LeftHandSideExpression</span></div>
+    <div><code>--</code> <span>LeftHandSideExpression</span></div>
+    <div><code>delete</code> <span>LeftHandSideExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>TypeChangeExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>TypeChangeExpressionNotLHS</span></div>
-    <div class="rhs"><span>UpdateExpression</span></div>
+    <div><span>TypeChangeExpressionNotLHS</span></div>
+    <div><span>UpdateExpression</span></div>
   </div>
   
   <div class="gp">
     <div class="lhs"><span>TypeChangeExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>!</code> <span>TypeChangeExpression</span></div>
-    <div class="rhs"><code>typeof</code> <span>TypeChangeExpression</span></div>
-    <div class="rhs"><span>UpdateExpressionNotLHS</span></div>
+    <div><code>!</code> <span>TypeChangeExpression</span></div>
+    <div><code>typeof</code> <span>TypeChangeExpression</span></div>
+    <div><span>UpdateExpressionNotLHS</span></div>
   </div>
   
   <div class="gp">
     <div class="lhs"><span>MultiplicativeExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>MultiplicativeExpressionNotLHS</span></span></div>
-    <div class="rhs"><span>TypeChangeExpression</span></div>
+    <div><span>MultiplicativeExpressionNotLHS</span></span></div>
+    <div><span>TypeChangeExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>MultiplicativeExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>MultiplicativeExpression</span> <code>*</code> <span>TypeChangeExpression</span></div>
-    <div class="rhs"><span>MultiplicativeExpression</span> <code>/</code> <span>TypeChangeExpression</span></div>
-    <div class="rhs"><span>MultiplicativeExpression</span> <code>%</code> <span>TypeChangeExpression</span></div>
-    <div class="rhs"><span>TypeChangeExpressionNotLHS</span></div>
+    <div><span>MultiplicativeExpression</span> <code>*</code> <span>TypeChangeExpression</span></div>
+    <div><span>MultiplicativeExpression</span> <code>/</code> <span>TypeChangeExpression</span></div>
+    <div><span>MultiplicativeExpression</span> <code>%</code> <span>TypeChangeExpression</span></div>
+    <div><span>TypeChangeExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AdditiveExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AdditiveExpressionNotLHS</span></div>
-    <div class="rhs"><span>MultiplicativeExpression</span></div>
+    <div><span>AdditiveExpressionNotLHS</span></div>
+    <div><span>MultiplicativeExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AdditiveExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AdditiveExpression</span> <code>+</code> <span>MultiplicativeExpression</span></div>
-    <div class="rhs"><span>AdditiveExpression</span> <code>-</code> <span>MultiplicativeExpression</span></div>
-    <div class="rhs"><span>MultiplicativeExpressionNoLHS</span></div>
+    <div><span>AdditiveExpression</span> <code>+</code> <span>MultiplicativeExpression</span></div>
+    <div><span>AdditiveExpression</span> <code>-</code> <span>MultiplicativeExpression</span></div>
+    <div><span>MultiplicativeExpressionNoLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>RelationalExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>RelationalExpressionNotLHS</span></div>
-    <div class="rhs"><span>AdditiveExpression</span></div>
+    <div><span>RelationalExpressionNotLHS</span></div>
+    <div><span>AdditiveExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>RelationalExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>RelationalExpression</span> <code>&lt;</code> <span>AdditiveExpression</span></div>
-    <div class="rhs"><span>RelationalExpression</span> <code>&gt;</code> <span>AdditiveExpression</span></div>
-    <div class="rhs"><span>RelationalExpression</span> <code>&lt;=</code> <span>AdditiveExpression</span></div>
-    <div class="rhs"><span>RelationalExpression</span> <code>&gt;=</code> <span>AdditiveExpression</span></div>
-    <div class="rhs"><span>RelationalExpression</span> <code>instanceof</code> <span>AdditiveExpression</span></div>
-    <div class="rhs"><span>InExpression</span></div>
-    <div class="rhs"><span>AdditiveExpressionNotLHS</span></div>
+    <div><span>RelationalExpression</span> <code>&lt;</code> <span>AdditiveExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&gt;</code> <span>AdditiveExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&lt;=</code> <span>AdditiveExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&gt;=</code> <span>AdditiveExpression</span></div>
+    <div><span>RelationalExpression</span> <code>instanceof</code> <span>AdditiveExpression</span></div>
+    <div><span>InExpression</span></div>
+    <div><span>AdditiveExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>InExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>RelationalExpression</span> <code>in</code> <span>AdditiveExpression</span></div>
+    <div><span>RelationalExpression</span> <code>in</code> <span>AdditiveExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>EqualityExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>EqualityExpressionNotLHS</span></div>
-    <div class="rhs"><span>RelationalExpression</span></div>
+    <div><span>EqualityExpressionNotLHS</span></div>
+    <div><span>RelationalExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>EqualityExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>EqualityExpression</span> <code>==</code> <span>RelationalExpression</span></div>
-    <div class="rhs"><span>EqualityExpression</span> <code>!=</code> <span>RelationalExpression</span></div>
-    <div class="rhs"><span>EqualityExpression</span> <code>===</code> <span>RelationalExpression</span></div>
-    <div class="rhs"><span>EqualityExpression</span> <code>!==</code> <span>RelationalExpression</span></div>
-    <div class="rhs"><span>RelationalExpressionNotLHS</span></div>
+    <div><span>EqualityExpression</span> <code>==</code> <span>RelationalExpression</span></div>
+    <div><span>EqualityExpression</span> <code>!=</code> <span>RelationalExpression</span></div>
+    <div><span>EqualityExpression</span> <code>===</code> <span>RelationalExpression</span></div>
+    <div><span>EqualityExpression</span> <code>!==</code> <span>RelationalExpression</span></div>
+    <div><span>RelationalExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LogicalANDExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LogicalANDExpressionNotLHS</span></div>
-    <div class="rhs"><span>EqualityExpression</span></div>
+    <div><span>LogicalANDExpressionNotLHS</span></div>
+    <div><span>EqualityExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LogicalANDExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LogicalANDExpression</span> <code>&&</code> (deferred) <span>EqualityExpression</span></div>
-    <div class="rhs"><span>EqualityExpressionNotLHS</span></div>
+    <div><span>LogicalANDExpression</span> <code>&&</code> (deferred) <span>EqualityExpression</span></div>
+    <div><span>EqualityExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LogicalORExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LogicalORExpressionNotLHS</span></div>
-    <div class="rhs"><span>LogicalANDExpression</span></div>
+    <div><span>LogicalORExpressionNotLHS</span></div>
+    <div><span>LogicalANDExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LogicalORExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LogicalORExpression</span> <code>||</code> (deferred) <span>LogicalANDExpression</span></div>
-    <div class="rhs"><span>LogicalANDExpressionNotLHS</span></div>
+    <div><span>LogicalORExpression</span> <code>||</code> (deferred) <span>LogicalANDExpression</span></div>
+    <div><span>LogicalANDExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ConditionalExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>ConditionalExpressionNotLHS</span></div>
-    <div class="rhs"><span>LogicalORExpression</span></div>
+    <div><span>ConditionalExpressionNotLHS</span></div>
+    <div><span>LogicalORExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ConditionalExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LogicalORExpression</span> <code>?</code> (deferred) <span>AssignmentExpression</span> (allowing <code>in</code>) <code>:</code> (deferred) <span>AssignmentExpression</span></div>
-    <div class="rhs"><span>LogicalORExpressionNotLHS</span></div>
+    <div><span>LogicalORExpression</span> <code>?</code> (deferred) <span>AssignmentExpression</span> (allowing <code>in</code>) <code>:</code> (deferred) <span>AssignmentExpression</span></div>
+    <div><span>LogicalORExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AssignmentExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AssignmentExpressionNotLHS</span></div>
-    <div class="rhs"><span>ConditionalExpression</span></div>
+    <div><span>AssignmentExpressionNotLHS</span></div>
+    <div><span>ConditionalExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AssignmentExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
-    <div class="rhs"><span>LeftHandSideExpression</span> <span>AssignmentOperator</span> <span>AssignmentExpression</span></div>
-    <div class="rhs"><span>ConditionalExpressionNotLHS</span></div>
+    <div><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
+    <div><span>LeftHandSideExpression</span> <span>AssignmentOperator</span> <span>AssignmentExpression</span></div>
+    <div><span>ConditionalExpressionNotLHS</span></div>
   </div>
 
   <div class="gp">
@@ -342,13 +342,13 @@
 
   <div class="gp">
     <div class="lhs"><span>Expression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>ExpressionNotLHS</span></div>
-    <div class="rhs"><span>AssignmentExpression</span>+ with delimiter <code>/,/</code></div>
+    <div><span>ExpressionNotLHS</span></div>
+    <div><span>AssignmentExpression</span>+ with delimiter <code>/,/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AssignmentExpressionNotLHS</span>+ with delimiter <code>/,/</code></div>
+    <div><span>AssignmentExpressionNotLHS</span>+ with delimiter <code>/,/</code></div>
   </div>
 
 </section>
@@ -358,29 +358,29 @@
 
   <div class="gp">
     <div class="lhs"><span>Statement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>VariableStatement</span></div>
-    <div class="rhs"><span>ExpressionStatement</span></div>
-    <div class="rhs"><span>ReturnStatement</span></div>
+    <div><span>VariableStatement</span></div>
+    <div><span>ExpressionStatement</span></div>
+    <div><span>ReturnStatement</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>VariableStatement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>var</code> <span>BindingIdentifier</span> <span>Initialiser</span>? <code>;</code></div>
+    <div><code>var</code> <span>BindingIdentifier</span> <span>Initialiser</span>? <code>;</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Initialiser</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>=</code> <span>AssignmentExpression</span></div>
+    <div><code>=</code> <span>AssignmentExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ExpressionStatement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>ExpressionNotLHS</span> <code>;</code></div>
+    <div><span>ExpressionNotLHS</span> <code>;</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ReturnStatement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>return</code> <span class="grhsannot">[no <span>LineTerminator</span> here]</span> <span>Expression</span> <code>;</code></div>
+    <div><code>return</code> <span class="grhsannot">[no <span>LineTerminator</span> here]</span> <span>Expression</span> <code>;</code></div>
   </div>
 
 <section id="sec-A.5">
@@ -388,53 +388,53 @@
 
   <div class="gp">
     <div class="lhs"><span>FunctionDeclaration</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>NamedFunctionExpression</span></div>
+    <div><span>NamedFunctionExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>FunctionExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>AnonymousFunctionExpression</span></div>
-    <div class="rhs"><span>NamedFunctionExpression</span></div>
+    <div><span>AnonymousFunctionExpression</span></div>
+    <div><span>NamedFunctionExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AnonymousFunctionExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>function</code> <span>FunctionContent</span></div>
+    <div><code>function</code> <span>FunctionContent</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NamedFunctionExpression</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>function</code> <span>BindingIdentifier</span> <span>FunctionContent</span></div>
+    <div><code>function</code> <span>BindingIdentifier</span> <span>FunctionContent</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>FunctionContent</span> <span class="geq">:</span> </div>
-    <div class="rhs"><code>(</code> <span>FormalParameterList</span> <code>)</code> <code>{</code> <span>FunctionBody</span> <code>}</code></div>
+    <div><code>(</code> <span>FormalParameterList</span> <code>)</code> <code>{</code> <span>FunctionBody</span> <code>}</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>FormalParameterList</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>BindingIdentifier</span>* with delimiter <code>/,/</code></div>
+    <div><span>BindingIdentifier</span>* with delimiter <code>/,/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>FunctionBody</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>SourceElements</span></div>
+    <div><span>SourceElements</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Program</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>SourceElements</span> with instignificant <code>/(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/))*/</code></div>
+    <div><span>SourceElements</span> with instignificant <code>/(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/))*/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>SourceElements</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span>SourceElement</span>*</div>
+    <div><span>SourceElement</span>*</div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>SourceElement</span> <span class="geq">:</span> </div>
-    <div class="rhs">(deferred) <span>Statement</span></div>
+    <div>(deferred) <span>Statement</span></div>
   </div>
 
 </section>
