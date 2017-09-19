@@ -266,14 +266,14 @@
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>AssignmentExpression</span> <span class="geq">:</span> </div>
-    <div><span>AssignmentExpressionNotLHS</span></div>
-    <div><span>ConditionalExpression</span></div>
+    <div class="lhs"><span>AssignmentExpressionNotLHS</span> <span class="geq">:</span> </div>
+    <div><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>AssignmentExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
+    <div class="lhs"><span>AssignmentExpression</span> <span class="geq">:</span> </div>
+    <div><span>AssignmentExpressionNotLHS</span></div>
+    <div><span>ConditionalExpression</span></div>
   </div>
 
   <div class="gp">
@@ -281,18 +281,18 @@
     <div><span>AssignmentExpressionNotLHS</span></div>
     <div><span>UpdateExpression</span></div>
     <div><span>NamedFunctionExpression</span></div>
-    <div><code>(</code> <span>ExpressionNotLHS</span> <code>,</code> <span>LeftHandSideExpression</span> <code>)</code></div>
+    <div><code>(</code> <span>ExpressionNotLHS</span> <code>)</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div><span>AssignmentExpressionNotLHS</span>+ with delimiter <code>/,/</code></div>
+    <div><span>SideEffectExpression</span>+ with delimiter <code>/,/</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>Expression</span> <span class="geq">:</span> </div>
+    <div><span>AssignmentExpression</span></div>
     <div><span>ExpressionNotLHS</span></div>
-    <div><span>AssignmentExpression</span>+ with delimiter <code>/,/</code></div>
     <div><span>ExpressionNotLHS</span> <code>/,/</code> <span>AssignmentExpression</span></div>
   </div>
 
