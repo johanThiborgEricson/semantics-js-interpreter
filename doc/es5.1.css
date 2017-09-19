@@ -1,8 +1,4 @@
 /* Basics */
-html {
-    padding-left: 6.8em;
-    padding-right: 6.8em;  /* It would be nice to have this collapse as the window gets small. */
-}
 body {
     margin: 0 auto;
     max-width: 800px;
@@ -67,35 +63,6 @@ pre {
 }
 div.math-display {
     margin-left: 4em;
-}
-
-a:link {
-    text-decoration: none;
-    color: #3333bb;
-}
-a:hover {
-    text-decoration: underline;
-    color: blue;
-}
-a:link b, a:link span.value, a:link span.this,
-a:link span.libname, a:link span.errorname, a:link code {
-    color: #5555bb;
-}
-a:hover b, a:hover span.value, a:hover span.this,
-a:hover span.libname, a:hover span.errorname, a:hover code {
-    color: #0000ee;
-}
-a:visited b, a:visited span.value, a:visited span.this,
-a:visited span.libname, a:visited span.errorname, a:visited code {
-    color: inherit;
-}
-span.secnum a:link, span.secnum a:visited { color: inherit; }
-h1:hover span.secnum a:link, h1:hover span.secnum a:visited {
-    color:#5555bb;
-    text-decoration: underline;
-}
-.toc span.secnum a:link, .toc span.secnum a:visited {
-    color:#5555bb;
 }
 
 em { font-style: italic; }
@@ -194,7 +161,7 @@ code { /* including code.t, meaning "terminal" or "token" */
     font-weight: bold;
     color: #555555;
 }
-span.nt {  /* nonterminal */
+span {  /* nonterminal */
     font-family: Times New Roman, Times, FreeSerif, serif;
     font-style: italic;
 }
@@ -223,16 +190,15 @@ div.gsumxref {     /* grammar summary cross-reference, used in Annex A */
 
 span.prod { margin-left: 5pt; margin-right: 5pt; }
 
-div.rhs > code.t,
-div.rhs > span.nt,
+div.rhs > code,
 div.rhs > span.grhsannot,
 div.rhs > span.grhsmod,
 div.rhs > span.chgloss,
 div.rhs > span.gprose,
 div.rhs > var,
 span.prod > span.geq,
-span.prod > code.t,
-span.prod > span.nt,
+span.prod > code,
+span.prod > span,
 span.prod > span.grhsannot,
 span.prod > span.grhsmod,
 span.prod > span.chgloss,
@@ -241,16 +207,16 @@ div.rhs > var {
     margin-left: 5pt;
 }
 
-div.rhs > code.t:first-child,
-div.rhs > span.nt:first-child,
+div.rhs > code:first-child,
+div.rhs > span:first-child,
 div.rhs > span.grhsannot:first-child,
 div.rhs > span.grhsmod:first-child,
 div.rhs > span.chgloss:first-child,
 div.rhs > span.gprose:first-child,
 div.rhs > var:first-child,
 span.prod > span.geq:first-child,
-span.prod > code.t:first-child,
-span.prod > span.nt:first-child,
+span.prod > code:first-child,
+span.prod > span:first-child,
 span.prod > span.grhsannot:first-child,
 span.prod > span.grhsmod:first-child,
 span.prod > span.chprose:first-child,
