@@ -22,6 +22,10 @@ describe("A regular expression literal", function() {
     expect(space.exec(" a ")[0]).toBe(" a ");
   });
   
+  it("may be surrounded by multi line comments", function() {
+    var space = interpreter.program("return/**//.//**/;", true);
+    expect(space.exec("a")[0]).toBe("a");
+  });
   
   describe("class", function() {
     
