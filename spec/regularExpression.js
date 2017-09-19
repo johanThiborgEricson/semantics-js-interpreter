@@ -23,7 +23,7 @@ describe("A regular expression literal", function() {
   });
   
   it("may be surrounded by multi line comments", function() {
-    var space = interpreter.program("return/**//.//**/;", true);
+    var space = interpreter.program("return/**//.//**/;");
     expect(space.exec("a")[0]).toBe("a");
   });
   
