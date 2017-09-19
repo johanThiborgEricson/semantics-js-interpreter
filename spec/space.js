@@ -1,9 +1,7 @@
 describe("An input insignificant space", function() {
   
-  var interpreter = {};
-  var f = new InterpreterMethodFactory();
-  interpreter.space = f.atom(new JavaScriptInterpreter().space);
-  
+  var interpreter = new JavaScriptInterpreter();
+
   it("can be a regular space", function() {
     expect(interpreter.space(" ")).toBe(" ");
   });
@@ -17,15 +15,12 @@ describe("An input insignificant space", function() {
   });
   
   it("can be empty", function() {
-    expect(interpreter.space("")).toBe("");
-  });
-  
-  it("can have any number of parts", function() {
-    expect(interpreter.space("\n  \n\n")).toBe("\n  \n\n");
+    expect(interpreter.spaces("")).toEqual([]);
   });
   
   it("can be an one line comment", function() {
-    expect(interpreter.space("// comment 1. \n")).toBe("// comment 1. \n");
+    expect(interpreter.spaces("// comment 1. \n"))
+        .toEqual(["// comment 1. ", "\n"]);
   });
   
   describe("can be a multiline comment that", function() {

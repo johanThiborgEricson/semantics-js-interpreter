@@ -11,7 +11,9 @@ function JavaScriptInterpreter() {
   
   var identifierName = /[a-zA-Z_\$][a-zA-Z0-9_\$]*/;
   
-  j.space = /(\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/))*/;
+  j.spaces = f.star("space");
+
+  j.space = f.atom(/\s|\n|(\/\/.*)|(\/\*\/*(\**[^\*\/]*\/*)*\*+\/)/);
 
   // Lexical Grammar
   
@@ -440,7 +442,7 @@ function JavaScriptInterpreter() {
     return this.program1(code, debugging)[1];
   };
   
-  j.program1 = f.insignificant(j.space, "sourceElements");
+  j.program1 = f.insignificant("spaces", "sourceElements");
   
   j.sourceElements = f.or("statementList");
   
