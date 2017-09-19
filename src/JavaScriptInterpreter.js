@@ -291,8 +291,8 @@ function JavaScriptInterpreter() {
   j.sideEffectExpression1 = f.select(2, /\(/, "sideEffectExpressionList", /\)/);
   
   j.sideEffectExpressionList = f.plus("sideEffectExpression", /,/, 
-  function(sideEffectExpressions) {
-    return sideEffectExpressions[sideEffectExpressions.length-1];
+  function() {
+    return arguments[arguments.length-1];
   });
   
   j.expression = f.longest("assignmentExpression", "sideEffectExpressionList", 
@@ -309,9 +309,9 @@ function JavaScriptInterpreter() {
   
   j.block = f.select(2, /\{/, "statementList", /\}/);
   
-  j.statementList = f.star("deferredStatement", function(deferredStatements) {
-    for(var i = 0; i < deferredStatements.length; i++) {
-      var returnValue = deferredStatements[i].call(this);
+  j.statementList = f.star("deferredStatement", function() {
+    for(var i = 0; i < arguments.length; i++) {
+      var returnValue = arguments[i].call(this);
       if(returnValue[0] === "return") {
         return returnValue;
       }
