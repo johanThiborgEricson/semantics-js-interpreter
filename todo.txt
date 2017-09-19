@@ -16,4 +16,4 @@ Write group tests to check that non returned sideffects ar still run, so I
   don't accidentally disable them with select(4)
 Ensure that insignificant space is parsed before and after literal 
   strings and regexes.
-A comment ate my regex! /**//.//**/;
+Are nested regex classes allowed? Then Regex body will have to be a nonterminal.
