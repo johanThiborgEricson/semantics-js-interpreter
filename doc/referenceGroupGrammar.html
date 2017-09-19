@@ -342,6 +342,12 @@
 
   <div class="gp">
     <div class="lhs"><span class="nt">Expression</span> <span class="geq">:</span> </div>
+    <div class="rhs"><span class="nt">ExpressionNotLHS</span></div>
+    <div class="rhs"><span class="nt">AssignmentExpression</span>+ with delimiter <code class="t">/,/</code></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span class="nt">ExpressionNotLHS</span> <span class="geq">:</span> </div>
     <div class="rhs"><span class="nt">AssignmentExpressionNotLHS</span>+ with delimiter <code class="t">/,/</code></div>
   </div>
 
@@ -369,7 +375,7 @@
 
   <div class="gp">
     <div class="lhs"><span class="nt">ExpressionStatement</span> <span class="geq">:</span> </div>
-    <div class="rhs"><span class="nt">Expression</span> <code class="t">;</code></div>
+    <div class="rhs"><span class="nt">ExpressionNotLHS</span> <code class="t">;</code></div>
   </div>
 
   <div class="gp">
