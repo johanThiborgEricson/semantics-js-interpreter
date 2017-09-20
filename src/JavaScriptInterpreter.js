@@ -279,7 +279,14 @@ function JavaScriptInterpreter() {
   
   j.deferredEqualityExpression = f.methodFactory("equalityExpression");
   
-  j.logicalOrExpression = f.or("logicalAndExpression");
+  j.logicalOrExpression = f.or("logicalOrExpression1", "logicalAndExpression");
+  j.logicalOrExpression1 = f.group("logicalOrExpression", /\|\|/, 
+  "deferredLogicalAndExpression", function(logicalOrExpression, 
+  deferredLogicalAndExpression) {
+    return logicalOrExpression||deferredLogicalAndExpression.call(this);
+  });
+  
+  j.deferredLogicalAndExpression = f.methodFactory("logicalAndExpression");
   
   j.conditionalExpression = f.or("logicalOrExpression");
   
