@@ -58,10 +58,10 @@ function JavaScriptInterpreter() {
   j.stringLiteralSignificantSpaces = f.or("stringLiteralSignificantSpaces1", 
   "stringLiteralSignificantSpaces2");
   
-  j.stringLiteralSignificantSpaces1 = f.select(2, /"/, "doubleStringCharacters", 
+  j.stringLiteralSignificantSpaces1 = f.wrap(/"/, "doubleStringCharacters", 
   /"/);
   
-  j.stringLiteralSignificantSpaces2 = f.select(2, /'/, "singleStringCharacters", 
+  j.stringLiteralSignificantSpaces2 = f.wrap(/'/, "singleStringCharacters", 
   /'/);
   
   var unescape = function(s) {
@@ -91,7 +91,7 @@ function JavaScriptInterpreter() {
   j.regularExpressionLiteral = 
       f.insignificant(null, "regularExpressionLiteralSignificantSpaces");
   
-  j.regularExpressionLiteralSignificantSpaces = f.select(2, /\//, 
+  j.regularExpressionLiteralSignificantSpaces = f.wrap(/\//, 
   "regularExpressionBody", /\//);
   
   j.regularExpressionBody = f.atom(/([^/\\\[]|(\\.)|(\[([^\]\\]|(\\.))*\]))+/, 
@@ -135,7 +135,7 @@ function JavaScriptInterpreter() {
   j.objectExpression = f.longest("identifierExpression", 
   "objectLiteral", "functionExpression", "objectExpression1", "thisExpression");
   
-  j.objectExpression1 = f.select(2, /\(/, "expression", /\)/);
+  j.objectExpression1 = f.wrap(/\(/, "expression", /\)/);
   
   j.thisExpression = f.atom(/this/, function() {
     return this.executionContext.thisBinding;
@@ -213,11 +213,11 @@ function JavaScriptInterpreter() {
   
   j.qualifier = f.or("qualifier1", "qualifier2");
   
-  j.qualifier1 = f.select(2, /\[/, "expression", /\]/);
+  j.qualifier1 = f.wrap(/\[/, "expression", /\]/);
   
-  j.qualifier2 = f.select(2, /\./, "identifierName");
+  j.qualifier2 = f.wrap(/\./, "identifierName");
   
-  j.args = f.select(2, /\(/, "argumentList", /\)/);
+  j.args = f.wrap(/\(/, "argumentList", /\)/);
   
   j.argumentList = f.star("assignmentExpression", /,/);
   
@@ -304,7 +304,7 @@ function JavaScriptInterpreter() {
   
   j.deferredStatementOrBlock = f.methodFactory("statementOrBlock");
   
-  j.block = f.select(2, /\{/, "statementList", /\}/);
+  j.block = f.wrap(/\{/, "statementList", /\}/);
   
   j.statementList = f.star("deferredStatement", function() {
     for(var i = 0; i < arguments.length; i++) {
@@ -335,7 +335,7 @@ function JavaScriptInterpreter() {
     this.executionContext.variables[bindingIdentifier] = initialiserOpt;
   });
   
-  j.initialiser = f.select(2, /=/, "assignmentExpression");
+  j.initialiser = f.wrap(/=/, "assignmentExpression");
   
   j.initialiserOpt = f.opt("initialiser", function() {
     return undefined;
@@ -362,7 +362,7 @@ function JavaScriptInterpreter() {
     return ["normal", undefined];
   });
   
-  j.elseStatement = f.select(2, /else/, "statementOrBlock");
+  j.elseStatement = f.wrap(/else/, "statementOrBlock");
   
   j.returnStatement = f.group(/return/, "expression", /;/, 
   function(expression) {
@@ -390,7 +390,7 @@ function JavaScriptInterpreter() {
     return functionExpressionContent;
   });
   
-  j.anonymousFunctionExpression = f.select(2, /function/, 
+  j.anonymousFunctionExpression = f.wrap(/function/, 
   "functionExpressionContent");
   
   j.functionExpressionContent = f.group(/\(/, "formalParameterList", /\)/, 
