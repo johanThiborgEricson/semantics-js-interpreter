@@ -114,16 +114,11 @@
 
   <div class="gp">
     <div class="lhs"><span>PrimaryExpression</span> <span class="geq">:</span> </div>
-    <div><span>ObjectExpression</span></div>
+    <div><code>this</code></div>
+    <div><span>IdentifierExpression</span></div>
     <div><span>Literal</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>ObjectExpression</span> <span class="geq">:</span> </div>
     <div><span>ObjectLiteral</span></div>
     <div><span>FunctionExpression</span></div>
-    <div><span>IdentifierExpression</span></div>
-    <div><code>this</code></div>
     <div><code>(</code> <span>Expression</span> <code>)</code></div>
   </div>
 
@@ -149,33 +144,27 @@
 
   <div class="gp">
     <div class="lhs"><span>NewExpression</span> <span class="geq">:</span> </div>
+    <div><span>ObjectExpression</span></div>
     <div><code>new</code> <span>NewExpressionQualifier</span> <span>Arguments</span><sub>opt</sub></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NewExpressionQualifier</span> <span class="geq">:</span> </div>
     <div><span>NewExpressionQualifier</span> <span>Qualifier</span></div>
-    <div><span>ObjectExpression</span></div>
     <div><span>NewExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>CallExpression</span> <span class="geq">:</span> </div>
     <div><span>NewExpression</span></div>
-    <div><span>FunctionCallExpressionQualifier</span> <span>Arguments</span></div>
-    <div><span>MethodCallExpressionQualifier</span> <span>Arguments</span></div>
+    <div><span>CallExpression</span> <span>Arguments</span></div>
+    <div><span>CallExpressionQualifier</span> <span>Arguments</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>FunctionCallExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div><span>CallExpression</span></div>
-    <div><span>ObjectExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>MethodCallExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div><span>FunctionCallExpressionQualifier</span> <span>Qualifier</span></div>
-    <div><span>MethodExpressionQualifier</span> <span>Qualifier</span></div>
+    <div class="lhs"><span>CallExpressionQualifier</span> <span class="geq">:</span> </div>
+    <div><span>CallExpression</span> <span>Qualifier</span></div>
+    <div><span>CallExpressionQualifier</span> <span>Qualifier</span></div>
   </div>
 
   <div class="gp">
@@ -198,27 +187,12 @@
     <div class="lhs"><span>LeftHandSideExpression</span> <span class="geq">:</span> </div>
     <div><span>LeftHandSideExpression</span> <span>Qualifier</span></div>
     <div><span>LeftHandSideExpressionBase</span> <span>Qualifier</span></div>
-    <div><code>(</code> <span>LeftHandSideExpression</span> <code>)</code></div>
-    <div><code>(</code> <span>ExpressionNotLHS</span> <code>,</code> <span>LeftHandSideExpression</span> <code>)</code></div>
     <div><span>IdentifierReference</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LeftHandSideExpressionBase</span> <span class="geq">:</span> </div>
     <div><span>CallExpression</span></div>
-    <div><span>ObjectExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
-    <div><span>CallExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>ValueExpression</span> <span class="geq">:</span> </div>
-    <div><span>PrimaryExpression</span></div>
-    <div><span>UpdateExpression</span></div>
-    <div><span>RightHandSideExpression</span></div>
   </div>
 
   <div class="gp">
@@ -227,8 +201,14 @@
   </div>
 
   <div class="gp">
+    <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
+    <div><span>CallExpression</span></div>
+    <div><span>RightHandSideExpression</span></div>
+  </div>
+
+  <div class="gp">
     <div class="lhs"><span>TypeChangeExpression</span> <span class="geq">:</span> </div>
-    <div><span>ValueExpression</span></div>
+    <div><span>UpdateExpression</span></div>
     <div><code>!</code> <span>TypeChangeExpression</span></div>
     <div><code>typeof</code> <span>TypeChangeExpression</span></div>
   </div>
@@ -261,34 +241,14 @@
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>AssignmentExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
-  </div>
-
-  <div class="gp">
     <div class="lhs"><span>AssignmentExpression</span> <span class="geq">:</span> </div>
-    <div><span>AssignmentExpressionNotLHS</span></div>
+    <div><span>LeftHandSideExpression</span> <code>=</code> <span>AssignmentExpression</span></div>
     <div><span>ConditionalExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>SideEffectExpression</span> <span class="geq">:</span> </div>
-    <div><span>AssignmentExpressionNotLHS</span></div>
-    <div><span>UpdateExpression</span></div>
-    <div><span>NamedFunctionExpression</span></div>
-    <div><code>(</code> <span>ExpressionNotLHS</span> <code>)</code></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>ExpressionNotLHS</span> <span class="geq">:</span> </div>
-    <div><span>SideEffectExpression</span>+ with delimiter <code>/,/</code></div>
-  </div>
-
-  <div class="gp">
     <div class="lhs"><span>Expression</span> <span class="geq">:</span> </div>
-    <div><span>AssignmentExpression</span></div>
-    <div><span>ExpressionNotLHS</span></div>
-    <div><span>ExpressionNotLHS</span> <code>/,/</code> <span>AssignmentExpression</span></div>
+    <div><span>AssignmentExpression</span>+ with delimiter <code>/,/</code></div>
   </div>
 
 </section>
@@ -315,7 +275,7 @@
 
   <div class="gp">
     <div class="lhs"><span>ExpressionStatement</span> <span class="geq">:</span> </div>
-    <div><span>ExpressionNotLHS</span> <code>;</code></div>
+    <div><span>Expression</span> <code>;</code></div>
   </div>
 
   <div class="gp">
