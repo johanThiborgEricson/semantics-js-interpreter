@@ -288,7 +288,13 @@ function JavaScriptInterpreter() {
   
   j.deferredLogicalAndExpression = f.methodFactory("logicalAndExpression");
   
-  j.conditionalExpression = f.or("logicalOrExpression");
+  j.conditionalExpression = f.or("conditionalExpression1", 
+  "logicalOrExpression");
+  j.conditionalExpression1 = f.group("logicalOrExpression", /\?/, 
+  "assignmentExpression", /:/, "assignmentExpression", 
+  function(logicalOrExpression, assignmentExpression1, assignmentExpression2) {
+    return logicalOrExpression?assignmentExpression1:assignmentExpression2;
+  });
   
   j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
   "conditionalExpression");
