@@ -291,10 +291,15 @@ function JavaScriptInterpreter() {
   j.conditionalExpression = f.or("conditionalExpression1", 
   "logicalOrExpression");
   j.conditionalExpression1 = f.group("logicalOrExpression", /\?/, 
-  "assignmentExpression", /:/, "assignmentExpression", 
-  function(logicalOrExpression, assignmentExpression1, assignmentExpression2) {
-    return logicalOrExpression?assignmentExpression1:assignmentExpression2;
+  "deferredAssignmentExpression", /:/, "deferredAssignmentExpression", 
+  function(logicalOrExpression, deferredAssignmentExpression1, 
+  deferredAssignmentExpression2) {
+    return logicalOrExpression?
+      deferredAssignmentExpression1.call(this):
+      deferredAssignmentExpression2.call(this);
   });
+  
+  j.deferredAssignmentExpression = f.methodFactory("assignmentExpression");
   
   j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
   "conditionalExpression");
