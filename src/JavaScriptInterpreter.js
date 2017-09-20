@@ -270,7 +270,11 @@ function JavaScriptInterpreter() {
   j.equalityExpression4 = f.group("equalityExpression", /!==/, 
   "relationalExpression", function(ee, re) {return ee!==re;});
   
-  j.logicalAndExpression = f.or("equalityExpression");
+  j.logicalAndExpression = f.or("logicalAndExpression1", "equalityExpression");
+  j.logicalAndExpression1 = f.group("logicalAndExpression", /&&/, 
+  "equalityExpression", function(logicalAndExpression, equalityExpression) {
+    return logicalAndExpression && equalityExpression;
+  });
   
   j.logicalOrExpression = f.or("logicalAndExpression");
   
