@@ -4,8 +4,8 @@ describe("The new operator", function() {
   
   it("creates instances of their constructors prototype", function() {
     var result = interpreter.program(
-      "var f=function(){};" +
-      "var o=new f();" +
+      "var f=function(){}," +
+      "o=new f();" +
       "return {f:f,o:o};");
     
     expect(result.o instanceof result.f).toBe(true);
@@ -23,8 +23,8 @@ describe("The new operator", function() {
     expect(interpreter.program(
       "var Constructor=function(){" +
         "this.me=arguments.callee;" +
-      "};" +
-      "var object=new Constructor;" +
+      "}," +
+      "object=new Constructor;" +
       "return object.me;")).toEqual(jasmine.any(Function));
   });
   

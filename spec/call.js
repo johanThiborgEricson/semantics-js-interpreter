@@ -4,8 +4,8 @@ describe("A call expression", function() {
   
   it("calls the function", function() {
     expect(interpreter.program(
-      "var a;" + 
-      "var f=function(){" + 
+      "var a," + 
+      "f=function(){" + 
         "a=1;" + 
       "};" + 
       "f();" + 

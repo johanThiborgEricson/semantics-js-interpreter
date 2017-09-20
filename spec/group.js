@@ -4,12 +4,11 @@ describe("A group expression", function() {
   
   it("may only have side effect parts", function() {
     expect(interpreter.program(
-      "var a;" +
-      "var b;" +
-      "var f=function(){" +
+      "var a,b," +
+      "f=function(){" +
         "a=1;" +
-      "};" +
-      "var g=function(){" +
+      "}," +
+      "g=function(){" +
         "b=2;" +
       "};" +
       "f(),g();" +
@@ -18,8 +17,8 @@ describe("A group expression", function() {
   
   it("returns the result of the last side effect", function() {
     expect(interpreter.program(
-      "var f=function(){};" +
-      "var g=function(){" +
+      "var f=function(){}," +
+      "g=function(){" +
         "return 1;" +
       "};" +
       "return f(),g();")).toEqual(1);
@@ -33,8 +32,8 @@ describe("A group expression", function() {
   
   it("may be enclosed in parantheses", function() {
     expect(interpreter.program(
-      "var f=function(){};" +
-      "var g=function(){" +
+      "var f=function(){}," +
+      "g=function(){" +
         "return 1;" +
       "};" +
       "return (f(),g());")).toEqual(1);

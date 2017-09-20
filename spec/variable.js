@@ -32,8 +32,8 @@ describe("A variable", function() {
     f();
     
     expect(interpreter.program(
-      "var a=0;" + 
-      "var f=function(){" + 
+      "var a=0," + 
+      "f=function(){" + 
         "var a=1;" + 
       "};" +
       "f();" +
@@ -58,14 +58,14 @@ describe("A variable", function() {
     var b=f()();
     
     expect(interpreter.program(
-      "var a=0;" + 
-      "var f=function(){" + 
+      "var a=0," + 
+      "f=function(){" + 
         "var a=1;" + 
         "return function(){" + 
           "return a;" + 
         "};" + 
-      "};" + 
-      "var b=f()();" + 
+      "}," + 
+      "b=f()();" + 
       "return b;"
     )).toBe(b);
   });

@@ -3,8 +3,8 @@ describe("A function", function() {
   
   it("can be called", function() {
     var result = interpreter.program(
-      "var o={};" + 
-      "var f=function(){" +
+      "var o={}," + 
+      "f=function(){" +
         "o.p=1;" +
       "};" +
       "return {o:o,f:f};");
