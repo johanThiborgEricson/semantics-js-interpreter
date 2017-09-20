@@ -76,4 +76,22 @@ describe("A variable", function() {
       "return this.a;")).toBe(1);
   });
   
+  it("can be declared in a declaration sequence", function() {
+    var a = 1,
+        b = 2;
+    var o = {
+      a: a,
+      b: b
+    };
+    
+    expect(interpreter.program(
+      "var a=1," + 
+          "b=2;" + 
+      "return {" +
+        "a:a," +
+        "b:b" +
+      "};"
+    )).toEqual(o);
+  });
+  
 });

@@ -316,10 +316,16 @@ function JavaScriptInterpreter() {
   
   j.deferredStatement = f.methodFactory("statement");
   
-  j.variableStatement = f.group(/var/, "bindingIdentifier", 
-  "initialiserOpt", /;/, function(bindingIdentifier, initialiserOpt) {
-    this.executionContext.variables[bindingIdentifier] = initialiserOpt;
+  j.variableStatement = f.group(/var/, "variableDeclarationList", /;/, 
+  function() {
     return ["normal", undefined];
+  });
+  
+  j.variableDeclarationList = f.plus("variableDeclaration", /,/);
+  
+  j.variableDeclaration = f.group("bindingIdentifier", 
+  "initialiserOpt", function(bindingIdentifier, initialiserOpt) {
+    this.executionContext.variables[bindingIdentifier] = initialiserOpt;
   });
   
   j.initialiser = f.select(2, /=/, "assignmentExpression");
