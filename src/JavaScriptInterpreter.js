@@ -306,14 +306,14 @@ function JavaScriptInterpreter() {
   j.deferredAssignmentExpression = f.methodFactory("assignmentExpression");
   
   j.assignmentExpression = f.or("assignmentExpression1", 
-  "conditionalExpression");
+  "assignmentExpression5", "conditionalExpression");
   
   j.assignmentExpression1 = f.group("leftHandSideExpression", /=/, 
-  "assignmentExpression", 
-  function(leftHandSideExpression, assignmentExpression) {
-    var lhse = leftHandSideExpression;
-    return (lhse.base[lhse.name] = assignmentExpression);
-  });
+  "assignmentExpression", function(lhse, assignmentExpression) {
+    return (lhse.base[lhse.name] = assignmentExpression);});
+  j.assignmentExpression5 = f.group("leftHandSideExpression", /\+=/, 
+  "assignmentExpression", function(lhse, assignmentExpression) {
+    return (lhse.base[lhse.name] += assignmentExpression);});
   
   j.expression = f.plus("assignmentExpression", /,/, 
   function() {

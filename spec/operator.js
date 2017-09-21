@@ -24,4 +24,11 @@ describe("The operator", function() {
     expect(interpreter.program("return undefined!==null;")).toBe(true);
   });
   
+  it("+= puts cake on your cake", function() {
+    expect(interpreter.program(
+      "var a=2;" +
+      "a+=3;" +
+      "return a;")).toBe(5);
+  });
+  
 });
