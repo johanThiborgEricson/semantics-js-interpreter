@@ -214,15 +214,72 @@
   </div>
   
   <div class="gp">
+    <div class="lhs"><span>LeftHandSideExpression</span> <span class="geq">:</span> </div>
+    <div><span>NewExpression</span></div>
+    <div><span>CallExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
+    <div><code>delete</code> <span>LeftHandSideExpression</span></div>
+    <div><span>LeftHandSideExpression</span> <code>++</code></div>
+    <div><span>LeftHandSideExpression</span> <code>--</code></div>
+    <div><code>++</code> <span>LeftHandSideExpression</span></div>
+    <div><code>--</code> <span>LeftHandSideExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span>TypeChangingExpression</span> <span class="geq">:</span> </div>
+    <div><span>UpdateExpression</span></div>
+    <div><code>void</code> <span>TypeChangingExpression</span></div>
+    <div><code>typeof</code> <span>TypeChangingExpression</span></div>
+    <div><code>+</code> <span>TypeChangingExpression</span></div>
+    <div><code>-</code> <span>TypeChangingExpression</span></div>
+    <div><code>~</code> <span>TypeChangingExpression</span></div>
+    <div><code>!</code> <span>TypeChangingExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span>MultiplicativeExpression</span> <span class="geq">:</span> </div>
+    <div><span>TypeChangingExpression</span></div>
+    <div><span>MultiplicativeExpression</span> <code>*</code> <span>TypeChangingExpression</span></div>
+    <div><span>MultiplicativeExpression</span> <code>/</code> <span>TypeChangingExpression</span></div>
+    <div><span>MultiplicativeExpression</span> <code>%</code> <span>TypeChangingExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span>AdditiveExpression</span> <span class="geq">:</span> </div>
+    <div><span>MultiplicativeExpression</span></div>
+    <div><span>AdditiveExpression</span> <code>+</code> <span>MultiplicativeExpression</span></div>
+    <div><span>AdditiveExpression</span> <code>-</code> <span>MultiplicativeExpression</span></div>
+  </div>
+
+  <div class="gp">
+    <div class="lhs"><span>ShiftExpression</span> <span class="geq">:</span> </div>
+    <div><span>AdditiveExpression</span></div>
+    <div><span>ShiftExpression</span> <code>&lt;&lt;</code> <span>AdditiveExpression</span></div>
+    <div><span>ShiftExpression</span> <code>&gt;&gt;</code> <span>AdditiveExpression</span></div>
+    <div><span>ShiftExpression</span> <code>&gt;&gt;&gt;</code> <span>AdditiveExpression</span></div>
+  </div>
+
+  <div class="gp">
     <div class="lhs"><span>RelationalExpression</span> <span class="geq">:</span> </div>
-    <div><span>TypeChangeExpression</span></div>
+    <div><span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&lt;</code> <span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&gt;</code> <span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&lt;=</code> <span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>&gt;=</code> <span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>instanceof</code> <span>ShiftExpression</span></div>
+    <div><span>RelationalExpression</span> <code>in</code> <span>ShiftExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>EqualityExpression</span> <span class="geq">:</span> </div>
+    <div><span>RelationalExpression</span></div>
+    <div><span>EqualityExpression</span> <code>==</code> <span>RelationalExpression</span></div>
+    <div><span>EqualityExpression</span> <code>!=</code> <span>RelationalExpression</span></div>
     <div><span>EqualityExpression</span> <code>===</code> <span>RelationalExpression</span></div>
     <div><span>EqualityExpression</span> <code>!==</code> <span>RelationalExpression</span></div>
-    <div><span>RelationalExpression</span></div>
   </div>
 
   <div class="gp">
@@ -364,7 +421,7 @@
 
   <div class="gp">
     <div class="lhs"><span>ReturnStatement</span> <span class="geq">:</span> </div>
-    <div><code>return</code> <span class="grhsannot">[no <span>LineTerminator</span> here]</span> <span>Expression</span> <code>;</code></div>
+    <div><code>return</code> <span>Expression</span> <code>;</code></div>
   </div>
 
 <section id="sec-A.5">
