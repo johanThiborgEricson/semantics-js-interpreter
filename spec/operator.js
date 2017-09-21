@@ -12,6 +12,10 @@ describe("The operator", function() {
       "return !a;")).toBe(true);
   });
   
+  it("> can test what is truly great(er)", function() {
+    expect(interpreter.program("return 42>42;")).toBe(false);
+  });
+  
   it("=== can tell if two values exactly the same thing", function() {
     expect(interpreter.program("return {}==={};")).toBe(false);
   });

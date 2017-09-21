@@ -49,7 +49,7 @@ function JavaScriptInterpreter() {
     return false;
   });
   
-  j.numericLiteral = f.atom(/\d/, function(numericLiteral){
+  j.numericLiteral = f.atom(/\d+/, function(numericLiteral){
     return Number(numericLiteral);
   });
   
@@ -261,7 +261,11 @@ function JavaScriptInterpreter() {
   j.typeChangeExpression2 = f.group(/typeof/, "typeChangeExpression", 
   function(typeChangeExpression) {return typeof typeChangeExpression;});
   
-  j.relationalExpression = f.or("typeChangeExpression");
+  j.additiveExpression = f.or("typeChangeExpression");
+  
+  j.relationalExpression = f.or("relationalExpression2", "additiveExpression");
+  j.relationalExpression2 = f.group("relationalExpression", />/, 
+  "additiveExpression", function(re, ae) {return re>ae;});
   
   j.equalityExpression = f.or("equalityExpression3", "equalityExpression4", 
   "relationalExpression");

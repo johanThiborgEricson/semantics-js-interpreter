@@ -17,3 +17,4 @@ Write group tests to check that non returned sideffects ar still run, so I
 Ensure that insignificant space is parsed before and after literal 
   strings and regexes.
 Are nested regex classes allowed? Then Regex body will have to be a nonterminal.
+Finish numeric literal.
