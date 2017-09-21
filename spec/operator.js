@@ -12,6 +12,10 @@ describe("The operator", function() {
       "return !a;")).toBe(true);
   });
   
+  it("* can go out in the world and multiply", function() {
+    expect(interpreter.program("return 3*5;")).toBe(15);
+  });
+  
   it("> can test what is truly great(er)", function() {
     expect(interpreter.program("return 42>42;")).toBe(false);
   });

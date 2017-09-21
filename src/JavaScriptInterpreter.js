@@ -261,7 +261,12 @@ function JavaScriptInterpreter() {
   j.typeChangeExpression2 = f.group(/typeof/, "typeChangeExpression", 
   function(typeChangeExpression) {return typeof typeChangeExpression;});
   
-  j.additiveExpression = f.or("typeChangeExpression");
+  j.multiplicativeExpression = f.or("multiplicativeExpression1", 
+  "typeChangeExpression");
+  j.multiplicativeExpression1 = f.group("multiplicativeExpression", /\*/,
+  "typeChangeExpression", function(me, tce) {return me*tce;});
+  
+  j.additiveExpression = f.or("multiplicativeExpression");
   
   j.relationalExpression = f.or("relationalExpression2", "additiveExpression");
   j.relationalExpression2 = f.group("relationalExpression", />/, 
