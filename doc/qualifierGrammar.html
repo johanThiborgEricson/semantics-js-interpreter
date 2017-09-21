@@ -292,25 +292,27 @@
 
   <div class="gp">
     <div class="lhs"><span>ActiveLogicalANDExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>||</code> <span>PassiveEqualityExpression</span></div>
+    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>&&</code> <span>PassiveEqualityExpression</span></div>
     <div><span>ActiveLogicalANDExpression</span></div>
+    <div><span>PassiveEqualityExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ActiveLogicalANDExpression</span> <span class="geq">:</span> </div>
-    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>||</code> <span>UpdateExpression</span></div>
+    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>&&</code> <span>UpdateExpression</span></div>
     <div><span>UpdateExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>PassiveLogicalANDExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>||</code> <span>UpdateExpression</span></div>
+    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>&&</code> <span>UpdateExpression</span></div>
     <div><span>PassiveLogicalANDExpression</span></div>
+    <div><span>UpdateExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>PassiveLogicalANDExpression</span> <span class="geq">:</span> </div>
-    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>||</code> <span>PassiveEqualityExpression</span></div>
+    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>&&</code> <span>PassiveEqualityExpression</span></div>
     <div><span>EqualityExpression</span></div>
   </div>
 
@@ -318,6 +320,7 @@
     <div class="lhs"><span>ActiveLogicalORExpressionQualifier</span> <span class="geq">:</span> </div>
     <div><span>ActiveLogicalOrExpressionQualifier</span> <code>||</code> <span>PassiveLogicalANDExpression</span></div>
     <div><span>ActiveLogicalORExpression</span></div>
+    <div><span>PassiveLogicalANDExpression</span></div>
   </div>
 
   <div class="gp">
@@ -330,6 +333,7 @@
     <div class="lhs"><span>PassiveLogicalORExpressionQualifier</span> <span class="geq">:</span> </div>
     <div><span>PassiveLogicalOrExpressionQualifier</span> <code>||</code> <span>ActiveLogicalANDExpression</span></div>
     <div><span>PassiveLogicalORExpression</span></div>
+    <div><span>ActiveLogicalANDExpression</span></div>
   </div>
 
   <div class="gp">
