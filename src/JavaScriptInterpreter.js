@@ -318,7 +318,7 @@ function JavaScriptInterpreter() {
   
   // Statements
   
-  j.statementOrBlock = f.longest("statement", "block");
+  j.statementOrBlock = f.or("statement", "block");
   
   j.deferredStatementOrBlock = f.methodFactory("statementOrBlock");
   
@@ -336,8 +336,8 @@ function JavaScriptInterpreter() {
   
   j.deferredStatementList = f.methodFactory("statementList");
 
-  j.statement = f.or("variableStatement", "expressionStatement", "ifStatement", 
-  "returnStatement", "throwStatement", "functionDeclaration");
+  j.statement = f.or("variableStatement", "ifStatement", 
+  "returnStatement", "throwStatement", "functionDeclaration", "expressionStatement");
   
   j.deferredStatement = f.methodFactory("statement");
   
