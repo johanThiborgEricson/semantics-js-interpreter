@@ -18,3 +18,5 @@ Ensure that insignificant space is parsed before and after literal
   strings and regexes.
 Are nested regex classes allowed? Then Regex body will have to be a nonterminal.
 Finish numeric literal.
+Is type change expression: right hand side expression the right order of 
+  precedence?
