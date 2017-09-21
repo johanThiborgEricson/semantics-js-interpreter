@@ -141,7 +141,7 @@ function JavaScriptInterpreter() {
     return this.executionContext.thisBinding;
   });
   
-  j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /\}/, 
+  j.objectLiteral = f.group(/\{/, "propertyNameAndValueList", /,?/, /\}/, 
   function(propertyAndValueList) {
     var result = {};
     propertyAndValueList.map(function(propertyAssignment) {

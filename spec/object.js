@@ -14,4 +14,8 @@ describe("An object", function() {
     expect(interpreter.program("return {a:1,b:2};")).toEqual({a:1,b:2});
   });
   
+  it("may end with a comma", function() {
+    expect(interpreter.program("return {a:1,b:2,};")).toEqual({a:1,b:2});
+  });
+  
 });
