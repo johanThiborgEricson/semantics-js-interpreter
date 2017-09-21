@@ -119,7 +119,7 @@
     <div><span>Literal</span></div>
     <div><span>ObjectLiteral</span></div>
     <div><span>FunctionExpression</span></div>
-    <div><code>(</code> <span>Expression</span> <code>)</code></div>
+    <div><code>(</code> <span>ExpressionQualifier</span> <code>,</code> <span>PassiveAssignmentExpression</span> <code>)</code></div>
   </div>
 
   <div class="gp">
@@ -144,13 +144,13 @@
 
   <div class="gp">
     <div class="lhs"><span>NewExpression</span> <span class="geq">:</span> </div>
-    <div><span>ObjectExpression</span></div>
     <div><code>new</code> <span>NewExpressionQualifier</span> <span>Arguments</span><sub>opt</sub></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>NewExpressionQualifier</span> <span class="geq">:</span> </div>
     <div><span>NewExpressionQualifier</span> <span>Qualifier</span></div>
+    <div><span>PrimaryExpression</span></div>
     <div><span>NewExpression</span></div>
   </div>
 
@@ -188,39 +188,25 @@
     <div><span>LeftHandSideExpression</span> <span>Qualifier</span></div>
     <div><span>LeftHandSideExpressionBase</span> <span>Qualifier</span></div>
     <div><span>IdentifierReference</span></div>
+    <div><code>(</code> <span>LeftHandSideExpression</span> <code>)</code></div>
+    <div><code>(</code> <span>ExpressionQualifier</span> <code>,</code> <span>LeftHandSideExpression</span> <code>)</code></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>LeftHandSideExpressionBase</span> <span class="geq">:</span> </div>
     <div><span>CallExpression</span></div>
+    <div><span>PrimaryExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>RightHandSideExpression</span> <span class="geq">:</span> </div>
     <div><span>LeftHandSideExpression</span></div>
+    <div><span>PrimaryExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
     <div><span>CallExpression</span></div>
-    <div><span>RightHandSideExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>TypeChangeExpression</span> <span class="geq">:</span> </div>
-    <div><span>UpdateExpression</span></div>
-    <div><code>!</code> <span>TypeChangeExpression</span></div>
-    <div><code>typeof</code> <span>TypeChangeExpression</span></div>
-  </div>
-  
-  <div class="gp">
-    <div class="lhs"><span>LeftHandSideExpression</span> <span class="geq">:</span> </div>
-    <div><span>NewExpression</span></div>
-    <div><span>CallExpression</span></div>
-  </div>
-
-  <div class="gp">
-    <div class="lhs"><span>UpdateExpression</span> <span class="geq">:</span> </div>
     <div><code>delete</code> <span>LeftHandSideExpression</span></div>
     <div><span>LeftHandSideExpression</span> <code>++</code></div>
     <div><span>LeftHandSideExpression</span> <code>--</code></div>
@@ -229,8 +215,8 @@
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>TypeChangingExpressionNotUpdate</span> <span class="geq">:</span> </div>
-    <div><span>PrimaryExpression</span></div>
+    <div class="lhs"><span>PassiveTypeChangingExpression</span> <span class="geq">:</span> </div>
+    <div><span>RightHandSideExpression</span></div>
     <div><code>void</code> <span>TypeChangingExpression</span></div>
     <div><code>typeof</code> <span>TypeChangingExpression</span></div>
     <div><code>+</code> <span>TypeChangingExpression</span></div>
@@ -242,12 +228,12 @@
   <div class="gp">
     <div class="lhs"><span>TypeChangingExpression</span> <span class="geq">:</span> </div>
     <div><span>UpdateExpression</span></div>
-    <div><span>TypeChangingExpressionNotUpdate</span></div>
+    <div><span>PassiveTypeChangingExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>MultiplicativeExpressionNotUpdate</span> <span class="geq">:</span> </div>
-    <div><span>TypeChangingExpressionNotUpdate</span></div>
+    <div class="lhs"><span>PassiveMultiplicativeExpression</span> <span class="geq">:</span> </div>
+    <div><span>PassiveTypeChangingExpression</span></div>
     <div><span>MultiplicativeExpression</span> <code>*</code> <span>TypeChangingExpression</span></div>
     <div><span>MultiplicativeExpression</span> <code>/</code> <span>TypeChangingExpression</span></div>
     <div><span>MultiplicativeExpression</span> <code>%</code> <span>TypeChangingExpression</span></div>
@@ -256,25 +242,25 @@
   <div class="gp">
     <div class="lhs"><span>MultiplicativeExpression</span> <span class="geq">:</span> </div>
     <div><span>TypeChangingExpression</span></div>
-    <div><span>MultiplicativeExpressionNotUpdate</span></div>
+    <div><span>PassiveMultiplicativeExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>AdditiveExpressionNotUpdate</span> <span class="geq">:</span> </div>
-    <div><span>MultiplicativeExpressionNotUpdate</span></div>
-    <div><span>AdditiveExpressionNotUpdate</span> <code>+</code> <span>MultiplicativeExpression</span></div>
+    <div class="lhs"><span>PassiveAdditiveExpression</span> <span class="geq">:</span> </div>
+    <div><span>PassiveMultiplicativeExpression</span></div>
+    <div><span>PassiveAdditiveExpression</span> <code>+</code> <span>MultiplicativeExpression</span></div>
     <div><span>AdditiveExpression</span> <code>-</code> <span>MultiplicativeExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>AdditiveExpression</span> <span class="geq">:</span> </div>
     <div><span>MultiplicativeExpression</span></div>
-    <div><span>AdditiveExpressionNotUpdate</span></div>
+    <div><span>PassiveAdditiveExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>RelationalExpressionNotUpdate</span> <span class="geq">:</span> </div>
-    <div><span>AdditiveExpressionNotUpdate</span></div>
+    <div class="lhs"><span>PassiveRelationalExpression</span> <span class="geq">:</span> </div>
+    <div><span>PassiveAdditiveExpression</span></div>
     <div><span>RelationalExpression</span> <code>&lt;</code> <span>AdditiveExpression</span></div>
     <div><span>RelationalExpression</span> <code>&gt;</code> <span>AdditiveExpression</span></div>
     <div><span>RelationalExpression</span> <code>&lt;=</code> <span>AdditiveExpression</span></div>
@@ -286,12 +272,12 @@
   <div class="gp">
     <div class="lhs"><span>RelationalExpression</span> <span class="geq">:</span> </div>
     <div><span>AdditiveExpression</span></div>
-    <div><span>RelationalExpressionNotUpdate</span></div>
+    <div><span>PassiveRelationalExpression</span></div>
   </div>
 
   <div class="gp">
-    <div class="lhs"><span>EqualityExpressionNotUpdate</span> <span class="geq">:</span> </div>
-    <div><span>RelationalExpressionNotUpdate</span></div>
+    <div class="lhs"><span>PassiveEqualityExpression</span> <span class="geq">:</span> </div>
+    <div><span>PassiveRelationalExpression</span></div>
     <div><span>EqualityExpression</span> <code>==</code> <span>RelationalExpression</span></div>
     <div><span>EqualityExpression</span> <code>!=</code> <span>RelationalExpression</span></div>
     <div><span>EqualityExpression</span> <code>===</code> <span>RelationalExpression</span></div>
@@ -301,12 +287,12 @@
   <div class="gp">
     <div class="lhs"><span>EqualityExpression</span> <span class="geq">:</span> </div>
     <div><span>RelationalExpression</span></div>
-    <div><span>EqualityExpressionNotUpdate</span></div>
+    <div><span>PassiveEqualityExpression</span></div>
   </div>
 
   <div class="gp">
     <div class="lhs"><span>ActiveLogicalANDExpressionQualifier</span> <span class="geq">:</span> </div>
-    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>||</code> <span>EqualityExpressionNotUpdate</span></div>
+    <div><span>ActiveLogicalANDExpressionQualifier</span> <code>||</code> <span>PassiveEqualityExpression</span></div>
     <div><span>ActiveLogicalANDExpression</span></div>
   </div>
 
@@ -324,7 +310,7 @@
 
   <div class="gp">
     <div class="lhs"><span>PassiveLogicalANDExpression</span> <span class="geq">:</span> </div>
-    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>||</code> <span>EqualityExpressionNotUpdate</span></div>
+    <div><span>PassiveLogicalANDExpressionQualifier</span> <code>||</code> <span>PassiveEqualityExpression</span></div>
     <div><span>EqualityExpression</span></div>
   </div>
 
@@ -438,7 +424,7 @@
 
   <div class="gp">
     <div class="lhs"><span>ExpressionStatement</span> <span class="geq">:</span> </div>
-    <div><span>Expression</span> <code>;</code></div>
+    <div><span>ActiveExpression</span> <code>;</code></div>
   </div>
 
   <div class="gp">
