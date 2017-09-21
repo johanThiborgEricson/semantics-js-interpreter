@@ -305,10 +305,10 @@ function JavaScriptInterpreter() {
   
   j.deferredAssignmentExpression = f.methodFactory("assignmentExpression");
   
-  j.assignmentExpression = f.or("AssignmentExpressionNotLhs", 
+  j.assignmentExpression = f.or("assignmentExpression1", 
   "conditionalExpression");
   
-  j.AssignmentExpressionNotLhs = f.group("leftHandSideExpression", /=/, 
+  j.assignmentExpression1 = f.group("leftHandSideExpression", /=/, 
   "assignmentExpression", 
   function(leftHandSideExpression, assignmentExpression) {
     var lhse = leftHandSideExpression;
